@@ -114,4 +114,4 @@ if ! shopt -oq posix; then
 fi
 
 export PATH="$HOME/bin:$PATH"
-source "$HOME/bin/commands.txt"
+source "$HOME/bin/commands"
