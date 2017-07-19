@@ -1,0 +1,28 @@
+# VM Navigation
+alias www='cd /var/www/magento';
+
+# CLI
+alias cache='php /var/www/magento/bin/magento cache:flush';
+alias reindex='php /var/www/magento/bin/magento indexer:reindex';
+alias clean='reindex && cache';
+alias cron='php /var/www/magento/bin/magento cron:run';
+alias staging='reindex && cron && cron && cache';
+alias disable-cache='php /var/www/magento/bin/magento cache:disable';
+alias enable-cache='php /var/www/magento/bin/magento cache:enable';
+alias db-upgrade='php /var/www/magento/bin/magento setup:upgrade';
+alias static-content='php /var/www/magento/bin/magento static-content:deploy';
+alias dev-mode='php /var/www/magento/bin/magento deploy:mode:set developer';
+alias prod-mode='php /var/www/magento/bin/magento deploy:mode:set production';
+alias own='www;sudo chown -R vagrant:www-data * .*';
+alias add-store='www && rm -rf var/cache/* var/page_cache/*';
+
+# Extensions and Upgrades
+alias add-key='eval $(ssh-agent) && ssh-add ~/.ssh/Magento-Cloud';';
+alias add-modules='db-upgrade && static-content';
+alias upgrade='cache && disable-cache && dev-mode && add-key && composer update && db-upgrade && enable-cache && prod-mode && own';
+
+# Database
+alias db='mysql -u magento -ppassword';
+
+# Tools
+alias warm-cache='www && sh cache-warmer.sh';
