@@ -29,4 +29,4 @@ alias upgrade='cache && disable-cache && dev-mode && add-key && composer update 
 alias db='mysql -u root -ppassword';
 
 # Tools
-alias warm-cache='www && sh cache-warmer.sh';
+alias warm-cache='www && sh warm-cache.sh';

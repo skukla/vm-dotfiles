@@ -116,4 +116,4 @@ if ! shopt -oq posix; then
   fi
 fi
 
-source './dotfiles/commands-vagrant'
+source ~/dotfiles/commands-vb
