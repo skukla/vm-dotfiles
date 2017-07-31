@@ -23,7 +23,7 @@ alias add-store='www && rm -rf var/cache/* var/page_cache/*';
 # Extensions and Upgrades
 alias add-key='eval $(ssh-agent) && ssh-add ~/.ssh/Magento-Cloud';
 alias add-modules='db-upgrade && static-content';
-alias upgrade='cache && disable-cache && dev-mode && add-key && composer update && db-upgrade && enable-cache && prod-mode && own';
+alias upgrade='cache && disable-cache && dev-mode && add-key && composer update && db-upgrade && enable-cache && prod-mode && own && sudo chmod +x /var/www/magento/bin/magento';
 
 # Database
 alias db='mysql -u root -ppassword';
