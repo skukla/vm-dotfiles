@@ -21,7 +21,7 @@ alias add-store='www && rm -rf var/cache/* var/page_cache/*';
 # Extensions and Upgrades
 alias add-key='eval $(ssh-agent) && ssh-add ~/.ssh/Magento-Cloud';';
 alias add-modules='www && db-upgrade && di-compile && static-content';
-alias refresh-theme='www && rm -rf var/view_preprocessed' && static-content && cache-flush;
+alias refresh-theme='www && rm -rf var/view_preprocessed && static-content && cache-flush';
 alias upgrade='www && cache && disable-cache && dev-mode && add-key && composer update && db-upgrade && enable-cache && prod-mode && own && sudo chmod +x /var/www/magento/bin/magento';
 
 # Database
