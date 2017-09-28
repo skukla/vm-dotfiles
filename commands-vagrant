@@ -10,6 +10,7 @@ alias staging='reindex && cron && cron && cache';
 alias cache-flush='php /var/www/magento/bin/magento cache:flush';
 alias disable-cache='php /var/www/magento/bin/magento cache:disable';
 alias enable-cache='php /var/www/magento/bin/magento cache:enable';
+alias enable-modules='php /var/www/magento/bin/magento modules:enable --all';
 alias db-upgrade='php /var/www/magento/bin/magento setup:upgrade';
 alias di-compile='php /var/www/magento/bin/magento setup:di:compile';
 alias static-content='php /var/www/magento/bin/magento static-content:deploy';
@@ -22,7 +23,7 @@ alias add-store='www && rm -rf var/cache/* var/page_cache/*';
 alias add-key='eval $(ssh-agent) && ssh-add ~/.ssh/Magento-Cloud';
 alias add-modules='www && db-upgrade && di-compile && static-content';
 alias refresh-theme='www && rm -rf var/view_preprocessed && static-content && cache-flush';
-alias upgrade='www && cache && disable-cache && dev-mode && add-key && composer update && db-upgrade && enable-cache && prod-mode && own && sudo chmod +x /var/www/magento/bin/magento';
+alias upgrade='www && cache && add-key && composer update && own && db-upgrade && sudo chmod +x /var/www/magento/bin/magento && di-compile && static-content';
 
 # Database
 alias db='mysql -u magento -ppassword';
