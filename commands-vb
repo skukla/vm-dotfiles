@@ -10,6 +10,7 @@ alias cron='php /var/www/magento/bin/magento cron:run';
 alias staging='reindex && cron && cron && cache';
 alias cache-flush='php /var/www/magento/bin/magento cache:flush && restart-varnish && flush-redis;
 alias disable-cache='php /var/www/magento/bin/magento cache:disable';
+alias disable-cms-cache='php /var/www/magento/bin/magento cache:disable layout block_html full_page';
 alias enable-cache='php /var/www/magento/bin/magento cache:enable';
 alias enable-modules='php /var/www/magento/bin/magento modules:enable --all';
 alias db-upgrade='php /var/www/magento/bin/magento setup:upgrade';
