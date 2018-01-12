@@ -67,3 +67,4 @@ warm-cache:       :   Runs the cache warmer
 own               :   Ensures that file permissions are owned by the web server - prevents 500 server errors
 kill-php          :   Kills all PHP processess
 vm-help           :   Shows this help file
+====================
