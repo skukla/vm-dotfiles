@@ -39,6 +39,11 @@ alias start-db='sudo systemctl restart mysql';
 alias stop-db='sudo systemctl stop mysql';
 alias status-db='sudo systemctl status mysql';
 
+# Elasticsearch
+alias start-elastic='sudo systemctl restart elasticsearch';
+alias stop-elastic='sudo systemctl stop elasticsearch';
+alias status-elastic='sudo systemctl status elasticsearch';
+
 # Varnish
 alias start-varnish='sudo systemctl restart varnish';
 alias stop-varnish='sudo systemctl stop varnish';
