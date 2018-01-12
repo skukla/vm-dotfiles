@@ -44,9 +44,9 @@ stop-web          :   Stops Apache
 status-web        :   Shows Apache status
 
 db                :   Logs into the database.  You can use '-A' to make operations faster - e.g. 'db -A'
-start-db        :     Starts/Restarts Mysql
-stop-db           :   Stops Mysql
-status-db         :   Shows Mysql status
+start-db        :     Starts/Restarts MySQL
+stop-db           :   Stops MySQL
+status-db         :   Shows MySQL status
 
 start-elastic     :   Starts/Restarts Elasticsearch
 stop-elastic      :   Stops Elasticsearch
@@ -55,6 +55,7 @@ status-elastic    :   Shows Elasticsearch status
 start-varnish     :   Starts/Restarts (and flushes) Varnish cache
 stop-varnish      :   Stops Varnish
 status-varnish    :   Shows Varnish status
+verify-varnish    :   Shows Varnish statistics - run to confirm Varnish is being hit
 
 start-redis       :   Starts/Restarts (but does not flush) Redis cache
 stop-redis        :   Stops Redis
@@ -70,6 +71,7 @@ Tools
 -----
 warm-cache:       :   Runs the cache warmer
 own               :   Ensures that file permissions are owned by the web server - prevents 500 server errors
-kill-php          :   Kills all PHP processess
+kill-php          :   Kills all PHP processes
+update-cli        :   Pull in the newest CLI
 vm-help           :   Shows this help file
 ==========================================
