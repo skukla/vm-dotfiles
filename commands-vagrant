@@ -57,5 +57,5 @@ alias status-rabbit='sudo systemctl status rabbitmq-server';
 # Tools
 alias warm-cache='www && sh cache-warmer.sh';
 alias kill-php='sudo pkill -9 php';
-alias refresh-dotfiles='add-key && cd ~/cli/ && git pull && source ~/.bashrc && www';
+alias update-cli='add-key && cd ~/cli/ && git pull && source ~/.bashrc && www';
 alias vm-help='clear && cat ~/cli/help.txt';
