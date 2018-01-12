@@ -1,0 +1,62 @@
+STEVE'S VM COMMANDS
+===================
+
+Navigation
+----------
+www   :   Go to the web root folder
+
+
+Magento Commands
+----------------
+cache             :   Refreshes all Magento cache (does not refresh Redis for session cache)
+cache-flush       :   Refreshes all Magento cache, including Redis for session cache.  This will force a log out of the admin
+enable-cache      :   Enables all cache types at once
+disable-cache     :   Disables all cache types at once
+disable-cms-cache :   Disables only the cache types which relate to CMS changes (layout, block_html, full_page)
+reindex           :   Reindexes Magento (Will always require a cache refresh)
+clean             :   Reindexes Magento, then REFRESHES cache
+cron              :   Forces cron jobs to run
+staging           :   Used to update the staging dashboard if you edit a staging campaign. Reindexes Magento, then runs two cron jobs and refreshes cache.
+enable-modules    :   Enable all currently disabled modules - used when installing a new extension, for example
+db-upgrade        :   Upgrade the database schema - also used when installing a new extension
+di-compile        :   Compiles dependency injections - also used when installing a new extension
+deploy-content    :   Deploys static content for the en_US store view (Use this if you ever run into missing CSS or JavaScript when you switch to either US English store view)
+deploy-content-de :   Deploys static content for the Luma DE theme (Use this if you ever run into missing CSS or JavaScript when you switch to the Deutsch store view)
+dev-mode          :   Sets Magento in Developer mode (Use to access module and cache disable/enable, as well as the inline translation tool)
+prod-mode         :   Sets Magento in Production mode
+add-store         :   Originally used to fix an issue with older versions of 2.x when creating a new store
+
+
+Extensions and Upgrades
+-----------------------
+add-key           :   Adds the cloud ssh key to the ssh-agent (Needed whenever you want to install extensions or upgrade Magento)
+refresh-composer  :   Use this to refresh composer and download new modules after adding them to the composer.json file
+add-modules       :   Run this to both download and install new modules after updating composer.json (Same as above, but also runs di-compile, deploy-content, etc.)
+refresh-theme     :   Use this to clear var/view_preprocessed, deploy static content, and flush cache in case you want to do custom theme development on the server
+upgrade           :   Use this after updating your composer.json file with a new Magento version (Similar to add-modules, but adds ssh key to download new/updated modules)
+
+
+Database
+--------
+db                :   Logs into the database.  You can use '-A' to make operations faster - e.g. 'db -A'
+restart-db        :   Restarts mysql
+
+
+Web Server, Redis, Varnish
+----------------------
+restart-web       :   Restarts Apache
+restart-varnish   :   Restarts (and flushes) Varnish cache
+restart-redis     :   Restarts (but does not flush) Redis cache
+flush-redis       :   Flushes Redis cache
+
+
+Tools
+-----
+warm-cache:       :   Runs the cache warmer
+kill-php          :   Kills all PHP processess
+vm-help              :   Shows this help file
+
+
+File Permissions
+----------------
+own               :   Ensures that file permissions are owned by the web server - prevents 500 server errors
