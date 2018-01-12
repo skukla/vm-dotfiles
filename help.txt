@@ -44,22 +44,22 @@ restart-db        :   Restarts mysql
 
 Web Server, Redis, Varnish, RabbitMQ
 ------------------------------------
-start-web       :   Starts/Restarts Apache
-stop-web        :   Stops Apache
-status-web      :   Shows Apache status
+start-web         :   Starts/Restarts Apache
+stop-web          :   Stops Apache
+status-web        :   Shows Apache status
 
-start-varnish   :   Starts/Restarts (and flushes) Varnish cache
-stop-varnish    :   Stops Varnish
-status-varnish  :   Shows Varnish status
+start-varnish     :   Starts/Restarts (and flushes) Varnish cache
+stop-varnish      :   Stops Varnish
+status-varnish    :   Shows Varnish status
 
-start-redis     :   Starts/Restarts (but does not flush) Redis cache
-stop-redis      :   Stops Redis
-status-redis    :   Shows Redis status
-flush-redis     :   Flushes Redis cache
+start-redis       :   Starts/Restarts (but does not flush) Redis cache
+stop-redis        :   Stops Redis
+status-redis      :   Shows Redis status
+flush-redis       :   Flushes Redis cache
 
-start-rabbit    :   Starts/Restarts RabbitMQ
-stop-rabbit     :   Stops RabbitMQ
-status-rabbit   :   Shows RabbitMQ status
+start-rabbit      :   Starts/Restarts RabbitMQ
+stop-rabbit       :   Stops RabbitMQ
+status-rabbit     :   Shows RabbitMQ status
 
 Tools
 -----
