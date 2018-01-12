@@ -29,8 +29,8 @@ alias upgrade='www && add-key && composer update && own && db-upgrade && sudo ch
 
 # Web
 alias start-web='sudo systemctl restart apache2';
-alias stop-web ='sudo systemctl stop apache2';
-alias status-web = 'sudo systemctl status apache2';
+alias stop-web='sudo systemctl stop apache2';
+alias status-web='sudo systemctl status apache2';
 
 # Database
 alias db='mysql -u magento -ppassword';
@@ -50,9 +50,9 @@ alias status-redis='sudo systemctl status redis-server'
 alias flush-redis='sudo redis-cli flushall';
 
 # RabbitMQ
-alias start-rabbit = 'sudo systemctl start rabbitmq-server';
-alias stop-rabbit = 'sudo systemctl stop rabbitmq-server';
-alias status-rabbit = 'sudo systemctl status rabbitmq-server';
+alias start-rabbit= 'sudo systemctl start rabbitmq-server';
+alias stop-rabbit= 'sudo systemctl stop rabbitmq-server';
+alias status-rabbit= 'sudo systemctl status rabbitmq-server';
 
 # Tools
 alias warm-cache='www && sh cache-warmer.sh';
