@@ -38,4 +38,4 @@ alias restart-redis='sudo systemctl restart redis-server';
 alias flush-redis='sudo redis-cli flushall';
 alias warm-cache='www && sh cache-warmer.sh';
 alias kill-php='sudo pkill -9 php';
-alias vm-help='cat ~/cli/help.txt';
+alias vm-help='clear && cat ~/cli/help.txt';
