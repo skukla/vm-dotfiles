@@ -17,6 +17,7 @@ reindex           :   Reindexes Magento (Will always require a cache refresh)
 clean             :   Reindexes Magento, then REFRESHES cache
 cron              :   Forces cron jobs to run
 staging           :   Used to update the staging dashboard if you edit a staging campaign. Reindexes Magento, then runs two cron jobs and refreshes cache.
+list-modules      :   Shows a list of all enabled and disabled modules 
 enable-modules    :   Enable all currently disabled modules - used when installing a new extension, for example
 db-upgrade        :   Upgrade the database schema - also used when installing a new extension
 di-compile        :   Compiles dependency injections - also used when installing a new extension
