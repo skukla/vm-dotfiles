@@ -8,7 +8,7 @@ alias reindex='php /var/www/magento/bin/magento indexer:reindex';
 alias clean='reindex && cache';
 alias cron='php /var/www/magento/bin/magento cron:run';
 alias staging='reindex && cron && cron && cache';
-alias flush-cache='php /var/www/magento/bin/magento cache:flush && sudo rm -rf var/cache/* var/page_cache/* && flush-redis';
+alias flush-cache='php /var/www/magento/bin/magento cache:flush && sudo rm -rf var/cache/* var/page_cache/*
 alias enable-cache='php /var/www/magento/bin/magento cache:enable';
 alias disable-cache='php /var/www/magento/bin/magento cache:disable';
 alias disable-cms-cache='php /var/www/magento/bin/magento cache:disable layout block_html full_page';
@@ -18,21 +18,21 @@ alias db-upgrade='php /var/www/magento/bin/magento setup:upgrade';
 alias di-compile='php /var/www/magento/bin/magento setup:di:compile';
 alias deploy-content='php /var/www/magento/bin/magento setup:static-content:deploy -f';
 alias deploy-content-de='php /var/www/magento/bin/magento setup:static-content:deploy de_DE -f';
-alias dev-mode='www && flush-cache && disable-cache && php /var/www/magento/bin/magento deploy:mode:set developer && di-compile && deploy-content && enable-cache && sudo chmod -R 777 app/etc/ pub/ var/ generated/ && own && clean';
-alias prod-mode='www && flush-cache && disable-cache && php /var/www/magento/bin/magento deploy:mode:set production && di-compile && deploy-content && enable-cache && sudo chmod -R 777 app/etc/ pub/ var/ generated/ && own && clean';
+alias dev-mode='php /var/www/magento/bin/magento deploy:mode:set developer && cache';
+alias prod-mode='php /var/www/magento/bin/magento deploy:mode:set production && cache';
 alias add-store='www && rm -rf var/cache/* var/page_cache/*';
 
 # Extensions and Upgrades
 alias add-key='eval $(ssh-agent) && ssh-add ~/.ssh/Magento-Cloud';
 alias update-composer='www && add-key && composer update';
-alias add-modules='www && db-upgrade && di-compile && deploy-content && deploy-content-de && own && clean';
-alias refresh-theme='www && rm -rf var/view_preprocessed && deploy-content && flush-cache';
-alias upgrade='www && add-key && composer update && own && db-upgrade && sudo chmod +x /var/www/magento/bin/magento && di-compile && deploy-content && deploy-content-de && own && clean';
+alias add-modules='www && db-upgrade && di-compile && deploy-content && deploy-content-de && cache';
+alias refresh-theme='www && rm -rf var/view_preprocessed && deploy-content && cache';
+alias upgrade='www && add-key && update-composer && db-upgrade && di-compile && deploy-content && deploy-content-de && cache';
 
 # Web
-alias start-web='sudo systemctl restart apache2';
-alias stop-web='sudo systemctl stop apache2';
-alias status-web='sudo systemctl status apache2';
+alias start-web='sudo systemctl restart nginx';
+alias stop-web='sudo systemctl stop nginx';
+alias status-web='sudo systemctl status nginx';
 
 # Database
 alias db='mysql -u magento -ppassword';
@@ -44,24 +44,6 @@ alias status-db='sudo systemctl status mysql';
 alias start-elastic='sudo systemctl restart elasticsearch';
 alias stop-elastic='sudo systemctl stop elasticsearch';
 alias status-elastic='sudo systemctl status elasticsearch';
-
-# Varnish
-alias start-varnish='sudo systemctl restart varnish';
-alias stop-varnish='sudo systemctl stop varnish';
-alias status-varnish='sudo systemctl status varnish';
-alias monitor-varnish='sudo varnishstat';
-
-# Redis
-alias start-redis='sudo systemctl restart redis-server';
-alias stop-redis='sudo systemctl stop redis-server';
-alias status-redis='sudo systemctl status redis-server'
-alias flush-redis='sudo redis-cli flushall';
-alias monitor-redis='sudo redis-cli monitor';
-
-# RabbitMQ
-alias start-rabbit='sudo systemctl start rabbitmq-server';
-alias stop-rabbit='sudo systemctl stop rabbitmq-server';
-alias status-rabbit='sudo systemctl status rabbitmq-server';
 
 # Tools
 alias warm-cache='www && sh cache-warmer.sh';
