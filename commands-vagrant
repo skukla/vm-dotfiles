@@ -18,8 +18,8 @@ alias db-upgrade='php /var/www/magento/bin/magento setup:upgrade';
 alias di-compile='php /var/www/magento/bin/magento setup:di:compile';
 alias deploy-content='php /var/www/magento/bin/magento setup:static-content:deploy -f';
 alias deploy-content-de='php /var/www/magento/bin/magento setup:static-content:deploy de_DE -f';
-alias dev-mode='www && flush-cache && disable-cache && php /var/www/magento/bin/magento deploy:mode:set developer && di-compile && deploy-content && enable-cache && flush-cache && sudo chmod -R 777 app/etc/ pub/ var/ generated/ && own';
-alias prod-mode='www && flush-cache && disable-cache && php /var/www/magento/bin/magento deploy:mode:set production && di-compile && deploy-content && enable-cache && flush-cache && sudo chmod -R 777 app/etc/ pub/ var/ generated/ && own';
+alias dev-mode='www && flush-cache && disable-cache && php /var/www/magento/bin/magento deploy:mode:set developer && di-compile && deploy-content && enable-cache && sudo chmod -R 777 app/etc/ pub/ var/ generated/ && own && clean';
+alias prod-mode='www && flush-cache && disable-cache && php /var/www/magento/bin/magento deploy:mode:set production && di-compile && deploy-content && enable-cache && sudo chmod -R 777 app/etc/ pub/ var/ generated/ && own && clean';
 alias add-store='www && rm -rf var/cache/* var/page_cache/*';
 
 # Extensions and Upgrades
