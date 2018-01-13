@@ -25,7 +25,6 @@ deploy-content    :   Deploys static content for the en_US store view (Use this 
 deploy-content-de :   Deploys static content for the Luma DE theme (Use this if you ever run into missing CSS or JavaScript when you switch to the Deutsch store view)
 dev-mode          :   Sets Magento in Developer mode (Use to access module and cache disable/enable, as well as the inline translation tool)
 prod-mode         :   Sets Magento in Production mode
-add-store         :   Originally used to fix an issue with older versions of 2.x when creating a new store
 
 
 Extensions and Upgrades
@@ -37,11 +36,11 @@ refresh-theme     :   Use this to clear var/view_preprocessed, deploy static con
 upgrade           :   Use this after updating your composer.json file with a new Magento version (Similar to add-modules, but adds ssh key to download new/updated modules)
 
 
-Web Server, Database, Elasticsearch, Redis, Varnish, RabbitMQ
--------------------------------------------------------------
-start-web         :   Starts/Restarts Apache
-stop-web          :   Stops Apache
-status-web        :   Shows Apache status
+Web Server, Database, Elasticsearch
+-----------------------------------
+start-web         :   Starts/Restarts Nginx
+stop-web          :   Stops Nginx
+status-web        :   Shows Nginx status
 
 db                :   Logs into the database.  You can use '-A' to make operations faster - e.g. 'db -A'
 start-db        :     Starts/Restarts MySQL
@@ -51,21 +50,6 @@ status-db         :   Shows MySQL status
 start-elastic     :   Starts/Restarts Elasticsearch
 stop-elastic      :   Stops Elasticsearch
 status-elastic    :   Shows Elasticsearch status
-
-start-varnish     :   Starts/Restarts (and flushes) Varnish cache
-stop-varnish      :   Stops Varnish
-status-varnish    :   Shows Varnish status
-monitor-varnish   :   Shows Varnish statistics - run to confirm Varnish is being hit
-
-start-redis       :   Starts/Restarts (but does not flush) Redis cache
-stop-redis        :   Stops Redis
-status-redis      :   Shows Redis status
-flush-redis       :   Flushes Redis cache
-monitor-redis     :   Shows Redis cache hits in real-time
-
-start-rabbit      :   Starts/Restarts RabbitMQ
-stop-rabbit       :   Stops RabbitMQ
-status-rabbit     :   Shows RabbitMQ status
 
 
 Tools
