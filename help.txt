@@ -55,12 +55,13 @@ status-elastic    :   Shows Elasticsearch status
 start-varnish     :   Starts/Restarts (and flushes) Varnish cache
 stop-varnish      :   Stops Varnish
 status-varnish    :   Shows Varnish status
-verify-varnish    :   Shows Varnish statistics - run to confirm Varnish is being hit
+monitor-varnish   :   Shows Varnish statistics - run to confirm Varnish is being hit
 
 start-redis       :   Starts/Restarts (but does not flush) Redis cache
 stop-redis        :   Stops Redis
 status-redis      :   Shows Redis status
 flush-redis       :   Flushes Redis cache
+monitor-redis     :   Shows Redis cache hits in real-time
 
 start-rabbit      :   Starts/Restarts RabbitMQ
 stop-rabbit       :   Stops RabbitMQ

@@ -49,13 +49,14 @@ alias status-elastic='sudo systemctl status elasticsearch';
 alias start-varnish='sudo systemctl restart varnish';
 alias stop-varnish='sudo systemctl stop varnish';
 alias status-varnish='sudo systemctl status varnish';
-alias verify-varnish='sudo varnishstat';
+alias monitor-varnish='sudo varnishstat';
 
 # Redis
 alias start-redis='sudo systemctl restart redis-server';
 alias stop-redis='sudo systemctl stop redis-server';
 alias status-redis='sudo systemctl status redis-server'
 alias flush-redis='sudo redis-cli flushall';
+alias monitor-redis='sudo redis-cli monitor';
 
 # RabbitMQ
 alias start-rabbit='sudo systemctl start rabbitmq-server';
