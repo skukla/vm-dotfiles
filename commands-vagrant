@@ -26,7 +26,7 @@ alias add-key='eval $(ssh-agent) && ssh-add ~/.ssh/Magento-Cloud';
 alias update-composer='www && add-key && composer update';
 alias add-modules='www && db-upgrade && di-compile && deploy-content && deploy-content-de && cache';
 alias refresh-theme='www && rm -rf var/view_preprocessed && deploy-content && cache';
-alias upgrade='www && add-key && update-composer && db-upgrade && di-compile && deploy-content && deploy-content-de && cache';
+alias upgrade='www && update-composer && db-upgrade && di-compile && deploy-content && deploy-content-de && cache';
 
 # Web
 alias start-web='sudo systemctl restart nginx';
