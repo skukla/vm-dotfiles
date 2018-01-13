@@ -31,7 +31,7 @@ add-store         :   Originally used to fix an issue with older versions of 2.x
 Extensions and Upgrades
 -----------------------
 add-key           :   Adds the cloud ssh key to the ssh-agent (Needed whenever you want to install extensions or upgrade Magento)
-refresh-composer  :   Use this to refresh composer and download new modules after adding them to the composer.json file
+update-composer   :   Use this to refresh composer and download new modules after adding them to the composer.json file
 add-modules       :   Run this to both download and install new modules after updating composer.json (Same as above, but also runs di-compile, deploy-content, etc.)
 refresh-theme     :   Use this to clear var/view_preprocessed, deploy static content, and flush cache in case you want to do custom theme development on the server
 upgrade           :   Use this after updating your composer.json file with a new Magento version (Similar to add-modules, but adds ssh key to download new/updated modules)
