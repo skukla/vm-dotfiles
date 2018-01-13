@@ -9,7 +9,7 @@ www   :   Go to the web root folder
 Magento Commands
 ----------------
 cache             :   Refreshes all Magento cache (does not refresh Redis for session cache)
-cache-flush       :   Refreshes all Magento cache, including Redis for session cache.  This will force a log out of the admin
+flush-cache       :   Refreshes all Magento cache, including Redis for session cache.  This will force a log out of the admin
 enable-cache      :   Enables all cache types at once
 disable-cache     :   Disables all cache types at once
 disable-cms-cache :   Disables only the cache types which relate to CMS changes (layout, block_html, full_page)
