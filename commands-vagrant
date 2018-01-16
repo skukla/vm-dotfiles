@@ -44,6 +44,12 @@ alias start-elastic='sudo systemctl restart elasticsearch';
 alias stop-elastic='sudo systemctl stop elasticsearch';
 alias status-elastic='sudo systemctl status elasticsearch';
 
+# Varnish
+alias start-varnish='sudo systemctl restart varnish';
+alias stop-varnish='sudo systemctl stop varnish';
+alias status-varnish='sudo systemctl status varnish';
+alias monitor-varnish='sudo varnishstat';
+
 # Tools
 alias warm-cache='www && sh cache-warmer.sh';
 alias kill-php='sudo pkill -9 php';

@@ -51,6 +51,11 @@ start-elastic     :   Starts/Restarts Elasticsearch
 stop-elastic      :   Stops Elasticsearch
 status-elastic    :   Shows Elasticsearch status
 
+start-varnish     :   Starts/Restarts Varnish
+stop-varnish      :   Stops Varnish
+status-varnish    :   Shows Varnish status (if varnish is configured)
+monitor-varnish   :   Shows Varnish statistics (if varnish is configured)
+
 
 Tools
 -----
