@@ -2,7 +2,7 @@
 alias www='cd /var/www/magento';
 
 # CLI
-alias own='www;sudo chown -R vagrant:www-data * .*';
+alias own='www && sudo chown -R vagrant:www-data var/cache/ var/page_cache/ && sudo chmod -R 777 var/ pub/ app/etc/ generated/';
 alias cache='php /var/www/magento/bin/magento cache:clean && www && sudo rm -rf var/cache/* var/page_cache/* && own';
 alias reindex='php /var/www/magento/bin/magento indexer:reindex';
 alias clean='reindex && cache';
