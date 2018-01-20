@@ -3,12 +3,12 @@ alias www='cd /var/www/magento';
 
 # CLI
 alias own='www && sudo chown -R vagrant:www-data var/cache/ var/page_cache/ && sudo chmod -R 777 var/ pub/ app/etc/ generated/';
-alias cache='www && ./bin/magento cache:clean
+alias cache='www && ./bin/magento cache:clean';
 alias reindex='www && ./bin/magento indexer:reindex';
 alias clean='reindex && cache';
 alias cron='www && ./bin/magento cron:run';
 alias staging='reindex && cron && cron && cache';
-alias flush-cache='www && ./bin/magento cache:flush;
+alias flush-cache='www && ./bin/magento cache:flush';
 alias enable-cache='www && ./bin/magento cache:enable';
 alias disable-cache='www && ./bin/magento cache:disable';
 alias disable-cms-cache='www && ./bin/magento cache:disable layout block_html full_page';
