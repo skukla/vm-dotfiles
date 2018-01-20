@@ -3,23 +3,23 @@ alias www='cd /var/www/magento';
 
 # CLI
 alias own='www && sudo chown -R vagrant:www-data var/cache/ var/page_cache/ && sudo chmod -R 777 var/ pub/ app/etc/ generated/';
-alias cache='php /var/www/magento/bin/magento cache:clean
-alias reindex='php /var/www/magento/bin/magento indexer:reindex';
+alias cache='www && ./bin/magento cache:clean
+alias reindex='www && ./bin/magento indexer:reindex';
 alias clean='reindex && cache';
-alias cron='php /var/www/magento/bin/magento cron:run';
+alias cron='www && ./bin/magento cron:run';
 alias staging='reindex && cron && cron && cache';
-alias flush-cache='php /var/www/magento/bin/magento cache:flush;
-alias enable-cache='php /var/www/magento/bin/magento cache:enable';
-alias disable-cache='php /var/www/magento/bin/magento cache:disable';
-alias disable-cms-cache='php /var/www/magento/bin/magento cache:disable layout block_html full_page';
-alias list-modules='php /var/www/magento/bin/magento module:status';
-alias enable-modules='php /var/www/magento/bin/magento module:enable --all';
-alias db-upgrade='php /var/www/magento/bin/magento setup:upgrade';
-alias di-compile='php /var/www/magento/bin/magento setup:di:compile';
-alias deploy-content='php /var/www/magento/bin/magento setup:static-content:deploy -f';
-alias deploy-content-de='php /var/www/magento/bin/magento setup:static-content:deploy de_DE -f';
-alias dev-mode='php /var/www/magento/bin/magento deploy:mode:set developer && cache';
-alias prod-mode='php /var/www/magento/bin/magento deploy:mode:set production && cache';
+alias flush-cache='www && ./bin/magento cache:flush;
+alias enable-cache='www && ./bin/magento cache:enable';
+alias disable-cache='www && ./bin/magento cache:disable';
+alias disable-cms-cache='www && ./bin/magento cache:disable layout block_html full_page';
+alias list-modules='www && ./bin/magento module:status';
+alias enable-modules='www && ./bin/magento module:enable --all';
+alias db-upgrade='www && ./bin/magento setup:upgrade';
+alias di-compile='www && ./magento setup:di:compile';
+alias deploy-content='www && ./magento setup:static-content:deploy -f';
+alias deploy-content-de='www && ./magento setup:static-content:deploy de_DE -f';
+alias dev-mode='www && ./magento deploy:mode:set developer && cache';
+alias prod-mode='www && ./magento deploy:mode:set production && cache';
 
 # Extensions and Upgrades
 alias add-key='eval $(ssh-agent) && ssh-add ~/.ssh/Magento-Cloud';
