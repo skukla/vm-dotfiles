@@ -16,10 +16,10 @@ alias list-modules='www && ./bin/magento module:status';
 alias enable-modules='www && ./bin/magento module:enable --all';
 alias db-upgrade='www && ./bin/magento setup:upgrade';
 alias di-compile='www && ./magento setup:di:compile';
-alias deploy-content='www && ./magento setup:static-content:deploy -f';
-alias deploy-content-de='www && ./magento setup:static-content:deploy de_DE -f';
-alias dev-mode='www && ./magento deploy:mode:set developer && cache';
-alias prod-mode='www && ./magento deploy:mode:set production && cache';
+alias deploy-content='www && .bin/magento setup:static-content:deploy -f';
+alias deploy-content-de='www && .bin/magento setup:static-content:deploy de_DE -f';
+alias dev-mode='www && .bin/magento deploy:mode:set developer && cache';
+alias prod-mode='www && .bin/magento deploy:mode:set production && cache';
 
 # Extensions and Upgrades
 alias add-key='eval $(ssh-agent) && ssh-add ~/.ssh/Magento-Cloud';
