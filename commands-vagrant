@@ -1,2 +1,189 @@
 # VM Navigation
-function www() { cd /var/www/magento }
+function www() {
+  cd /var/www/magento
+}
+
+# CLI
+function own() {
+  www
+  sudo chown -R vagrant:vagrant var/cache/ var/page_cache/
+  sudo chmod -R 777 var/ pub/ app/etc/ generated/
+}
+
+function cache() {
+  www
+  ./bin/magento cache:clean
+}
+
+function flush-cache() {
+  www
+  ./bin/magento cache:flush
+}
+
+function enable-cache() {
+  www
+  ./bin/magento cache:enable
+}
+
+function disable-cache() {
+  www
+  ./bin/magento cache:disable
+}
+
+function disable-cms-cache() {
+  www
+  ./bin/magento cache:disable layout block_html full_page
+}
+
+function reindex() {
+  www
+  ./bin/magento indexer:reindex
+}
+
+function clean() {
+  reindex
+  cache
+}
+
+function cron() {
+  www
+  ./bin/magento cron:run
+}
+
+function staging() {
+  reindex
+  cron
+  cron
+  cache
+}
+
+function list-modules() {
+  www
+  ./bin/magento module:status
+}
+
+function enable-all-modules() {
+  www
+  ./bin/magento module:enable --all
+}
+
+function db-upgrade() {
+  www
+  ./bin/magento setup:upgrade
+}
+
+function di-compile() {
+  www && ./bin/magento setup:di:compile
+}
+
+function deploy-content() {
+  www
+  ./bin/magento setup:static-content:deploy -f
+}
+
+function deploy-content-de() {
+  www
+  ./bin/magento setup:static-content:deploy de_DE -f
+}
+
+function dev-mode() {
+  www
+  ./bin/magento deploy:mode:set developer
+  cache
+}
+
+function prod-mode() {
+  www
+  ./bin/magento deploy:mode:set production
+  cache
+}
+
+# Extensions and Upgrades
+function add-key() {
+  eval $(ssh-agent)
+  ssh-add ~/.ssh/Magento-Cloud
+}
+
+function update-composer() {
+  www
+  add-key
+  composer update
+}
+
+function add-modules() {
+  www
+  db-upgrade
+  di-compile
+  deploy-content
+  deploy-content-de
+  cache
+}
+
+function refresh-theme() {
+  www
+  rm -rf var/view_preprocessed
+  deploy-content
+  cache
+}
+
+function upgrade() {
+  www
+  update-composer
+  db-upgrade
+  di-compile
+  deploy-content
+  deploy-content-de
+  cache
+}
+
+# Web
+function start-web() {
+  sudo systemctl restart nginx
+}
+
+function stop-web() {
+  sudo systemctl stop nginx
+}
+
+function status-web() {
+  sudo systemctl status nginx
+}
+
+# Database
+function db() {
+  mysql -u magento -ppassword
+}
+
+function start-db() {
+  systemctl restart mysql
+}
+
+function stop-db() {
+  sudo systemctl stop mysql
+}
+
+function status-db() {
+  sudo systemctl status mysql
+}
+
+# Tools
+function warm-cache() {
+  www
+  sh cache-warmer.sh
+}
+function kill-php() {
+  sudo pkill -9 php
+}
+
+function update-cli() {
+  add-key
+  cd ~/cli/
+  git pull
+  source ~/.bashrc
+  www
+}
+
+function vm-help() {
+  clear
+  cat ~/cli/help.txt
+}
