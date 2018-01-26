@@ -1,5 +1,5 @@
 # VM Navigation
-www() { cd /var/www/magento }
+function www() { cd /var/www/magento }
 
 # CLI
 own() { www && sudo chown -R vagrant:vagrant var/cache/ var/page_cache/ && sudo chmod -R 777 var/ pub/ app/etc/ generated/ }
