@@ -168,9 +168,9 @@ function status-db() {
 
 # Tools
 function warm-cache() {
-  www
-  sh cache-warmer.sh
+  sh ~/scripts/cache-warmer.sh
 }
+
 function kill-php() {
   sudo pkill -9 php
 }
