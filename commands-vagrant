@@ -1,57 +1,46 @@
 # VM Navigation
-alias www='cd /var/www/magento';
+www() { cd /var/www/magento }
 
 # CLI
-alias own='www && sudo chown -R vagrant:vagrant var/cache/ var/page_cache/ && sudo chmod -R 777 var/ pub/ app/etc/ generated/';
-alias cache='www && ./bin/magento cache:clean';
-alias reindex='www && ./bin/magento indexer:reindex';
-alias clean='reindex && cache';
-alias cron='www && ./bin/magento cron:run';
-alias staging='reindex && cron && cron && cache';
-alias flush-cache='www && ./bin/magento cache:flush';
-alias enable-cache='www && ./bin/magento cache:enable';
-alias disable-cache='www && ./bin/magento cache:disable';
-alias disable-cms-cache='www && ./bin/magento cache:disable layout block_html full_page';
-alias list-modules='www && ./bin/magento module:status';
-alias enable-modules='www && ./bin/magento module:enable --all';
-alias db-upgrade='www && ./bin/magento setup:upgrade';
-alias di-compile='www && ./bin/magento setup:di:compile';
-alias deploy-content='www && ./bin/magento setup:static-content:deploy -f';
-alias deploy-content-de='www && ./bin/magento setup:static-content:deploy de_DE -f';
-alias dev-mode='www && ./bin/magento deploy:mode:set developer && cache';
-alias prod-mode='www && ./bin/magento deploy:mode:set production && cache';
+own() { www && sudo chown -R vagrant:vagrant var/cache/ var/page_cache/ && sudo chmod -R 777 var/ pub/ app/etc/ generated/ }
+cache() { www && ./bin/magento cache:clean }
+flush-cache() { www && ./bin/magento cache:flush }
+enable-cache() { www && ./bin/magento cache:enable }
+disable-cache() { www && ./bin/magento cache:disable }
+disable-cms-cache() { www && ./bin/magento cache:disable layout block_html full_page }
+reindex() { www && ./bin/magento indexer:reindex }
+clean() { reindex && cache }
+cron() { www && ./bin/magento cron:run }
+staging() { reindex && cron && cron && cache }
+list-modules() { www && ./bin/magento module:status }
+enable-all-modules() { www && ./bin/magento module:enable --all }
+db-upgrade() { www && ./bin/magento setup:upgrade }
+di-compile() { www && ./bin/magento setup:di:compile }
+deploy-content() { www && ./bin/magento setup:static-content:deploy -f }
+deploy-content-de() { www && ./bin/magento setup:static-content:deploy de_DE -f }
+dev-mode() { www && ./bin/magento deploy:mode:set developer && cache }
+prod-mode() { www && ./bin/magento deploy:mode:set production && cache }
 
 # Extensions and Upgrades
-alias add-key='eval $(ssh-agent) && ssh-add ~/.ssh/Magento-Cloud';
-alias update-composer='www && add-key && composer update';
-alias add-modules='www && db-upgrade && di-compile && deploy-content && deploy-content-de && cache';
-alias refresh-theme='www && rm -rf var/view_preprocessed && deploy-content && cache';
-alias upgrade='www && update-composer && db-upgrade && di-compile && deploy-content && deploy-content-de && cache';
+add-key() { eval $(ssh-agent) && ssh-add ~/.ssh/Magento-Cloud }
+update-composer() { www && add-key && composer update }
+add-modules() { www && db-upgrade && di-compile && deploy-content && deploy-content-de && cache }
+refresh-theme() { www && rm -rf var/view_preprocessed && deploy-content && cache }
+upgrade() { www && update-composer && db-upgrade && di-compile && deploy-content && deploy-content-de && cache }
 
 # Web
-alias start-web='sudo systemctl restart nginx';
-alias stop-web='sudo systemctl stop nginx';
-alias status-web='sudo systemctl status nginx';
+start-web() { sudo systemctl restart nginx }
+stop-web() { sudo systemctl stop nginx }
+status-web() { sudo systemctl status nginx }
 
 # Database
-alias db='mysql -u magento -ppassword';
-alias start-db='sudo systemctl restart mysql';
-alias stop-db='sudo systemctl stop mysql';
-alias status-db='sudo systemctl status mysql';
-
-# Elasticsearch
-alias start-elastic='sudo systemctl restart elasticsearch';
-alias stop-elastic='sudo systemctl stop elasticsearch';
-alias status-elastic='sudo systemctl status elasticsearch';
-
-# Varnish
-alias start-varnish='sudo systemctl restart varnish';
-alias stop-varnish='sudo systemctl stop varnish';
-alias status-varnish='sudo systemctl status varnish';
-alias monitor-varnish='sudo varnishstat';
+db() { mysql -u magento -ppassword }
+start-db() { systemctl restart mysql }
+stop-db() { sudo systemctl stop mysql }
+status-db() { sudo systemctl status mysql }
 
 # Tools
-alias warm-cache='www && sh cache-warmer.sh';
-alias kill-php='sudo pkill -9 php';
-alias update-cli='add-key && cd ~/cli/ && git pull && source ~/.bashrc && www';
-alias vm-help='clear && cat ~/cli/help.txt';
+warm-cache() { www && sh cache-warmer.sh }
+kill-php() { sudo pkill -9 php }
+update-cli() { add-key && cd ~/cli/ && git pull && source ~/.bashrc && www }
+vm-help() { clear && cat ~/cli/help.txt }
