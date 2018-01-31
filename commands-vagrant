@@ -74,8 +74,10 @@ function enable-shared-catalogs() {
   www
   reindex
   cache
-  printf "\nRunning cron job to process queued tasks...\n"
-  cron
+  printf "\nRemoving crontab...\n"
+  crontab -r
+  printf "\nInstalling new crontab...\n"
+  ./bin/magento cron:install
 }
 
 function db-upgrade() {
