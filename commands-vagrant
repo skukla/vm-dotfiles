@@ -69,11 +69,11 @@ function enable-all-modules() {
 
 function enable-shared-catalogs() {
   www
-  printf "Reindexing...\n"
+  printf "\nReindexing...\n"
   reindex
-  printf "Clearing cache...\n"
+  printf "\nClearing cache...\n"
   cache
-  printf "Running cron job to add shared catalog...\n"
+  printf "\nRunning cron job to process queued tasks...\n"
   cron
 }
 
