@@ -67,6 +67,16 @@ function enable-all-modules() {
   ./bin/magento module:enable --all
 }
 
+function enable-shared-catalogs() {
+  www
+  printf "Reindexing.../n"
+  reindex
+  printf "Clearing cache.../n"
+  cache
+  printf "Running cron job to add shared catalog.../n"
+  cron
+}
+
 function db-upgrade() {
   www
   ./bin/magento setup:upgrade
