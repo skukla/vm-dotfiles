@@ -50,7 +50,11 @@ function clean() {
 
 function cron() {
   www
+  printf "\nRunning regular cron job...\n"
   ./bin/magento cron:run
+  printf "\nRunning shared catalog cron jobs\n"
+  ./bin/magento queue:consumers:start sharedCatalogUpdatePrice
+  ./bin/magento queue:consumers:start sharedCatalogUpdateCategoryPermissions
 }
 
 function staging() {
@@ -74,9 +78,7 @@ function enable-shared-catalogs() {
   www
   reindex
   cache
-  printf "Running shared catalog cronjobs...\n"
-  ./bin/magento queue:consumers:start sharedCatalogUpdatePrice
-  ./bin/magento queue:consumers:start sharedCatalogUpdateCategoryPermissions
+  cron
 }
 
 function db-upgrade() {
