@@ -19,7 +19,7 @@ cron                    :   Forces cron jobs to run
 staging                 :   Used to update the staging dashboard if you edit a staging campaign. Reindexes Magento, then runs two cron jobs and refreshes cache.
 list-modules            :   Shows a list of all enabled and disabled modules
 enable-all-modules      :   Enable all currently disabled modules - used when installing a new extension, for example
-enable-shared-catalogs  :
+process-catalogs        :   Reindex, refresh cache, run cron - used to force any shared catalogs to run
 db-upgrade              :   Upgrade the database schema - also used when installing a new extension
 di-compile              :   Compiles dependency injections - also used when installing a new extension
 deploy-content          :   Deploys static content for the en_US store view (Use this if you ever run into missing CSS or JavaScript when you switch to either US English store view)
