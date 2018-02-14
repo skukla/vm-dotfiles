@@ -50,13 +50,8 @@ function clean() {
 
 function cron() {
   www
-  printf "\nRunning regular cron jobs...\n"
+  printf "\nRunning cron jobs...\n"
   ./bin/magento cron:run
-  printf "\nRunning consumer cron jobs\n"
-  ./bin/magento queue:consumers:start sharedCatalogUpdatePrice &
-  ./bin/magento queue:consumers:start sharedCatalogUpdateCategoryPermissions &
-  ./bin/magento queue:consumers:start quoteItemCleaner &
-  ./bin/magento queue:consumers:start inventoryQtyCounter &
 }
 
 function staging() {
