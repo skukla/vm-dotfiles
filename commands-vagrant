@@ -20,6 +20,7 @@ function flush-cache() {
   www
   printf "\nFlushing cache...\n"
   ./bin/magento cache:flush
+  rm -rf var/cache/* var/page_cache/*
 }
 
 function enable-cache() {
