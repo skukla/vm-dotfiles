@@ -2,6 +2,7 @@
 function www() {
   cd /var/www/magento
 }
+export -f www
 
 # CLI
 function own() {
@@ -9,12 +10,14 @@ function own() {
   sudo chown -R vagrant:vagrant var/cache/ var/page_cache/
   sudo chmod -R 777 var/ pub/ app/etc/ generated/
 }
+export -f own
 
 function cache() {
   www
   printf "\nClearing cache...\n"
   ./bin/magento cache:clean
 }
+export -f cache
 
 function flush-cache() {
   www
@@ -22,38 +25,45 @@ function flush-cache() {
   ./bin/magento cache:flush
   rm -rf var/cache/* var/page_cache/*
 }
+export -f flush-cache
 
 function enable-cache() {
   www
   ./bin/magento cache:enable
 }
+export -f enable-cache
 
 function disable-cache() {
   www
   ./bin/magento cache:disable
 }
+export -f disable-cache
 
 function disable-cms-cache() {
   www
   ./bin/magento cache:disable layout block_html full_page
 }
+export -f disable-cms-cache
 
 function reindex() {
   www
   printf "\nReindexing...\n"
   ./bin/magento indexer:reindex
 }
+export -f reindex
 
 function clean() {
   reindex
   cache
 }
+export -f clean
 
 function cron() {
   www
   printf "\nRunning cron jobs...\n"
   ./bin/magento cron:run
 }
+export -f cron
 
 function staging() {
   reindex
@@ -61,16 +71,19 @@ function staging() {
   cron
   cache
 }
+export -f staging
 
 function list-modules() {
   www
   ./bin/magento module:status
 }
+export -f list-modules
 
 function enable-all-modules() {
   www
   ./bin/magento module:enable --all
 }
+export -f enable-all-modules
 
 function process-catalogs() {
   www
@@ -78,49 +91,58 @@ function process-catalogs() {
   cache
   cron
 }
+export -f process-catalogs
 
 function db-upgrade() {
   www
   ./bin/magento setup:upgrade
 }
+export -f db-upgrade
 
 function di-compile() {
   www && ./bin/magento setup:di:compile
 }
+export -f di-compile
 
 function deploy-content() {
   www
   ./bin/magento setup:static-content:deploy -f
 }
+export -f deploy-content
 
 function deploy-content-de() {
   www
   ./bin/magento setup:static-content:deploy de_DE -f
 }
+export -f deploy-content-de
 
 function dev-mode() {
   www
   ./bin/magento deploy:mode:set developer
   cache
 }
+export -f dev-mode
 
 function prod-mode() {
   www
   ./bin/magento deploy:mode:set production
   cache
 }
+export -f prod-mode
 
 # Extensions and Upgrades
 function add-key() {
   eval $(ssh-agent)
   ssh-add ~/.ssh/Magento-Cloud
 }
+export -f add-key
 
 function update-composer() {
   www
   add-key
   composer update
 }
+export -f update-composer
 
 function add-modules() {
   www
@@ -128,8 +150,9 @@ function add-modules() {
   di-compile
   deploy-content
   deploy-content-de
-  cache
+  clean
 }
+export -f add-modules
 
 function refresh-theme() {
   www
@@ -137,55 +160,57 @@ function refresh-theme() {
   deploy-content
   cache
 }
+export -f refresh-theme
 
 function upgrade() {
   www
   update-composer
-  db-upgrade
-  di-compile
-  deploy-content
-  deploy-content-de
-  cache
+  add-modules
 }
+export -f upgrade
 
 # Web
 function start-web() {
   sudo systemctl restart nginx
 }
+export -f start-web
 
 function stop-web() {
   sudo systemctl stop nginx
 }
+export -f stop-web
 
 function status-web() {
   sudo systemctl status nginx
 }
+export -f status-web
 
 # Database
 function db() {
   mysql -u magento -ppassword
 }
+export -f db
 
 function start-db() {
   systemctl restart mysql
 }
+export -f start-db
 
 function stop-db() {
   sudo systemctl stop mysql
 }
+export -f stop-db
 
 function status-db() {
   sudo systemctl status mysql
 }
+export -f status-db
 
 # Tools
 function warm-cache() {
   sh ~/scripts/cache-warmer.sh
 }
-
-function kill-php() {
-  sudo pkill -9 php
-}
+export -f warm-cache
 
 function update-cli() {
   add-key
@@ -194,8 +219,10 @@ function update-cli() {
   source ~/.bashrc
   www
 }
+export -f update-cli
 
 function vm-help() {
   clear
   cat ~/cli/help.txt
 }
+export -f vm-help
