@@ -79,6 +79,16 @@ function list-modules() {
 }
 export -f list-modules
 
+function install-modules() {
+  bash ~/scripts/modules.sh install
+}
+export -f install-modules
+
+function uninstall-modules() {
+  bash ~/scripts/modules.sh uninstall
+}
+export -f uninstall-modules
+
 function enable-all-modules() {
   www
   ./bin/magento module:enable --all
