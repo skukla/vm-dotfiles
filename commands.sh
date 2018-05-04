@@ -335,11 +335,11 @@ function warm-cache() {
 }
 export -f warm-cache
 
-function list-ports() {
+function list-procs() {
   clear
-  bash ~/scripts/list-ports.sh
+  bash ~/scripts/list-processes.sh
 }
-export -f list-ports
+export -f list-procs
 
 function update-cli() {
   printf "\nUpdating the VM CLI...\n"
@@ -353,6 +353,12 @@ function update-cli() {
   www
 }
 export -f update-cli
+
+function vm-info() {
+  clear
+  bash ~/cli/info.sh
+}
+export -f vm-info
 
 function vm-help() {
   clear
