@@ -349,7 +349,7 @@ function update-cli() {
   printf "\nCopying bashrc... "
   cp ~/cli/.bashrc ~/.bashrc
   source ~/.bashrc
-  printf "done.\n"
+  printf "done.\n\n"
   www
 }
 export -f update-cli
