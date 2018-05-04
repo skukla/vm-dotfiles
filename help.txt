@@ -83,6 +83,7 @@ warm-cache:             :   Runs the cache warmer
 own                     :   Ensures that file permissions are owned by the web server - prevents 500 server errors
 kill-php                :   Kills all PHP processes
 update-cli              :   Pull in the newest CLI
+list-procs              :   Shows a netstat of commonly-used processes and their ports
+vm-info                 :   Shows a list of admin URLs and credentials for the development environment
 vm-help                 :   Show this help file
-list-ports              :   Shows a netstat of commonly-used ports
 ==================================================================
