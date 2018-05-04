@@ -18,6 +18,8 @@ clean                   :   Reindexes Magento, then REFRESHES cache
 cron                    :   Forces cron jobs to run
 staging                 :   Used to update the staging dashboard if you edit a staging campaign. Reindexes Magento, then runs two cron jobs and refreshes cache.
 list-modules            :   Shows a list of all enabled and disabled modules
+install-modules         :   GUI for installing the Demo Innovation team's pre-set list of extensions (If using a supported box file)
+uninstall-modules       :   GUI for uninstalling the Demo Innovation team's pre-set list of extensions (If using a supported box file)
 enable-all-modules      :   Enable all currently disabled modules - used when installing a new extension, for example
 process-catalogs        :   Reindex, refresh cache, run cron - used to force any shared catalogs to run
 db-upgrade              :   Upgrade the database schema - also used when installing a new extension
@@ -52,11 +54,35 @@ stop-db                 :   Stops MySQL
 status-db               :   Shows MySQL status
 
 
+Varnish
+-------
+start-varnish          :   Starts/Restarts Varnish
+stop-varnish           :   Stops Varnish
+status-varnish         :   Shows Varnish status
+varnishstat            :   Shows Varnish statistics (Useful for checking hit rate)
+varnishhist            :   Shows Varnish hit rate in a more visual fashion. # = miss, | = hit
+
+
+Elasticsearch/Kibana
+--------------------
+start-es                :   Starts/Restarts Elasticsearch
+stop-es                 :   Stops Elasticsearch
+status-es               :   Shows Elasticsearch status
+
+
+RabbitMQ
+--------
+start-rabbitmq          :   Starts/Restarts the RabbitMQ server
+stop-rabbitmq           :   Stops the RabbitMQ server
+status-rabbitmq         :   Shows the RabbitMQ server status
+
+
 Tools
 -----
 warm-cache:             :   Runs the cache warmer
 own                     :   Ensures that file permissions are owned by the web server - prevents 500 server errors
 kill-php                :   Kills all PHP processes
 update-cli              :   Pull in the newest CLI
-vm-help                 :   Shows this help file
-================================================
+vm-help                 :   Show this help file
+list-ports              :   Shows a netstat of commonly-used ports
+==================================================================

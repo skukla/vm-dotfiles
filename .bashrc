@@ -116,4 +116,4 @@ if ! shopt -oq posix; then
   fi
 fi
 
-source ~/cli/commands-vagrant
+source ~/cli/commands.sh
