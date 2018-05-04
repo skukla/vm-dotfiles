@@ -346,6 +346,7 @@ function update-cli() {
   add-key
   cd ~/cli/
   git pull
+  printf "\nCopying bashrc..."
   cp ~/cli/.bashrc ~/.bashrc
   source ~/.bashrc
   www
