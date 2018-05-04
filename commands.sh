@@ -331,13 +331,13 @@ export -f status-rabbitmq
 
 # Tools
 function warm-cache() {
-  sh ~/scripts/cache-warmer.sh
+  bash ~/scripts/cache-warmer.sh
 }
 export -f warm-cache
 
 function list-ports() {
   clear
-  ~/scripts/list-ports.sh
+  bash ~/scripts/list-ports.sh
 }
 export -f list-ports
 
