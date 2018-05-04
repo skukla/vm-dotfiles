@@ -216,7 +216,7 @@ function enable-varnish() {
   printf "\nEnabling Varnish..."
   sudo systemctl enable varnish
 }
-export enable-varnish
+export -f enable-varnish
 
 function start-varnish() {
   printf "\nRestarting Varnish...\n"
