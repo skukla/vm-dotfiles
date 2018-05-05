@@ -216,7 +216,7 @@ function enable-varnish() {
   printf "\nEnabling Varnish..."
   stop-web
   printf "\nUpdating web server ports...\n"
-  sed -i -e "s|listen 80|listen 8080/" "/etc/nginx/sites-available/magento";
+  sed -i -e "s/listen 80/listen 8080/" "/etc/nginx/sites-available/magento";
   start-web
   sudo systemctl enable varnish
 }
