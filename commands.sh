@@ -345,7 +345,7 @@ function list-procs() {
 export -f list-procs
 
 function switch-ports() {
-  if [[ "{$1}" != "varnish" ]] || [[ "{$1}" != "nginx" ]]; then
+  if [[ "{$1}" != varnish ]] || [[ "{$1}" != nginx ]]; then
     printf "Wrong argument supplied"
     exit
   else
