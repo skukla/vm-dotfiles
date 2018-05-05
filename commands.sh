@@ -271,6 +271,7 @@ function stop-db() {
 export -f stop-db
 
 function status-db() {
+  printf "\nStopping the database...\n"
   sudo systemctl status mysql
 }
 export -f status-db
