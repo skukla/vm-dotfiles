@@ -261,7 +261,7 @@ export -f db
 
 function start-db() {
   printf "\nRestarting the database...\n"
-  systemctl restart mysql
+  sudo systemctl restart mysql
 }
 export -f start-db
 
