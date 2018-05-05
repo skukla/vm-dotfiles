@@ -353,7 +353,6 @@ function switch-ports() {
     sed -i -e "s/listen 8080/listen 80/" "/etc/nginx/sites-available/magento";
   fi
     printf "\ndone."
-  fi
 }
 export -f switch-ports
 
