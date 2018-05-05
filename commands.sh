@@ -266,7 +266,7 @@ function start-db() {
 export -f start-db
 
 function stop-db() {
-  printf "\Stopping the database...\n"
+  printf "n\Stopping the database...\n"
   sudo systemctl stop mysql
 }
 export -f stop-db
