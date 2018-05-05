@@ -352,7 +352,7 @@ function switch-ports() {
     printf "\nUpdating web server ports (Without Varnish)...\n"
     sed -i -e "s/listen 8080/listen 80/" "/etc/nginx/sites-available/magento";
   fi
-  printf "done."
+  printf "\ndone."
 }
 export -f switch-ports
 
