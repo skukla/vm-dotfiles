@@ -215,8 +215,7 @@ export -f status-web
 function enable-varnish() {
   printf "\nEnabling Varnish..."
   stop-web
-  printf "\nUpdating web server ports...\n"
-  sed -i -e "s/listen 80/listen 8080/" "/etc/nginx/sites-available/magento";
+  switch-ports "with varnish"
   start-web
   sudo systemctl enable varnish
 }
@@ -237,8 +236,7 @@ export -f stop-varnish
 function disable-varnish() {
   stop-varnish
   stop-web
-  printf "\nUpdating web server ports...\n"
-  sed -i -e "s/listen 8080/listen 80/" "/etc/nginx/sites-available/magento";
+  switch-ports "without varnish"
   start-web
 }
 export -f disable-varnish
@@ -345,6 +343,18 @@ function list-procs() {
   bash ~/scripts/list-processes.sh
 }
 export -f list-procs
+
+function switch-ports() {
+  if [[ "${1}" == "with varnish" ]]; then
+    printf "\nUpdating web server ports (With Varnish)...\n"
+    sed -i -e "s/listen 80/listen 8080/" "/etc/nginx/sites-available/magento";
+  elif [[ "${1}" == "without varnish" ]]; then
+    printf "\nUpdating web server ports (Without Varnish)...\n"
+    sed -i -e "s/listen 8080/listen 80/" "/etc/nginx/sites-available/magento";
+  fi
+  printf "done."
+}
+export -f switch-ports
 
 function update-cli() {
   printf "\nUpdating the VM CLI...\n"
