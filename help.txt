@@ -41,39 +41,56 @@ upgrade                 :   Use this after updating your composer.json file with
 
 Web Server
 ----------
+enable-web              :   Enables and starts Nginx
 start-web               :   Starts/Restarts Nginx
 stop-web                :   Stops Nginx
+disable-web             :   Stops and disables Nginx
 status-web              :   Shows Nginx status
 
 
 Database
 --------
 db                      :   Logs into the database.  You can use '-A' to make operations faster - e.g. 'db -A'
+enable-db               :   Enables and starts MySQL
 start-db                :   Starts/Restarts MySQL
 stop-db                 :   Stops MySQL
+disable-db              :   Stops and disables MySQL
 status-db               :   Shows MySQL status
 
 
 Varnish
 -------
+enable-varnish         :   Enables and starts Varnish
 start-varnish          :   Starts/Restarts Varnish
 stop-varnish           :   Stops Varnish
+disable-varnish        :   Stops and disables Varnish
 status-varnish         :   Shows Varnish status
 varnishstat            :   Shows Varnish statistics (Useful for checking hit rate)
 varnishhist            :   Shows Varnish hit rate in a more visual fashion. # = miss, | = hit
 
 
-Elasticsearch/Kibana
---------------------
+Elasticsearch
+-------------
+enable-es               :   Enables and starts Elasticsearch
 start-es                :   Starts/Restarts Elasticsearch
 stop-es                 :   Stops Elasticsearch
+disable-es              :   Stops and disables Elasticsearch
 status-es               :   Shows Elasticsearch status
 
+Kibana
+------
+enable-es               :   Enables and starts Kibana
+start-es                :   Starts/Restarts Kibana
+stop-es                 :   Stops Kibana
+disable-es              :   Stops and disables Kibana
+status-es               :   Shows Elasticsearch status
 
 RabbitMQ
 --------
+enable-rabbitmq         :   Enables and starts RabbitMQ
 start-rabbitmq          :   Starts/Restarts the RabbitMQ server
 stop-rabbitmq           :   Stops the RabbitMQ server
+disable-rabbitmq        :   Stops and disables RabbitMQ
 status-rabbitmq         :   Shows the RabbitMQ server status
 
 

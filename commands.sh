@@ -200,11 +200,25 @@ function start-web() {
 }
 export -f start-web
 
+function enable-web() {
+  printf "\nEnabling Nginx..."
+  sudo systemctl enable nginx
+  start-web
+}
+export -f enable-web
+
 function stop-web() {
   printf "\nStopping the web server...\n"
   sudo systemctl stop nginx
 }
 export -f stop-web
+
+function disable-web() {
+  printf "\nDisabling Nginx..."
+  stop-web
+  sudo systemctl disable nginx
+}
+export -f disable-web
 
 function status-web() {
   sudo systemctl status nginx
@@ -268,16 +282,69 @@ function start-db() {
 }
 export -f start-db
 
+function enable-db() {
+  printf "\nEnabling MySQL..."
+  sudo systemctl enable mysql
+  start-db
+}
+export -f enable-mysql
+
 function stop-db() {
   printf "\nStopping the database...\n"
   sudo systemctl stop mysql
 }
 export -f stop-db
 
+function disable-db() {
+  printf "\nDisabling MySQL..."
+  stop-db
+  sudo systemctl disable mysql
+}
+export -f disable-db
+
 function status-db() {
   sudo systemctl status mysql
 }
 export -f status-db
+
+# Redis
+function start-redis() {
+  printf "\nRestarting the Redis server...\n"
+  sudo systemctl restart redis-server
+}
+export -f start-redis
+
+function enable-redis() {
+  printf "\nEnabling Redis..."
+  sudo systemctl enable redis
+  start-redis
+}
+export -f enable-redis
+
+function stop-redis() {
+  printf "\nRStopping the Redis server...\n"
+  sudo systemctl stop redis-server
+}
+export -f stop-redis
+
+function disable-redis() {
+  printf "\nDisabling Redis..."
+  stop-redis
+  sudo systemctl disable redis
+}
+export -f disable-redis
+
+function status-redis() {
+  sudo systemctl status redis-server
+}
+export -f status-redis
+
+function monitor-redis() {
+  printf "\nTurning on Redis Monitor..."
+  sudo redis-cli
+  monitor
+}
+export -f monitor-redis
 
 # Elasticsearch
 function start-es() {
@@ -286,11 +353,25 @@ function start-es() {
 }
 export -f start-es
 
+function enable-es() {
+  printf "\nEnabling Elasticsearch..."
+  sudo systemctl enable elasticsearch
+  start-es
+}
+export -f enable-es
+
 function stop-es() {
   printf "\nStopping Elasticsearch...\n"
   sudo systemctl stop elasticsearch
 }
 export -f stop-es
+
+function disable-es() {
+  printf "\nDisabling Elasticsearch..."
+  stop-es
+  sudo systemctl disable elasticsearch
+}
+export -f disable-redis
 
 function status-es() {
   sudo systemctl status elasticsearch
@@ -304,11 +385,25 @@ function start-kibana() {
 }
 export -f start-kibana
 
+function enable-kibana() {
+  printf "\nEnabling Kibana..."
+  sudo systemctl enable kibana
+  start-kibana
+}
+export -f enable-kibana
+
 function stop-kibana() {
   printf "\nStopping Kibana...\n"
   sudo systemctl stop kibana
 }
 export -f stop-kibana
+
+function disable-kibana() {
+  printf "\nDisabling Kibana..."
+  stop-kibana
+  sudo systemctl disable kibana
+}
+export -f disable-kibana
 
 function status-kibana() {
   sudo systemctl status kibana
@@ -322,11 +417,25 @@ function start-rabbitmq() {
 }
 export -f start-rabbitmq
 
+function enable-rabbitmq() {
+  printf "\nEnabling RabbitMQ..."
+  sudo systemctl enable rabbitmq-server
+  start-rabbitmq
+}
+export -f enable-rabbitmq
+
 function stop-rabbitmq() {
   printf "\nStopping RabbitMQ Server...\n"
   sudo systemctl stop rabbitmq-server
 }
 export -f stop-rabbitmq
+
+function disable-rabbitmq() {
+  printf "\nDisabling RabbitMQ..."
+  stop-rabbitmq
+  sudo systemctl disable rabbitmq-server
+}
+export -f enable-rabbitmq
 
 function status-rabbitmq() {
   sudo systemctl status rabbitmq-server
