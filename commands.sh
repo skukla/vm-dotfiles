@@ -215,7 +215,7 @@ export -f status-web
 function enable-varnish() {
   printf "\nEnabling Varnish..."
   stop-web
-  switch-ports "with varnish"
+  switch-ports "varnish"
   start-web
   sudo systemctl enable varnish
 }
@@ -236,7 +236,7 @@ export -f stop-varnish
 function disable-varnish() {
   stop-varnish
   stop-web
-  switch-ports "without varnish"
+  switch-ports "web"
   start-web
 }
 export -f disable-varnish
@@ -347,8 +347,8 @@ export -f list-procs
 function switch-ports() {
   if [[ ${1} == "varnish" ]]; then
     printf "\nUpdating web server ports (With Varnish)...\n"
-    sudo -i sed -n 's/listen 80/listen 80/p' /etc/nginx/sites-available/magento magento.bak;
-  elif [[ ${1} == "nginx" ]]; then
+    sudo -i sed -i 's/listen 80/listen 80/p' /etc/nginx/sites-available/magento magento.bak;
+  elif [[ ${1} == "web" ]]; then
     printf "\nUpdating web server ports (Without Varnish)...\n"
     sudo -i sed -i 's/listen 8080/listen 80/p' /etc/nginx/sites-available/magento magento.bak;
   fi
