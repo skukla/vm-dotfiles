@@ -442,6 +442,19 @@ function status-rabbitmq() {
 }
 export -f status-rabbitmq
 
+# XDebug
+function enable-xdebug() {
+  printf "\nDisabling XDebug..."
+  sudo phpenmod xdebug
+}
+export -f enable-xdebug
+
+function disable-xdebug() {
+  printf "\nDisabling XDebug..."
+  sudo phpdismod xdebug
+}
+export -f disable-xdebug
+
 # Tools
 function warm-cache() {
   bash ~/scripts/cache-warmer.sh

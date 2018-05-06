@@ -93,6 +93,10 @@ stop-rabbitmq           :   Stops the RabbitMQ server
 disable-rabbitmq        :   Stops and disables RabbitMQ
 status-rabbitmq         :   Shows the RabbitMQ server status
 
+XDebug
+--------
+enable-xdebug           :   Enables XDebug
+disable-xdebug        :   Disables XDebug
 
 Tools
 -----
