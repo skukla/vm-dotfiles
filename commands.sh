@@ -212,20 +212,21 @@ function status-web() {
 export -f status-web
 
 # Varnish
+function start-varnish() {
+  printf "\nRestarting Varnish...\n"
+  sudo systemctl restart varnish
+}
+export -f start-varnish
+
 function enable-varnish() {
   printf "\nEnabling Varnish..."
   stop-web
   switch-ports "varnish"
   start-web
   sudo systemctl enable varnish
+  start-varnish
 }
 export -f enable-varnish
-
-function start-varnish() {
-  printf "\nRestarting Varnish...\n"
-  sudo systemctl restart varnish
-}
-export -f start-varnish
 
 function stop-varnish() {
   printf "\nStopping Varnish...\n"
