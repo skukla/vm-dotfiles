@@ -349,7 +349,7 @@ export -f monitor-redis
 # Elasticsearch
 function start-es() {
   printf "\nRestarting Elasticsearch...\n"
-  systemctl restart elasticsearch
+  sudo systemctl restart elasticsearch
 }
 export -f start-es
 
