@@ -347,10 +347,10 @@ export -f list-procs
 function switch-ports() {
   if [[ ${1} == "varnish" ]]; then
     printf "\nUpdating web server ports (With Varnish)...\n"
-    sudo -i sed -i -e '/80/ s/8080/1/' /etc/nginx/sites-available/magento;
+    sudo -i sed -i 's/listen 80/listen 8080/p' /etc/nginx/sites-available/magento magento.bak;
   elif [[ ${1} == "web" ]]; then
     printf "\nUpdating web server ports (Without Varnish)...\n"
-    sudo -i sed -i '/8080/ s/80/1/' /etc/nginx/sites-available/magento;
+    sudo -i sed -i 's/listen 8080/listen 80/p' /etc/nginx/sites-available/magento magento.bak;
   fi
     printf "\ndone.\n"
 }
