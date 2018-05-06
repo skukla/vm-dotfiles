@@ -316,7 +316,7 @@ export -f start-redis
 
 function enable-redis() {
   printf "\nEnabling Redis..."
-  sudo systemctl enable redis
+  sudo systemctl enable redis-server
   start-redis
 }
 export -f enable-redis
