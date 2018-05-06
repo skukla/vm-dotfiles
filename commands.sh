@@ -287,7 +287,7 @@ function enable-db() {
   sudo systemctl enable mysql
   start-db
 }
-export -f enable-mysql
+export -f enable-db
 
 function stop-db() {
   printf "\nStopping the database...\n"
