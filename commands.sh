@@ -350,7 +350,7 @@ function switch-ports() {
     sudo -i sed -i -e '/80/ s/8080/1/' /etc/nginx/sites-available/magento;
   elif [[ ${1} == "web" ]]; then
     printf "\nUpdating web server ports (Without Varnish)...\n"
-    sudo -i sed -i -e '/8080/ s/80/1/' /etc/nginx/sites-available/magento;
+    sudo -i sed -i '/8080/ s/80/1/' /etc/nginx/sites-available/magento;
   fi
     printf "\ndone.\n"
 }
