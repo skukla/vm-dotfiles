@@ -330,7 +330,7 @@ export -f stop-redis
 function disable-redis() {
   printf "\nDisabling Redis..."
   stop-redis
-  sudo systemctl disable redis
+  sudo systemctl disable redis-server
 }
 export -f disable-redis
 
