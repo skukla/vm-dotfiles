@@ -322,7 +322,7 @@ function enable-redis() {
 export -f enable-redis
 
 function stop-redis() {
-  printf "\nRStopping the Redis server...\n"
+  printf "\nStopping the Redis server...\n"
   sudo systemctl stop redis-server
 }
 export -f stop-redis
