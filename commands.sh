@@ -346,16 +346,17 @@ export -f list-procs
 
 function switch-ports() {
   if [[ ${1} == "varnish" ]]; then
-    printf "\nUpdating web server ports (With Varnish)...\n"
+    printf "\nUpdating web server ports (With Varnish)..."
     cd /etc/nginx/sites-enabled
     sudo ln -s /etc/nginx/sites-available/magento-${1} /etc/nginx/sites-enabled/magento-${1}
     sudo unlink /etc/nginx/sites-enabled/magento-web
   elif [[ ${1} == "web" ]]; then
-    printf "\nUpdating web server ports (Without Varnish)...\n"
+    printf "\nUpdating web server ports (Without Varnish)..."
     cd /etc/nginx/sites-enabled
     sudo ln -s /etc/nginx/sites-available/magento-${1} /etc/nginx/sites-enabled/magento-${1}
     sudo unlink /etc/nginx/sites-enabled/magento-varnish
   fi
+    sleep 1
     printf "done.\n"
 }
 
