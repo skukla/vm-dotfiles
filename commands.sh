@@ -351,7 +351,7 @@ function start-elasticsearch() {
   printf "\nRestarting Elasticsearch...\n"
   sudo systemctl restart elasticsearch
 }
-export -f start-es
+export -f start-elasticsearch
 
 function enable-elasticsearch() {
   printf "\nEnabling Elasticsearch..."
