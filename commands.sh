@@ -357,7 +357,7 @@ function switch-ports() {
     sudo unlink /etc/nginx/sites-enabled/magento-varnish
   fi
     sleep 0.5
-    printf "done.\n"
+    printf "done.\n\n"
     sleep 0.5
 }
 
