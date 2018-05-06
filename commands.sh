@@ -358,6 +358,7 @@ function switch-ports() {
   fi
     sleep 1
     printf "done.\n"
+    sleep 1
 }
 
 function update-cli() {
