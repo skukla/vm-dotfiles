@@ -368,7 +368,7 @@ export -f stop-elasticsearch
 
 function disable-elasticsearch() {
   printf "\nDisabling Elasticsearch..."
-  stop-es
+  stop-elasticsearch
   sudo systemctl disable elasticsearch
 }
 export -f disable-elasticsearch
