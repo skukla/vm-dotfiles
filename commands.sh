@@ -352,7 +352,7 @@ function switch-ports() {
     printf "\nUpdating web server ports (Without Varnish)...\n"
     sudo -i sed -i 's/listen 8080/listen 80/p' /etc/nginx/sites-available/magento magento.bak;
   fi
-    printf "\ndone.\n"
+    printf "done.\n"
 }
 
 function update-cli() {
