@@ -356,9 +356,9 @@ function switch-ports() {
     sudo ln -s /etc/nginx/sites-available/magento-${1} /etc/nginx/sites-enabled/magento-${1}
     sudo unlink /etc/nginx/sites-enabled/magento-varnish
   fi
-    sleep 1
+    sleep 0.5
     printf "done.\n"
-    sleep 1
+    sleep 0.5
 }
 
 function update-cli() {
