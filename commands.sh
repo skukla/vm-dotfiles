@@ -353,30 +353,30 @@ function start-es() {
 }
 export -f start-es
 
-function enable-es() {
+function enable-elasticsearch() {
   printf "\nEnabling Elasticsearch..."
   sudo systemctl enable elasticsearch
-  start-es
+  start-elasticsearch
 }
-export -f enable-es
+export -f enable-elasticsearch
 
-function stop-es() {
+function stop-elasticsearch() {
   printf "\nStopping Elasticsearch...\n"
   sudo systemctl stop elasticsearch
 }
-export -f stop-es
+export -f stop-elasticsearch
 
-function disable-es() {
+function disable-elasticsearch() {
   printf "\nDisabling Elasticsearch..."
   stop-es
   sudo systemctl disable elasticsearch
 }
-export -f disable-redis
+export -f disable-elasticsearch
 
-function status-es() {
+function status-elasticsearch() {
   sudo systemctl status elasticsearch
 }
-export -f status-es
+export -f status-elasticsearch
 
 # Kibana
 function start-kibana() {
