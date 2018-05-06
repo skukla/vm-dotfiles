@@ -413,7 +413,7 @@ export -f status-kibana
 # RabbitMQ
 function start-rabbitmq() {
   printf "\nRestarting RabbitMQ Server...\n"
-  systemctl restart rabbitmq-server
+  sudo systemctl restart rabbitmq-server
 }
 export -f start-rabbitmq
 
