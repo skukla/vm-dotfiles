@@ -107,4 +107,5 @@ update-cli              :   Pull in the newest CLI
 list-procs              :   Shows a netstat of commonly-used processes and their ports
 vm-info                 :   Shows a list of admin URLs and credentials for the development environment
 vm-help                 :   Show this help file
+phpv			:   Switch PHP versions (Follow the prompts)
 ==================================================================

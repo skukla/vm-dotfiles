@@ -508,3 +508,8 @@ function vm-help() {
   cat ~/cli/help.txt
 }
 export -f vm-help
+
+function phpv() {
+  sudo update-alternatives --config php
+}
+export -f phpv
