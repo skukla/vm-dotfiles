@@ -510,13 +510,25 @@ function vm-help() {
 export -f vm-help
 
 function mount-share() {
-  printf "\nWhat's the name of the shared folder on your host?\n"
-  read HOST_FOLDER_NAME
+  HOST_FOLDER_NAME=$(vmware-hgfsclient)
+  BOLD=$(tput bold)
+  NORMAL=$(tput sgr0)
+  clear
   sleep 1
-  printf "\nCool.  Mounting the folder you entered to /vagrant..."
+  printf "\nSo, you wanna mount a shared folder, eh?...\n"
+  sleep 1
+  printf "\nCool, let me grab the folder you've chosen to share on your system...\n"
+  sleep 2
+  printf "\nLooks like you want to share the following folder: ${BOLD}$HOST_FOLDER_NAME\n"
+  sleep 1
+  printf "\n${NORMAL}Mounting $HOST_FOLDER_NAME to /vagrant..."
   sleep 1
   sudo vmhgfs-fuse -o nonempty -o allow_other .host:$HOST_FOLDER_NAME /vagrant
-  printf "done.\n"
+  printf "done."
+  sleep 1
+  printf "\n\nHere are the contents of $HOST_FOLDER_NAME:\n\n"
+  sleep 1
   cd /vagrant
+  ll
 }
 export -f mount-share
