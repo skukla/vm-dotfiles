@@ -509,7 +509,14 @@ function vm-help() {
 }
 export -f vm-help
 
-function phpv() {
-  sudo update-alternatives --config php
+function mount-share() {
+  printf "\nWhat's the name of the shared folder on your host?\n"
+  read HOST_FOLDER_NAME
+  sleep 1
+  printf "\nCool.  Mounting the folder you entered to /vagrant..."
+  sleep 1
+  sudo vmhgfs-fuse -o nonempty -o allow_other .host:$HOST_FOLDER_NAME /vagrant
+  printf "done.\n"
+  cd /vagrant
 }
-export -f phpv
+export -f mount-share
