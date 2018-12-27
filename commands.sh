@@ -535,6 +535,7 @@ export -f mount-share
 
 function get-ip() {
   BOLD=$(tput bold)
+  NORMAL=$(tput sgr0)
   IP=$(hostname -I)
   BASE_URL=$(./bin/magento config:show web/unsecure/base_url)
   clear
