@@ -519,16 +519,40 @@ function mount-share() {
   sleep 1
   printf "\nCool, let me grab the folder you've chosen to share on your system...\n"
   sleep 2
-  printf "\nLooks like you want to share the following folder: ${BOLD}$HOST_FOLDER_NAME\n"
+  printf "\nLooks like you want to share the following folder: ${BOLD}${HOST_FOLDER_NAME}\n"
   sleep 1
-  printf "\n${NORMAL}Mounting $HOST_FOLDER_NAME to /vagrant..."
+  printf "\n${NORMAL}Mounting ${HOST_FOLDER_NAME} to /vagrant..."
   sleep 1
-  sudo vmhgfs-fuse -o nonempty -o allow_other .host:$HOST_FOLDER_NAME /vagrant
+  sudo vmhgfs-fuse -o nonempty -o allow_other .host:${HOST_FOLDER_NAME} /vagrant
   printf "done."
   sleep 1
-  printf "\n\nHere are the contents of $HOST_FOLDER_NAME:\n\n"
+  printf "\n\nHere are the contents of ${HOST_FOLDER_NAME}:\n\n"
   sleep 1
   cd /vagrant
   ll
 }
 export -f mount-share
+
+function get-ip() {
+  BOLD=$(tput bold)
+  IP=$(hostname -I)
+  clear
+  printf "\nHold up, grabbing your machine's IP...\n"
+  sleep 1
+  printf "\nIP: ${BOLD}${IP}${NORMAL}\n"
+}
+export -f get-ip
+
+function set-url() {
+  clear
+  printf "\nSo you wanna change the Base URL, eh?..\n"
+  sleep 1
+  printf "\nCool, what's your new URL? (e.g. luma.com):\n"
+  read NEW_URL
+
+  www;
+  ./bin/magento setup:store-config:set --base-url="http://${NEW_URL}/"
+  printf "done.\n"
+  cache config
+}
+export -f set-url
