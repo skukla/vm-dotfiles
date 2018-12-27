@@ -536,10 +536,13 @@ export -f mount-share
 function get-ip() {
   BOLD=$(tput bold)
   IP=$(hostname -I)
+  BASE_URL=$(./bin/magento config:show web/unsecure/base_url)
   clear
-  printf "\nHold up, grabbing your machine's IP...\n"
+  printf "Hold up, grabbing your machine's IP...\n"
   sleep 1
-  printf "\nIP: ${BOLD}${IP}${NORMAL}\n"
+  printf "\nIP: ${BOLD}${IP}${NORMAL}\n\n"
+  sleep 1
+  printf "Add the following to your hosts file:\n\n${BOLD}${IP}\t${BASE_URL}\n"
 }
 export -f get-ip
 
@@ -549,10 +552,9 @@ function set-url() {
   sleep 1
   printf "\nCool, what's your new URL? (e.g. luma.com):\n"
   read NEW_URL
-
   www;
-  ./bin/magento setup:store-config:set --base-url="http://${NEW_URL}/"
-  printf "done.\n"
-  cache config
+  ./bin/magento setup:config:set web/unsecure/base_url "http://${NEW_URL}/"
+  printf "\nClearing config cache...\n"
+  ./bin/magento cache:clean config
 }
 export -f set-url
