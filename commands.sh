@@ -554,7 +554,7 @@ function set-url() {
   printf "\nCool, what's your new URL? (e.g. luma.com): "
   read NEW_URL
   www;
-  ./bin/magento setup:config:set web/unsecure/base_url "http://${NEW_URL}/"
+  ./bin/magento config:set web/unsecure/base_url "http://${NEW_URL}/"
   printf "\nClearing config cache...\n"
   ./bin/magento cache:clean config
 }
