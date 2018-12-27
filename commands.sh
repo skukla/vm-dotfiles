@@ -551,7 +551,7 @@ function set-url() {
   clear
   printf "So you wanna change the Base URL, eh?..\n"
   sleep 1
-  printf "\nCool, what's your new URL? (e.g. luma.com):\n"
+  printf "\nCool, what's your new URL? (e.g. luma.com):"
   read NEW_URL
   www;
   ./bin/magento setup:config:set web/unsecure/base_url "http://${NEW_URL}/"
