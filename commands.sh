@@ -541,8 +541,6 @@ function get-ip() {
   clear
   printf "Hold up, grabbing your machine's IP...\n"
   sleep 1
-  printf "\nIP: ${BOLD}${IP}\n\n"
-  sleep 1
   printf "${NORMAL}Add the following to your hosts file:\n\n${BOLD}${IP}\t${BASE_URL}\n\n"
 }
 export -f get-ip
