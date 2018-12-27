@@ -549,7 +549,7 @@ export -f get-ip
 
 function set-url() {
   clear
-  printf "\nSo you wanna change the Base URL, eh?..\n"
+  printf "So you wanna change the Base URL, eh?..\n"
   sleep 1
   printf "\nCool, what's your new URL? (e.g. luma.com):\n"
   read NEW_URL
