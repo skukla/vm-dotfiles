@@ -547,12 +547,6 @@ function get-ip() {
 }
 export -f get-ip
 
-function get-url() {
-
-}
-export -f get-url
-
-
 function set-url() {
   BOLD=$(tput bold)
   NORMAL=$(tput sgr0)
@@ -560,7 +554,8 @@ function set-url() {
   clear
   printf "So you wanna change the Base URL, eh?..\n"
   sleep 1
-  printf "\nCool, what's your new URL? (e.g. luma.com): "
+  printf "Your current Base URL is: ${BOLD}${BASE_URL}"
+  printf "\n${NORMAL}Cool, what's your new URL? (No http:// or trailing slash): "
   read NEW_URL
   www
   printf "Setting new Base URL..."
