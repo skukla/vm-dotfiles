@@ -550,19 +550,19 @@ export -f get-ip
 function set-url() {
   BOLD=$(tput bold)
   NORMAL=$(tput sgr0)
+  BASE_URL=$(www && ./bin/magento config:show web/unsecure/base_url)
   clear
   printf "So you wanna change the Base URL, eh?..\n\n"
   sleep 1
-  printf "Cool, your current Base URL is: ${BOLD}"
-  ./bin/magento config:show web/unsecure/base_url
-  printf "\n\n${NORMAL}What's your new URL? (e.g. luma.com): "
+  printf "Cool, your current Base URL is: ${BOLD}${BASE_URL}"
+  printf "\n${NORMAL}What's your new URL? (e.g. luma.com): "
   read NEW_URL
   www
   printf "\nSetting new Base URL...\n"
   ./bin/magento config:set web/unsecure/base_url "http://${NEW_URL}/"
   sleep 1
-  printf "\nBase URL set to: ${BOLD}"
-  ./bin/magento config:show web/unsecure/base_url
+  BASE_URL=$(www && ./bin/magento config:show web/unsecure/base_url)
+  printf "\nBase URL set to: ${BOLD}${BASE_URL}"
   sleep 1
   printf "\n${NORMAL}Clearing config cache...\n"
   ./bin/magento cache:clean config
