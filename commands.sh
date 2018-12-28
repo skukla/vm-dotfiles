@@ -568,8 +568,9 @@ function set-url() {
   printf "\n${NORMAL}Clearing config cache...\n"
   ./bin/magento cache:clean config
   sleep 1
-  printf "\nSetting hostname to match new URL (This might take a little bit...)"
+  printf "\nSetting hostname to match new URL (This might take a little bit)..."
   sudo hostnamectl set-hostname ${NEW_URL}
+  sleep 1
   printf "done.\n\nHostname set to: "
   hostname
   sleep 1
