@@ -547,10 +547,17 @@ function get-ip() {
 }
 export -f get-ip
 
+function get-url() {
+  www
+  ./bin/magento config:show web/unsecure/base_url
+}
+export -f get-url
+
+
 function set-url() {
   BOLD=$(tput bold)
   NORMAL=$(tput sgr0)
-  BASE_URL=$(./bin/magento config:show web/unsecure/base_url)
+  BASE_URL=$(get-url)
   clear
   printf "So you wanna change the Base URL, eh?..\n"
   sleep 1
