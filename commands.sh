@@ -537,25 +537,26 @@ function get-ip() {
   BOLD=$(tput bold)
   NORMAL=$(tput sgr0)
   IP=$(hostname -I)
-  BASE_URL=$(./bin/magento config:show web/unsecure/base_url)
   clear
   printf "Hold up, grabbing your machine's IP..."
   sleep 1
   printf "done.\n\n"
   sleep 1
-  printf "${NORMAL}Add the following to your hosts file:\n\n${BOLD}${IP}\t${BASE_URL}\n\n"
+  printf "${NORMAL}Add the following to your hosts file:\n\n${BOLD}${IP}\t"
+  ./bin/magento config:show web/unsecure/base_url
+  printf "\n\n"
 }
 export -f get-ip
 
 function set-url() {
   BOLD=$(tput bold)
   NORMAL=$(tput sgr0)
-  BASE_URL=$(./bin/magento config:show web/unsecure/base_url)
   clear
   printf "So you wanna change the Base URL, eh?..\n\n"
   sleep 1
-  printf "Cool, your current Base URL is: ${BOLD}${BASE_URL}\n"
-  printf "\n${NORMAL}What's your new URL? (e.g. luma.com): "
+  printf "Cool, your current Base URL is: ${BOLD}"
+  ./bin/magento config:show web/unsecure/base_url
+  printf "\n\n${NORMAL}What's your new URL? (e.g. luma.com): "
   read NEW_URL
   www
   printf "\nSetting new Base URL...\n"
