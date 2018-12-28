@@ -539,7 +539,7 @@ function get-url() {
   IP=$(hostname -I)
   BASE_URL=$(www && ./bin/magento config:show web/unsecure/base_url)
   clear
-  printf "Hold up, grabbing your machine's IP..."
+  printf "Hold up, grabbing your machine's IP and the current Base URL..."
   sleep 1
   printf "done.\n\n"
   sleep 1
