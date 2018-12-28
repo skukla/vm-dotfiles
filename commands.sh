@@ -573,7 +573,7 @@ function set-url() {
   sudo sed -i "s|${BASE_URL}|${NEW_URL}|g" /etc/hostname
   printf "done.\n\nHostname set to: "
   hostname
-  printf "\nWe need to restart your VM to see this hostname change take full effect. Rebooting now..."
+  printf "\nWe need to restart your VM to see this hostname change take full effect.\nRebooting now..."
   sleep 2
   sudo reboot
 }
