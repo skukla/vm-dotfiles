@@ -545,7 +545,7 @@ function get-url() {
   sleep 1
   printf "${NORMAL}Add the following to your hosts file:\n\n${BOLD}${IP}\t${BASE_URL}\n\n"
 }
-export -f get-ip
+export -f get-url
 
 function set-url() {
   BOLD=$(tput bold)
