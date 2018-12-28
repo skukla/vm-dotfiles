@@ -552,7 +552,7 @@ function set-url() {
   NORMAL=$(tput sgr0)
   BASE_URL=$(./bin/magento config:show web/unsecure/base_url)
   clear
-  printf "So you wanna change the Base URL, eh?..\n"
+  printf "So you wanna change the Base URL, eh?..\n\n"
   sleep 1
   printf "Cool, your current Base URL is: ${BOLD}${BASE_URL}\n"
   printf "\n${NORMAL}What's your new URL? (No http:// or trailing slash): "
