@@ -561,10 +561,9 @@ function set-url() {
   printf "\nSetting new Base URL...\n"
   ./bin/magento config:set web/unsecure/base_url "http://${NEW_URL}/"
   sleep 1
-  printf "\n${NORMAL}Clearing config cache...\n"
-  ./bin/magento cache:clean config
-  sleep 1
   printf "Base URL set to: ${BOLD}"
   ./bin/magento config:show web/unsecure/base_url
+  printf "\n${NORMAL}Clearing config cache...\n"
+  ./bin/magento cache:clean config
 }
 export -f set-url
