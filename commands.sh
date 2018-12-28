@@ -533,7 +533,7 @@ function mount-share() {
 }
 export -f mount-share
 
-function get-ip() {
+function get-url() {
   BOLD=$(tput bold)
   NORMAL=$(tput sgr0)
   IP=$(hostname -I)
