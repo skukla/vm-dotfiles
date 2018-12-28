@@ -550,6 +550,7 @@ export -f get-ip
 function set-url() {
   BOLD=$(tput bold)
   NORMAL=$(tput sgr0)
+  BASE_URL=$(./bin/magento config:show web/unsecure/base_url)
   clear
   printf "So you wanna change the Base URL, eh?..\n"
   sleep 1
