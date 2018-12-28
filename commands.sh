@@ -554,7 +554,7 @@ function set-url() {
   clear
   printf "So you wanna change the Base URL, eh?..\n\n"
   sleep 1
-  printf "Cool, your current Base URL is: ${BOLD}${BASE_URL}"
+  printf "Cool, your current Base URL is: ${BOLD}${BASE_URL}\n"
   printf "\n${NORMAL}What's your new URL? (e.g. luma.com): "
   read NEW_URL
   www
