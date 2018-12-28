@@ -557,7 +557,6 @@ export -f get-url
 function set-url() {
   BOLD=$(tput bold)
   NORMAL=$(tput sgr0)
-  BASE_URL=$(get-url)
   clear
   printf "So you wanna change the Base URL, eh?..\n"
   sleep 1
@@ -568,6 +567,7 @@ function set-url() {
   sleep 1
   printf "\n${NORMAL}Clearing config cache...\n"
   ./bin/magento cache:clean config
-  printf "\nBase URL set to: ${BOLD}${BASE_URL}\n"
+  printf "\nBase URL set to: ${BOLD}"
+  ./bin/magento config:show web/unsecure/base_url
 }
 export -f set-url
