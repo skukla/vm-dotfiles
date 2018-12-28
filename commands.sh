@@ -558,12 +558,12 @@ function set-url() {
   printf "\n${NORMAL}What's your new URL? (No http:// or trailing slash): "
   read NEW_URL
   www
-  printf "Setting new Base URL..."
+  printf "\nSetting new Base URL...\n"
   ./bin/magento config:set web/unsecure/base_url "http://${NEW_URL}/"
   sleep 1
   printf "\n${NORMAL}Clearing config cache...\n"
   ./bin/magento cache:clean config
   sleep 2
-  printf "\nBase URL set to: ${BOLD}${BASE_URL}\n"
+  ./bin/magento config:show web/unsecure/base_url
 }
 export -f set-url
