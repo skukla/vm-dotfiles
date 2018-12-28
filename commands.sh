@@ -551,7 +551,7 @@ function set-url() {
   BOLD=$(tput bold)
   NORMAL=$(tput sgr0)
   BASE_URL=$(www && ./bin/magento config:show web/unsecure/base_url)
-  HOSTNAME= $(hostname)
+  HOSTN=$(hostname)
   clear
   printf "So you wanna change the Base URL, eh?..\n\n"
   sleep 1
@@ -569,8 +569,8 @@ function set-url() {
   ./bin/magento cache:clean config
   sleep 1
   printf "\nSetting hostname to match new URL (This might take a little bit...)"
-  sudo sed -i "s|${HOSTNAME}|${NEW_URL}|g" /etc/hosts
-  sudo sed -i "s|${HOSTNAME}|${NEW_URL}|g" /etc/hostname
+  sudo sed -i "s|${HOSTN}|${NEW_URL}|g" /etc/hosts
+  sudo sed -i "s|${HOSTN}|${NEW_URL}|g" /etc/hostname
   printf "done.\n\nHostname set to: "
   hostname
   printf "\nWe need to restart your VM to see this hostname change take full effect.\nRebooting now..."
