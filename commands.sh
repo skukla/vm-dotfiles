@@ -569,7 +569,7 @@ function set-url() {
   sleep 1
   printf "\nSetting hostname to match new URL..."
   sudo hostnamectl set-hostname ${NEW_URL}
-  sudo service hostname start
+  sudo service network restart
   printf "done.\n\n Hostname set to: "
   hostname
 }
