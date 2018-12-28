@@ -537,14 +537,13 @@ function get-ip() {
   BOLD=$(tput bold)
   NORMAL=$(tput sgr0)
   IP=$(hostname -I)
+  BASE_URL=$(www && ./bin/magento config:show web/unsecure/base_url)
   clear
   printf "Hold up, grabbing your machine's IP..."
   sleep 1
   printf "done.\n\n"
   sleep 1
-  printf "${NORMAL}Add the following to your hosts file:\n\n${BOLD}${IP}\t"
-  ./bin/magento config:show web/unsecure/base_url
-  printf "\n\n"
+  printf "${NORMAL}Add the following to your hosts file:\n\n${BOLD}${IP}\t${BASE_URL}\n\n"
 }
 export -f get-ip
 
