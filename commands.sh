@@ -568,9 +568,9 @@ function set-url() {
   ./bin/magento cache:clean config
   sleep 1
   printf "\nSetting hostname to match new URL..."
-  sudo hostnamectl set-hostname ${NEW_URL}
   sudo sed -i "s|${BASE_URL}|${NEW_URL}|g" /etc/hosts
   sudo sed -i "s|${BASE_URL}|${NEW_URL}|g" /etc/hostname
+  sudo hostnamectl set-hostname ${NEW_URL} /dev/null 2>&1
   printf "done.\n\nHostname set to: "
   hostname
   printf "\nWe need to restart your VM to see this hostname change take full effect.\nRebooting now..."
