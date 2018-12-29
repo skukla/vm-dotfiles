@@ -553,6 +553,7 @@ function set-url() {
   BASE_URL=$(www && ./bin/magento config:show web/unsecure/base_url)
   HOSTNAME=$(hostname)
   MAGENTO_DIRECTORY=$(www)
+  
   clear
   
   # Get current Base URL
