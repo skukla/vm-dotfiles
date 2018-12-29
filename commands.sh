@@ -92,13 +92,13 @@ export -f list-modules
 function install-modules() {
   CLI_DIRECTORY=~/cli
   SCRIPTS_DIRECTORY=scripts
-  bash ~/${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/modules.sh install
+  bash ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/modules.sh install
 }
 export -f install-modules
 
 function uninstall-modules() {
   CLI_DIRECTORY=~/cli
-  bash ~/${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/modules.sh uninstall
+  bash ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/modules.sh uninstall
 }
 export -f uninstall-modules
 
