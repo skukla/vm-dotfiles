@@ -13,8 +13,7 @@ ssh-add ~/.ssh/Magento-Cloud
 # Update CLI
 cd ${CLI_DIRECTORY}
 git pull
-printf "\nCopying .bashrc... "
-cp ${CLI_DIRECTORY}/.bashrc ~/.bashrc
+printf "\nInstalling commands... "
 source ${CLI_DIRECTORY}/commands.sh
 sleep 1
 printf "done. \n\nMaking scripts executable... "
