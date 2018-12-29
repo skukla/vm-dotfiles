@@ -552,10 +552,15 @@ function set-url() {
   NORMAL=$(tput sgr0)
   BASE_URL=$(www && ./bin/magento config:show web/unsecure/base_url)
   HOSTNAME=$(hostname)
+  MAGENTO_DIRECTORY=$(www)
   clear
+  
+  # Get current Base URL
   printf "So you wanna change the Base URL, eh?..\n\n"
   sleep 1
   printf "Cool, your current Base URL is: ${BOLD}${BASE_URL}\n"
+  
+  # Ask for the new URL
   printf "\n${NORMAL}What's your new URL? (e.g. luma.com): "
   read NEW_URL
   www
@@ -622,7 +627,7 @@ function set-url() {
   fi
   sleep 1;
 
-
+  # Restart the VM
   printf "\n\nWe need to restart your VM to see this hostname change take full effect."
   printf "\n\nRebooting in 3 seconds...  Check your VMWare VM window -- if the reboot hangs, restart the machine with the GUI.\n"
   sleep 3
