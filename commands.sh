@@ -436,6 +436,6 @@ export -f get-url
 function set-url() {
   CLI_DIRECTORY=~/cli
   SCRIPTS_DIRECTORY=scripts
-  bash ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/url-check.sh null interactive
+  sudo bash ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/url-check.sh null interactive
 }
 export -f set-url
