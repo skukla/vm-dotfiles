@@ -1,5 +1,7 @@
 #!/bin/bash
 MAGENTO_DIRECTORY=/var/www/magento
+CLI_DIRECTORY=~/cli
+SCRIPTS_DIRECTORY=scripts
 BASE_URL=$(cd ${MAGENTO_DIRECTORY} && ./bin/magento config:show web/unsecure/base_url)
 MODE=$1
 NEW_URL=$2
@@ -60,7 +62,7 @@ else
   sleep 1
 
   # Update sitemap and cache warmer
-  if [[ -e /home/vagrant/scripts/cache-warmer.sh && $ ]]; then
+  if [[ -e ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/cache-warmer.sh && $ ]]; then
 
     # Cache warmer
     printf "Updating sitemap and cache warmer...\n";
