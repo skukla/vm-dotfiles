@@ -3,8 +3,8 @@ MAGENTO_DIRECTORY=/var/www/magento
 CLI_DIRECTORY=/home/vagrant/cli
 SCRIPTS_DIRECTORY=scripts
 BASE_URL=$(cd ${MAGENTO_DIRECTORY} && ./bin/magento config:show web/unsecure/base_url)
-MODE=$1
-NEW_URL=$2
+NEW_URL=$1
+MODE=$2
 IP=$(hostname -I)
 HOSTNAME=$(hostname)
 
