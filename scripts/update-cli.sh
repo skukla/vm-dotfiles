@@ -16,9 +16,6 @@ printf "\nCopying .bashrc... "
 cp ${CLI_DIRECTORY}/.bashrc ~/.bashrc
 source ~/.bashrc
 sleep 1
-printf "\nCopying scripts... "
-cp -R ${CLI_DIRECTORY}/scripts ~/
-sleep 1
 printf "done.\n\n"
 
 # Move to web root
