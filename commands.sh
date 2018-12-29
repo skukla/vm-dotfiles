@@ -485,23 +485,9 @@ function switch-ports() {
 }
 
 function update-cli() {
-  printf "\nUpdating the VM CLI...\n"
-  add-key
-  cd ~/cli/
-  git pull
-  printf "\nCopying bashrc... "
-  cp ~/cli/.bashrc ~/.bashrc
-  source ~/.bashrc
-  printf "done.\n\n"
-  www
+  bash ~/cli/scripts/update-cli.sh
 }
 export -f update-cli
-
-function vm-info() {
-  clear
-  bash ~/cli/info.sh
-}
-export -f vm-info
 
 function vm-help() {
   clear
@@ -521,118 +507,26 @@ function mount-share() {
   sleep 2
   printf "\nLooks like you want to share the following folder: ${BOLD}${HOST_FOLDER_NAME}\n"
   sleep 1
-  printf "\n${NORMAL}Mounting ${HOST_FOLDER_NAME} to /vagrant..."
+  printf "\n${NORMAL}What folder would you like to mount ${BOLD}${HOST_FOLDER_NAME} to inside the VM?: "
+  read $GUEST_FOLDER_NAME
+  printf "\nMounting ${HOST_FOLDER_NAME} to ${GUEST_FOLDER_NAME}..."
   sleep 1
   sudo vmhgfs-fuse -o nonempty -o allow_other .host:${HOST_FOLDER_NAME} /vagrant
   printf "done."
   sleep 1
   printf "\n\nHere are the contents of ${HOST_FOLDER_NAME}:\n\n"
   sleep 1
-  cd /vagrant
+  cd ${GUEST_FOLDER_NAME}
   ll
 }
 export -f mount-share
 
 function get-url() {
-  BOLD=$(tput bold)
-  NORMAL=$(tput sgr0)
-  IP=$(hostname -I)
-  BASE_URL=$(www && ./bin/magento config:show web/unsecure/base_url)
-  clear
-  printf "Hold up, grabbing your machine's IP and the current Base URL..."
-  sleep 1
-  printf "done.\n\n"
-  sleep 1
-  printf "${NORMAL}Add the following to your hosts file:\n\n${BOLD}${IP}\t${BASE_URL}\n\n"
+  bash ~/scripts/url-check.sh
 }
 export -f get-url
 
 function set-url() {
-  BOLD=$(tput bold)
-  NORMAL=$(tput sgr0)
-  BASE_URL=$(www && ./bin/magento config:show web/unsecure/base_url)
-  HOSTNAME=$(hostname)
-  MAGENTO_DIRECTORY=$(www)
-  
-  clear
-  
-  # Get current Base URL
-  printf "So you wanna change the Base URL, eh?..\n\n"
-  sleep 1
-  printf "Cool, your current Base URL is: ${BOLD}${BASE_URL}\n"
-  
-  # Ask for the new URL
-  printf "\n${NORMAL}What's your new URL? (e.g. luma.com): "
-  read NEW_URL
-  www
-  
-  # Set the new Base URL
-  printf "\nSetting new Base URL...\n"
-  ./bin/magento config:set web/unsecure/base_url "http://${NEW_URL}/"
-  sleep 1
-  BASE_URL=$(www && ./bin/magento config:show web/unsecure/base_url)
-  printf "\nBase URL set to: ${BOLD}${BASE_URL}\n"
-  sleep 1
-  
-  # Set the new hostname
-  printf "\nSetting hostname and Samba name to match new URL (This might take a little bit...)"
-  sudo hostnamectl set-hostname ${NEW_URL}
-  sudo sed -i "s|${HOSTNAME}|${NEW_URL}|g" /etc/hosts
-  sudo sed -i "s|${HOSTNAME}|${NEW_URL}|g" /etc/samba/smb.conf
-  sleep 3
-  printf "done.\n\nHostname set to: "
-  hostname
-  
-  # Restart the Samba Server
-  printf "\nRestarting Samba server..."
-  sudo service smbd restart
-  sleep 1
-
-  # Update sitemap and cache warmer
-  if [[ -e /home/vagrant/scripts/cache-warmer.sh && $ ]]; then
-
-    # Cache warmer
-    printf "Updating sitemap and cache warmer...\n";
-    sed -i -e "s|http://${BASE_URL}/|http://${NEW_URL}/|g" "/home/vagrant/scripts/cache-warmer.sh";
-    printf "Cache warmer url reset to: http://${NEW_URL}/\n";
-
-    # Sitemap(s) (Luma)
-    if [[ -e ${MAGENTO_DIRECTORY}/pub/luma.xml ]]; then
-      sed -i -e "s|http://${BASE_URL}/|http://${NEW_URL}/|g" "${MAGENTO_DIRECTORY}/pub/luma.xml";
-      printf "Luma site map url reset to: ${NEW_URL}\n";
-    else
-      printf "You don't have a luma.xml sitemap file, so we'll skip it...\n";
-    fi
-
-    # Venia
-    if [[ -e ${MAGENTO_DIRECTORY}/pub/venia.xml ]]; then
-      sed -i -e "s|http://${BASE_URL}/|http://${NEW_URL}/|g" "${MAGENTO_DIRECTORY}/pub/venia.xml";
-      printf "Venia site map url reset to: ${NEW_URL}\n";
-    else
-      printf "You don't have a venia.xml sitemap file, so we'll skip it...\n";
-    fi
-
-    # Custom
-    if [[ -e ${MAGENTO_DIRECTORY}/pub/custom.xml ]]; then
-      sed -i -e "s|http://${BASE_URL}/|http://${NEW_URL}/|g" "${MAGENTO_DIRECTORY}/pub/custom.xml";
-      printf "Custom site map url reset to: ${NEW_URL}\n";
-    else
-      printf "You don't have a custom.xml sitemap file, so we'll skip it...\n";
-    fi
-  else
-    printf "Looks like you're missing the cache-warmer script, so we'll skip it...\n";
-  fi
-  sleep 1;
-
-  # Clean config cache
-  printf "\n${NORMAL}Clearing config cache...\n"
-  ./bin/magento cache:clean config
-  sleep 1
-
-  # Restart the VM
-  printf "\n\nWe need to restart your VM to see this hostname change take full effect."
-  printf "\n\nRebooting in 3 seconds...  Check your VMWare VM window -- if the reboot hangs, restart the machine with the GUI.\n"
-  sleep 3
-  sudo reboot
+  bash ~/scripts/url-check.sh --manual
 }
 export -f set-url
