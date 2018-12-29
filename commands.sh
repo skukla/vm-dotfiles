@@ -1,9 +1,5 @@
 # VM Navigation
-function www() {
-  MAGENTO_DIRECTORY=/var/www/magento
-  cd ${MAGENTO_DIRECTORY}
-}
-export -f www
+
 
 # CLI
 function own() {
