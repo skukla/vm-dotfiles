@@ -1,6 +1,6 @@
 #!/bin/bash
 MAGENTO_DIRECTORY=/var/www/magento
-CLI_DIRECTORY=~/cli
+CLI_DIRECTORY=/home/vagrant/cli
 SCRIPTS_DIRECTORY=scripts
 BASE_URL=$(cd ${MAGENTO_DIRECTORY} && ./bin/magento config:show web/unsecure/base_url)
 MODE=$1
@@ -63,9 +63,6 @@ else
   printf "done.\n\n"
 
   # Update sitemap and cache warmer
-  print "File path is: ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/cache-warmer.sh"
-  exit
-
   if [ -e ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/cache-warmer.sh ]; then
 
     # Cache warmer
