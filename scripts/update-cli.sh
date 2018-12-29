@@ -17,7 +17,7 @@ printf "\nInstalling commands... "
 source ${CLI_DIRECTORY}/commands.sh
 sleep 1
 printf "done. \n\nMaking scripts executable... "
-chmod +x -R ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/*
+sudo chmod +x ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/*
 sleep 1
 printf "done.\n\n"
 
