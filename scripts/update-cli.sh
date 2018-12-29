@@ -22,5 +22,8 @@ chmod +x -R ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/*
 sleep 1
 printf "done.\n\n"
 
+# Unstage the copied script files
+git checkout -- *
+
 # Move to web root
 cd ${MAGENTO_DIRECTORY}
