@@ -17,12 +17,11 @@ printf "\nInstalling commands... "
 source ${CLI_DIRECTORY}/commands.sh
 sleep 1
 printf "done. \n\nMaking scripts executable... "
+# Unstage the copied script files
+git checkout -- *
 sudo chmod +x ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/*
 sleep 1
 printf "done.\n\n"
-
-# Unstage the copied script files
-git checkout -- *
 
 # Move to web root
 cd ${MAGENTO_DIRECTORY}
