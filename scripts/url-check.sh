@@ -29,6 +29,9 @@ else
   printf "\nWhat's your new URL? (e.g. luma.com): "
   sleep 1
   
+  printf "Mode is set to: ${MODE}\n"
+  exit
+
   # If this script is run as a command from Webmin, this insertion is automatic.
   # If it's run from the command line, we have to collect the user's input
   if [ ${MODE} == "--non-interactive" ]; then
