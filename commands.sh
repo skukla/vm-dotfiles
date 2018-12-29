@@ -551,7 +551,7 @@ function set-url() {
   BOLD=$(tput bold)
   NORMAL=$(tput sgr0)
   BASE_URL=$(www && ./bin/magento config:show web/unsecure/base_url)
-  HOSTN=$(hostname)
+  HOSTNAME=$(hostname)
   clear
   printf "So you wanna change the Base URL, eh?..\n\n"
   sleep 1
@@ -559,27 +559,73 @@ function set-url() {
   printf "\n${NORMAL}What's your new URL? (e.g. luma.com): "
   read NEW_URL
   www
+  
+  # Set the new Base URL
   printf "\nSetting new Base URL...\n"
   ./bin/magento config:set web/unsecure/base_url "http://${NEW_URL}/"
   sleep 1
   BASE_URL=$(www && ./bin/magento config:show web/unsecure/base_url)
   printf "\nBase URL set to: ${BOLD}${BASE_URL}\n"
   sleep 1
+  
+  # Clean config cache
   printf "\n${NORMAL}Clearing config cache...\n"
   ./bin/magento cache:clean config
   sleep 1
+  
+  # Set the new hostname
   printf "\nSetting hostname and Samba name to match new URL (This might take a little bit...)"
   sudo hostnamectl set-hostname ${NEW_URL}
-  sudo sed -i "s|${HOSTN}|${NEW_URL}|g" /etc/hosts
-  sudo sed -i "s|${HOSTN}|${NEW_URL}|g" /etc/samba/smb.conf
+  sudo sed -i "s|${HOSTNAME}|${NEW_URL}|g" /etc/hosts
+  sudo sed -i "s|${HOSTNAME}|${NEW_URL}|g" /etc/samba/smb.conf
   sleep 3
   printf "done.\n\nHostname set to: "
   hostname
+  # Restart the Samba Server
   printf "\nRestarting Samba server..."
   sudo service smbd restart
   sleep 1
-  printf "done.\n\nWe need to restart your VM to see this hostname change take full effect.\n\nRebooting now...\n"
-  sleep 2
+
+  # Update sitemap and cache warmer
+  if [[ -e /home/vagrant/scripts/cache-warmer.sh && $ ]]; then
+
+    # Cache warmer
+    printf "Updating sitemap and cache warmer...\n";
+    sed -i -e "s|http://${BASE_URL}/|http://${NEW_URL}/|g" "/home/vagrant/scripts/cache-warmer.sh";
+    printf "Cache warmer url reset to: http://${NEW_URL}/\n";
+
+    # Sitemap(s) (Luma)
+    if [[ -e ${MAGENTO_DIRECTORY}/pub/luma.xml ]]; then
+      sed -i -e "s|http://${BASE_URL}/|http://${NEW_URL}/|g" "${MAGENTO_DIRECTORY}/pub/luma.xml";
+      printf "Luma site map url reset to: ${NEW_URL}\n";
+    else
+      printf "You don't have a luma.xml sitemap file, so we'll skip it...\n";
+    fi
+
+    # Venia
+    if [[ -e ${MAGENTO_DIRECTORY}/pub/venia.xml ]]; then
+      sed -i -e "s|http://${BASE_URL}/|http://${NEW_URL}/|g" "${MAGENTO_DIRECTORY}/pub/venia.xml";
+      printf "Venia site map url reset to: ${NEW_URL}\n";
+    else
+      printf "You don't have a venia.xml sitemap file, so we'll skip it...\n";
+    fi
+
+    # Custom
+    if [[ -e ${MAGENTO_DIRECTORY}/pub/custom.xml ]]; then
+      sed -i -e "s|http://${BASE_URL}/|http://${NEW_URL}/|g" "${MAGENTO_DIRECTORY}/pub/custom.xml";
+      printf "Custom site map url reset to: ${NEW_URL}\n";
+    else
+      printf "You don't have a custom.xml sitemap file, so we'll skip it...\n";
+    fi
+  else
+    printf "Looks like you're missing the cache-warmer script, so we'll skip it...\n";
+  fi
+  sleep 1;
+
+
+  printf "\n\nWe need to restart your VM to see this hostname change take full effect."
+  printf "\n\nRebooting in 3 seconds...  Check your VMWare VM window -- if the reboot hangs, restart the machine with the GUI.\n"
+  sleep 3
   sudo reboot
 }
 export -f set-url
