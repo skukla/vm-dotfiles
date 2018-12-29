@@ -427,15 +427,19 @@ function mount-share() {
 export -f mount-share
 
 function get-url() {
-  CLI_DIRECTORY=~/cli
-  SCRIPTS_DIRECTORY=scripts
-  bash ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/url-check.sh null null
+  MAGENTO_DIRECTORY=/var/www/magento
+  BASE_URL=$(cd ${MAGENTO_DIRECTORY} && ./bin/magento config:show web/unsecure/base_url)
+  printf "Hold up, grabbing your machine's IP and the current Base URL..."
+  sleep 1
+  printf "done.\n\n"
+  sleep 1
+  printf "Add the following to your hosts file:\n\n${IP}\t${BASE_URL}\n\n"
 }
 export -f get-url
 
 function set-url() {
   CLI_DIRECTORY=~/cli
   SCRIPTS_DIRECTORY=scripts
-  sudo bash ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/url-check.sh null interactive
+  sudo bash ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/url-check.sh url
 }
 export -f set-url
