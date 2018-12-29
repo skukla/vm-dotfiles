@@ -1,14 +1,18 @@
 # VM Navigation
 function www() {
-  cd /var/www/magento
+  MAGENTO_DIRECTORY=/var/www/magento
+  cd ${MAGENTO_DIRECTORY}
 }
 export -f www
 
 # CLI
 function own() {
+  GROUP=vagrant
+  USER=vagrant
+  
   printf "\nUpdating permissions...\n"
   www
-  sudo chown -R vagrant:vagrant var/cache/ var/page_cache/
+  sudo chown -R ${GROUP}:${USER} var/cache/ var/page_cache/
   sudo chmod -R 777 var/ pub/ app/etc/ generated/
 }
 export -f own
@@ -86,12 +90,15 @@ function list-modules() {
 export -f list-modules
 
 function install-modules() {
-  bash ~/scripts/modules.sh install
+  CLI_DIRECTORY=~/cli
+  SCRIPTS_DIRECTORY=scripts
+  bash ~/${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/modules.sh install
 }
 export -f install-modules
 
 function uninstall-modules() {
-  bash ~/scripts/modules.sh uninstall
+  CLI_DIRECTORY=~/cli
+  bash ~/${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/modules.sh uninstall
 }
 export -f uninstall-modules
 
@@ -200,25 +207,11 @@ function start-web() {
 }
 export -f start-web
 
-function enable-web() {
-  printf "\nEnabling Nginx..."
-  sudo systemctl enable nginx
-  start-web
-}
-export -f enable-web
-
 function stop-web() {
   printf "\nStopping the web server...\n"
   sudo systemctl stop nginx
 }
 export -f stop-web
-
-function disable-web() {
-  printf "\nDisabling Nginx..."
-  stop-web
-  sudo systemctl disable nginx
-}
-export -f disable-web
 
 function status-web() {
   sudo systemctl status nginx
@@ -232,29 +225,11 @@ function start-varnish() {
 }
 export -f start-varnish
 
-function enable-varnish() {
-  printf "\nEnabling Varnish..."
-  stop-web
-  switch-ports "varnish"
-  start-web
-  sudo systemctl enable varnish
-  start-varnish
-}
-export -f enable-varnish
-
 function stop-varnish() {
   printf "\nStopping Varnish...\n"
   sudo systemctl stop varnish
 }
 export -f stop-varnish
-
-function disable-varnish() {
-  stop-varnish
-  stop-web
-  switch-ports "web"
-  start-web
-}
-export -f disable-varnish
 
 function status-varnish() {
   sudo systemctl status varnish
@@ -282,25 +257,11 @@ function start-db() {
 }
 export -f start-db
 
-function enable-db() {
-  printf "\nEnabling MySQL..."
-  sudo systemctl enable mysql
-  start-db
-}
-export -f enable-db
-
 function stop-db() {
   printf "\nStopping the database...\n"
   sudo systemctl stop mysql
 }
 export -f stop-db
-
-function disable-db() {
-  printf "\nDisabling MySQL..."
-  stop-db
-  sudo systemctl disable mysql
-}
-export -f disable-db
 
 function status-db() {
   sudo systemctl status mysql
@@ -314,25 +275,11 @@ function start-redis() {
 }
 export -f start-redis
 
-function enable-redis() {
-  printf "\nEnabling Redis..."
-  sudo systemctl enable redis-server
-  start-redis
-}
-export -f enable-redis
-
 function stop-redis() {
   printf "\nStopping the Redis server...\n"
   sudo systemctl stop redis-server
 }
 export -f stop-redis
-
-function disable-redis() {
-  printf "\nDisabling Redis..."
-  stop-redis
-  sudo systemctl disable redis-server
-}
-export -f disable-redis
 
 function status-redis() {
   sudo systemctl status redis-server
@@ -353,25 +300,11 @@ function start-elasticsearch() {
 }
 export -f start-elasticsearch
 
-function enable-elasticsearch() {
-  printf "\nEnabling Elasticsearch..."
-  sudo systemctl enable elasticsearch
-  start-elasticsearch
-}
-export -f enable-elasticsearch
-
 function stop-elasticsearch() {
   printf "\nStopping Elasticsearch...\n"
   sudo systemctl stop elasticsearch
 }
 export -f stop-elasticsearch
-
-function disable-elasticsearch() {
-  printf "\nDisabling Elasticsearch..."
-  stop-elasticsearch
-  sudo systemctl disable elasticsearch
-}
-export -f disable-elasticsearch
 
 function status-elasticsearch() {
   sudo systemctl status elasticsearch
@@ -385,25 +318,11 @@ function start-kibana() {
 }
 export -f start-kibana
 
-function enable-kibana() {
-  printf "\nEnabling Kibana..."
-  sudo systemctl enable kibana
-  start-kibana
-}
-export -f enable-kibana
-
 function stop-kibana() {
   printf "\nStopping Kibana...\n"
   sudo systemctl stop kibana
 }
 export -f stop-kibana
-
-function disable-kibana() {
-  printf "\nDisabling Kibana..."
-  stop-kibana
-  sudo systemctl disable kibana
-}
-export -f disable-kibana
 
 function status-kibana() {
   sudo systemctl status kibana
@@ -417,81 +336,36 @@ function start-rabbitmq() {
 }
 export -f start-rabbitmq
 
-function enable-rabbitmq() {
-  printf "\nEnabling RabbitMQ..."
-  sudo systemctl enable rabbitmq-server
-  start-rabbitmq
-}
-export -f enable-rabbitmq
-
 function stop-rabbitmq() {
   printf "\nStopping RabbitMQ Server...\n"
   sudo systemctl stop rabbitmq-server
 }
 export -f stop-rabbitmq
 
-function disable-rabbitmq() {
-  printf "\nDisabling RabbitMQ..."
-  stop-rabbitmq
-  sudo systemctl disable rabbitmq-server
-}
-export -f enable-rabbitmq
-
 function status-rabbitmq() {
   sudo systemctl status rabbitmq-server
 }
 export -f status-rabbitmq
 
-# XDebug
-function enable-xdebug() {
-  printf "\nDisabling XDebug..."
-  sudo phpenmod xdebug
-}
-export -f enable-xdebug
-
-function disable-xdebug() {
-  printf "\nDisabling XDebug..."
-  sudo phpdismod xdebug
-}
-export -f disable-xdebug
-
 # Tools
 function warm-cache() {
-  bash ~/scripts/cache-warmer.sh
+  CLI_DIRECTORY=~/cli
+  SCRIPTS_DIRECTORY=scripts
+  bash ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/cache-warmer.sh
 }
 export -f warm-cache
 
-function list-procs() {
-  clear
-  bash ~/scripts/list-processes.sh
-}
-export -f list-procs
-
-function switch-ports() {
-  if [[ ${1} == "varnish" ]]; then
-    printf "\nUpdating web server ports (With Varnish)..."
-    cd /etc/nginx/sites-enabled
-    sudo ln -s /etc/nginx/sites-available/magento-${1} /etc/nginx/sites-enabled/magento-${1}
-    sudo unlink /etc/nginx/sites-enabled/magento-web
-  elif [[ ${1} == "web" ]]; then
-    printf "\nUpdating web server ports (Without Varnish)..."
-    cd /etc/nginx/sites-enabled
-    sudo ln -s /etc/nginx/sites-available/magento-${1} /etc/nginx/sites-enabled/magento-${1}
-    sudo unlink /etc/nginx/sites-enabled/magento-varnish
-  fi
-    sleep 0.5
-    printf "done.\n\n"
-    sleep 0.5
-}
-
 function update-cli() {
-  bash ~/cli/scripts/update-cli.sh
+  CLI_DIRECTORY=~/cli
+  SCRIPTS_DIRECTORY=scripts
+  bash ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/update-cli.sh
 }
 export -f update-cli
 
 function vm-help() {
+  CLI_DIRECTORY=~/cli
   clear
-  cat ~/cli/help.txt
+  cat ${CLI_DIRECTORY}/help.txt
 }
 export -f vm-help
 
@@ -522,11 +396,15 @@ function mount-share() {
 export -f mount-share
 
 function get-url() {
-  bash ~/scripts/url-check.sh
+  CLI_DIRECTORY=~/cli
+  SCRIPTS_DIRECTORY=scripts
+  bash ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/url-check.sh
 }
 export -f get-url
 
 function set-url() {
-  bash ~/scripts/url-check.sh --manual
+  CLI_DIRECTORY=~/cli
+  SCRIPTS_DIRECTORY=scripts
+  bash ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/url-check.sh --manual
 }
 export -f set-url
