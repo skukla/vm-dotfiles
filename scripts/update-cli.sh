@@ -27,3 +27,5 @@ git checkout -- *
 
 # Move to web root
 cd ${MAGENTO_DIRECTORY}
+
+foo
