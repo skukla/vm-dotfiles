@@ -17,7 +17,7 @@ printf "\nCopying .bashrc... "
 cp ${CLI_DIRECTORY}/.bashrc ~/.bashrc
 source ~/.bashrc
 sleep 1
-printf "\nMaking scripts executable... "
+printf "\ndone. \n\nMaking scripts executable... "
 chmod +x -R ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/*
 sleep 1
 printf "done.\n\n"
