@@ -20,7 +20,8 @@ git stash > /dev/null 2>&1
 # Pull new changes and set permissions
 git pull
 printf "\nInstalling commands... "
-source ${CLI_DIRECTORY}/commands.sh
+cd ${CLI_DIRECTORY}
+source ./commands.sh
 sleep 1
 printf "done. \n\nMaking scripts executable... "
 sudo chmod +x ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/*.sh
