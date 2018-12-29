@@ -575,7 +575,10 @@ function set-url() {
   sleep 3
   printf "done.\n\nHostname set to: "
   hostname
-  printf "\nWe need to restart your VM to see this hostname change take full effect.\nRebooting now..."
+  printf "\nRestarting Samba server..."
+  sudo service smbd restart
+  sleep 1
+  printf "done.\nWe need to restart your VM to see this hostname change take full effect.\n\nRebooting now..."
   sleep 2
   sudo reboot
 }
