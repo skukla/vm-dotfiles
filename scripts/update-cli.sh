@@ -1,6 +1,7 @@
 #!bin/bash
 MAGENTO_DIRECTORY=/var/www/magento
 CLI_DIRECTORY=~/cli
+SCRIPTS_DIRECTORY=scripts
 clear
 printf "\nUpdating the VM CLI...\n"
 
@@ -15,6 +16,9 @@ git pull
 printf "\nCopying .bashrc... "
 cp ${CLI_DIRECTORY}/.bashrc ~/.bashrc
 source ~/.bashrc
+sleep 1
+printf "\nMaking scripts executable... "
+chmod +x -R ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/*
 sleep 1
 printf "done.\n\n"
 
