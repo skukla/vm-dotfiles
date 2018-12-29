@@ -35,7 +35,7 @@ else
   if [ ${MODE} == "--non-interactive" ]
   then
     printf ${NEW_URL}
-  else
+  elif [ ${MODE} == "--interactive" ]
     read NEW_URL
   fi
 
