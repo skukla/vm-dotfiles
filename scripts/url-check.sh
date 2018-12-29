@@ -60,6 +60,7 @@ else
   printf "\nRestarting Samba server..."
   sudo service smbd restart
   sleep 1
+  printf "done.\n\n"
 
   # Update sitemap and cache warmer
   if [[ -e ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/cache-warmer.sh && $ ]]; then
