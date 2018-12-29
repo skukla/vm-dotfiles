@@ -14,7 +14,7 @@ ssh-add ~/.ssh/Magento-Cloud
 cd ${CLI_DIRECTORY}
 
 # Stash existing changes
-git stash
+git stash > /dev/null 2>&1
 
 # Pull new changes and set permissions
 git pull
@@ -27,7 +27,7 @@ sleep 1
 printf "done.\n\n"
 
 # Drop stash
-git stash drop
+git stash drop > /dev/null 2>&1
 
 # Move to web root
 cd ${MAGENTO_DIRECTORY}
