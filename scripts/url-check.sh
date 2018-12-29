@@ -91,6 +91,6 @@ printf "\nClearing config cache...\n"
 sleep 1
 
 # Restart the VM
-printf "\n\nDone. Please restart the machine with the GUI to finish the process.\n"
+printf "\nDone. Please restart the machine with the GUI to finish the process.\n"
 sleep 2
 exit
