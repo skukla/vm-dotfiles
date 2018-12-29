@@ -568,9 +568,10 @@ function set-url() {
   printf "\n${NORMAL}Clearing config cache...\n"
   ./bin/magento cache:clean config
   sleep 1
-  printf "\nSetting hostname to match new URL (This might take a little bit...)"
+  printf "\nSetting hostname and Samba name to match new URL (This might take a little bit...)"
   sudo hostnamectl set-hostname ${NEW_URL}
   sudo sed -i "s|${HOSTN}|${NEW_URL}|g" /etc/hosts
+  sudo sed -i "s|${HOSTN}|${NEW_URL}|g" /etc/samba/smb.conf
   sleep 3
   printf "done.\n\nHostname set to: "
   hostname
