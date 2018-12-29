@@ -21,7 +21,7 @@ sleep 1
 
 # Read in user input if trigged from CLI, else the variable will be automatically passed
 if [ -z ${NEW_URL} ]; then
-  read $NEW_URL
+  read NEW_URL
 else
   printf ${NEW_URL}
 fi
