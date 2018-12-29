@@ -19,7 +19,7 @@ sleep 1
 printf "done. \n\nMaking scripts executable... "
 # Unstage the copied script files
 git checkout -- *
-sudo chmod +x ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/*
+sudo chmod +x ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/*.sh
 sleep 1
 printf "done.\n\n"
 
