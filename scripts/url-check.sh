@@ -67,7 +67,7 @@ else
 
     # Cache warmer
     printf "Updating sitemap and cache warmer...\n";
-    sed -i -e "s|http://${BASE_URL}/|http://${NEW_URL}/|g" "/home/vagrant/scripts/cache-warmer.sh";
+    sed -i -e "s|http://${BASE_URL}/|http://${NEW_URL}/|g" "${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/cache-warmer.sh";
     printf "Cache warmer url reset to: http://${NEW_URL}/\n";
 
     # Sitemap(s) (Luma)
