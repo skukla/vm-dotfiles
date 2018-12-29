@@ -358,8 +358,8 @@ export -f warm-cache
 function update-cli() {
   CLI_DIRECTORY=~/cli
   SCRIPTS_DIRECTORY=scripts
-  cd ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}
-  . ./update-cli.sh
+  bash ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/update-cli.sh
+  source ~/.bashrc
 }
 export -f update-cli
 
@@ -406,6 +406,6 @@ export -f get-url
 function set-url() {
   CLI_DIRECTORY=~/cli
   SCRIPTS_DIRECTORY=scripts
-  bash ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/url-check.sh null bar
+  bash ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/url-check.sh null interactive
 }
 export -f set-url
