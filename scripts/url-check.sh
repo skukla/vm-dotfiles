@@ -73,7 +73,7 @@ else
     # Sitemap(s) (Luma)
     if [ -e ${MAGENTO_DIRECTORY}/pub/luma.xml ]; then
       sed -i -e "s|http://${BASE_URL}/|http://${NEW_URL}/|g" "${MAGENTO_DIRECTORY}/pub/luma.xml";
-      printf "Luma site map url reset to: ${NEW_URL}\n";
+      printf "Luma site map url reset to: http://${NEW_URL}/\n";
     else
       printf "You don't have a luma.xml sitemap file, so we'll skip it...\n";
     fi
@@ -81,7 +81,7 @@ else
     # Venia
     if [ -e ${MAGENTO_DIRECTORY}/pub/venia.xml ]; then
       sed -i -e "s|http://${BASE_URL}/|http://${NEW_URL}/|g" "${MAGENTO_DIRECTORY}/pub/venia.xml";
-      printf "Venia site map url reset to: ${NEW_URL}\n";
+      printf "Venia site map url reset to: http://${NEW_URL}/\n";
     else
       printf "You don't have a venia.xml sitemap file, so we'll skip it...\n";
     fi
@@ -89,7 +89,7 @@ else
     # Custom
     if [ -e ${MAGENTO_DIRECTORY}/pub/custom.xml ]; then
       sed -i -e "s|http://${BASE_URL}/|http://${NEW_URL}/|g" "${MAGENTO_DIRECTORY}/pub/custom.xml";
-      printf "Custom site map url reset to: ${NEW_URL}\n";
+      printf "Custom site map url reset to: http://${NEW_URL}/\n";
     else
       printf "You don't have a custom.xml sitemap file, so we'll skip it...\n";
     fi
