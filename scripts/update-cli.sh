@@ -3,7 +3,7 @@ MAGENTO_DIRECTORY=/var/www/magento
 CLI_DIRECTORY=~/cli
 SCRIPTS_DIRECTORY=scripts
 clear
-printf "\nUpdating the VM CLI...\n"
+printf "Updating the VM CLI...\n"
 
 # Add SSH Key
 printf "\nAdding SSH Key..."
