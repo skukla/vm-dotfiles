@@ -578,7 +578,7 @@ function set-url() {
   printf "\nRestarting Samba server..."
   sudo service smbd restart
   sleep 1
-  printf "done.\nWe need to restart your VM to see this hostname change take full effect.\n\nRebooting now..."
+  printf "done.\n\nWe need to restart your VM to see this hostname change take full effect.\n\nRebooting now...\n"
   sleep 2
   sudo reboot
 }
