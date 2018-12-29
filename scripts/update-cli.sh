@@ -15,7 +15,7 @@ cd ${CLI_DIRECTORY}
 git pull
 printf "\nCopying .bashrc... "
 cp ${CLI_DIRECTORY}/.bashrc ~/.bashrc
-source ~/.bashrc
+source ${CLI_DIRECTORY}/commands.sh
 sleep 1
 printf "done. \n\nMaking scripts executable... "
 chmod +x -R ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/*
