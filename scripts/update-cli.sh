@@ -17,9 +17,9 @@ printf "\nInstalling commands... "
 source ${CLI_DIRECTORY}/commands.sh
 sleep 1
 printf "done. \n\nMaking scripts executable... "
+sudo chmod +x ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/*.sh
 # Unstage the copied script files
 git checkout -- *
-sudo chmod +x ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/*.sh
 sleep 1
 printf "done.\n\n"
 
