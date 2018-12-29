@@ -1,5 +1,6 @@
 #!bin/bash
 MAGENTO_DIRECTORY=/var/www/magento
+HOME_DIRECTORY=/home/vagrant
 CLI_DIRECTORY=/home/vagrant/cli
 SCRIPTS_DIRECTORY=scripts
 clear
@@ -20,8 +21,7 @@ git stash > /dev/null 2>&1
 # Pull new changes and set permissions
 git pull
 printf "\nInstalling commands... "
-cd ${CLI_DIRECTORY}
-source ./commands.sh
+source ${HOME_DIRECTORY}/.bashrc
 sleep 1
 printf "done. \n\nMaking scripts executable... "
 sudo chmod +x ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/*.sh

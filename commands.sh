@@ -358,7 +358,8 @@ export -f warm-cache
 function update-cli() {
   CLI_DIRECTORY=~/cli
   SCRIPTS_DIRECTORY=scripts
-  bash ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/update-cli.sh
+  cd ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}
+  . ./update-cli.sh
 }
 export -f update-cli
 
