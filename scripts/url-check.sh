@@ -30,7 +30,7 @@ else
   
   # If this script is run as a command from Webmin, this insertion is automatic.
   # If it's run from the command line, we have to collect the user's input
-  if [ -z ${MODE} ]
+  if [ ${MODE} == "--non-interactive" ]
   then
     printf ${NEW_URL}
   else
