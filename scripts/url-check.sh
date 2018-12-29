@@ -63,7 +63,7 @@ else
   printf "done.\n\n"
 
   # Update sitemap and cache warmer
-  if [[ -e ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/cache-warmer.sh && $ ]]; then
+  if [ -e ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/cache-warmer.sh ]; then
 
     # Cache warmer
     printf "Updating sitemap and cache warmer...\n";
@@ -71,7 +71,7 @@ else
     printf "Cache warmer url reset to: http://${NEW_URL}/\n";
 
     # Sitemap(s) (Luma)
-    if [[ -e ${MAGENTO_DIRECTORY}/pub/luma.xml ]]; then
+    if [ -e ${MAGENTO_DIRECTORY}/pub/luma.xml ]; then
       sed -i -e "s|http://${BASE_URL}/|http://${NEW_URL}/|g" "${MAGENTO_DIRECTORY}/pub/luma.xml";
       printf "Luma site map url reset to: ${NEW_URL}\n";
     else
@@ -79,7 +79,7 @@ else
     fi
 
     # Venia
-    if [[ -e ${MAGENTO_DIRECTORY}/pub/venia.xml ]]; then
+    if [ -e ${MAGENTO_DIRECTORY}/pub/venia.xml ]; then
       sed -i -e "s|http://${BASE_URL}/|http://${NEW_URL}/|g" "${MAGENTO_DIRECTORY}/pub/venia.xml";
       printf "Venia site map url reset to: ${NEW_URL}\n";
     else
@@ -87,7 +87,7 @@ else
     fi
 
     # Custom
-    if [[ -e ${MAGENTO_DIRECTORY}/pub/custom.xml ]]; then
+    if [ -e ${MAGENTO_DIRECTORY}/pub/custom.xml ]; then
       sed -i -e "s|http://${BASE_URL}/|http://${NEW_URL}/|g" "${MAGENTO_DIRECTORY}/pub/custom.xml";
       printf "Custom site map url reset to: ${NEW_URL}\n";
     else
