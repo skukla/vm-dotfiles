@@ -12,14 +12,14 @@ HOSTNAME=$(hostname)
 clear
 
 # If no parameter is passed to the script, the user wants the hosts entry
-if [ -z ${MODE} ] && [ -z ${NEW_URL} ]; then
+if [ ${NEW_URL} == "null" ] && [ ${MODE} == "null" ]; then
   printf "Hold up, grabbing your machine's IP and the current Base URL..."
   sleep 1
   printf "done.\n\n"
   sleep 1
   printf "Add the following to your hosts file:\n\n${IP}\t${BASE_URL}\n\n"
 # Otherwise, the user has passed the new Base URL, so we need to switch them
-else
+else 
   # Get current Base URL
   printf "So you wanna change the Base URL, eh?..\n\n"
   sleep 1
@@ -34,9 +34,9 @@ else
 
   # If this script is run as a command from Webmin, this insertion is automatic.
   # If it's run from the command line, we have to collect the user's input
-  if [ ${MODE} == "--non-interactive" ]; then
+  if [ ${MODE} == "non-interactive" ]; then
     printf ${NEW_URL}
-  elif [ ${MODE} == "--interactive" ]; then
+  elif [ ${MODE} == "interactive" ]; then
     read NEW_URL
   fi
 

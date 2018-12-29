@@ -398,13 +398,13 @@ export -f mount-share
 function get-url() {
   CLI_DIRECTORY=~/cli
   SCRIPTS_DIRECTORY=scripts
-  bash ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/url-check.sh
+  bash ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/url-check.sh null null
 }
 export -f get-url
 
 function set-url() {
   CLI_DIRECTORY=~/cli
   SCRIPTS_DIRECTORY=scripts
-  bash ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/url-check.sh foobar
+  bash ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/url-check.sh interactive
 }
 export -f set-url
