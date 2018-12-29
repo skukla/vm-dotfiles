@@ -405,6 +405,6 @@ export -f get-url
 function set-url() {
   CLI_DIRECTORY=~/cli
   SCRIPTS_DIRECTORY=scripts
-  bash ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/url-check.sh null foo
+  bash ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/url-check.sh null bar
 }
 export -f set-url
