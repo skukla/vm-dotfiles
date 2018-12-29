@@ -428,7 +428,9 @@ export -f mount-share
 
 function get-url() {
   MAGENTO_DIRECTORY=/var/www/magento
+  IP=$(hostname -I)
   BASE_URL=$(cd ${MAGENTO_DIRECTORY} && ./bin/magento config:show web/unsecure/base_url)
+  clear
   printf "Hold up, grabbing your machine's IP and the current Base URL..."
   sleep 1
   printf "done.\n\n"
