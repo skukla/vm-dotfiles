@@ -574,11 +574,6 @@ function set-url() {
   printf "\nBase URL set to: ${BOLD}${BASE_URL}\n"
   sleep 1
   
-  # Clean config cache
-  printf "\n${NORMAL}Clearing config cache...\n"
-  ./bin/magento cache:clean config
-  sleep 1
-  
   # Set the new hostname
   printf "\nSetting hostname and Samba name to match new URL (This might take a little bit...)"
   sudo hostnamectl set-hostname ${NEW_URL}
@@ -587,6 +582,7 @@ function set-url() {
   sleep 3
   printf "done.\n\nHostname set to: "
   hostname
+  
   # Restart the Samba Server
   printf "\nRestarting Samba server..."
   sudo service smbd restart
@@ -627,6 +623,11 @@ function set-url() {
     printf "Looks like you're missing the cache-warmer script, so we'll skip it...\n";
   fi
   sleep 1;
+
+  # Clean config cache
+  printf "\n${NORMAL}Clearing config cache...\n"
+  ./bin/magento cache:clean config
+  sleep 1
 
   # Restart the VM
   printf "\n\nWe need to restart your VM to see this hostname change take full effect."
