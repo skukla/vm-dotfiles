@@ -1,6 +1,6 @@
 #!bin/bash
 MAGENTO_DIRECTORY=/var/www/magento
-CLI_DIRECTORY=~/cli
+CLI_DIRECTORY=/home/vagrant/cli
 SCRIPTS_DIRECTORY=scripts
 clear
 printf "Updating the VM CLI...\n"
