@@ -4,7 +4,6 @@ CLI_DIRECTORY=/home/vagrant/cli
 SCRIPTS_DIRECTORY=scripts
 BASE_URL=$(cd ${MAGENTO_DIRECTORY} && ./bin/magento config:show web/unsecure/base_url)
 NEW_URL=$1
-MODE=$2
 IP=$(hostname -I)
 HOSTNAME=$(hostname)
 
