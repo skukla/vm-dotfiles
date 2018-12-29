@@ -63,6 +63,9 @@ else
   printf "done.\n\n"
 
   # Update sitemap and cache warmer
+  print "File path is: ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/cache-warmer.sh"
+  exit
+
   if [ -e ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/cache-warmer.sh ]; then
 
     # Cache warmer
