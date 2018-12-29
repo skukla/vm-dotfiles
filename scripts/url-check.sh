@@ -18,7 +18,13 @@ printf "Cool, your current Base URL is: ${BASE_URL}\n"
 # Ask for the new URL
 printf "\nWhat's your new URL? (e.g. luma.com): "
 sleep 1
-printf ${NEW_URL}
+
+# Read in user input if trigged from CLI, else the variable will be automatically passed
+if [ -z ${NEW_URL} ]; then
+  read $NEW_URL
+else
+  printf ${NEW_URL}
+fi
 
 # Set the new base URL
 printf "\nSetting new Base URL...\n"
