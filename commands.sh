@@ -570,7 +570,7 @@ function set-url() {
   sleep 1
   printf "\nSetting hostname to match new URL (This might take a little bit)..."
   sudo hostnamectl set-hostname ${NEW_URL}
-  sleep 1
+  sleep 4
   printf "done.\n\nHostname set to: "
   hostname
   sleep 1
