@@ -90,7 +90,7 @@ printf "\nClearing config cache...\n"
 ./bin/magento cache:clean config
 sleep 1
 
-# Restart the VM
-printf "Done. Please restart the machine with the GUI to finish the process.\n"
+# Show Restart message and hosts entry
+printf "Done. Please restart the machine with the GUI to finish the process and add the following entry to your hosts file:\n\n${IP}\t${BASE_URL}\n\n"
 sleep 2
 exit
