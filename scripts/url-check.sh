@@ -50,6 +50,7 @@ printf "\nRestarting Samba server..."
 sudo service smbd restart
 sleep 1
 printf "done.\n\n"
+sleep 1
 
 # Update sitemap and cache warmer
 if [ -e ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/cache-warmer.sh ]; then
@@ -57,11 +58,13 @@ if [ -e ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/cache-warmer.sh ]; then
   # Cache warmer
   printf "Updating sitemap and cache warmer...\n";
   sed -i -e "s|http://${BASE_URL}/|http://${NEW_URL}/|g" "${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/cache-warmer.sh";
+  sleep 1
   printf "Cache warmer url reset to: http://${NEW_URL}/\n";
 
   # Sitemap(s) (Luma)
   if [ -e ${MAGENTO_DIRECTORY}/pub/luma.xml ]; then
     sed -i -e "s|http://${BASE_URL}/|http://${NEW_URL}/|g" "${MAGENTO_DIRECTORY}/pub/luma.xml";
+    sleep 1
     printf "Luma site map url reset to: http://${NEW_URL}/\n";
   else
     printf "You don't have a luma.xml sitemap file, so we'll skip it...\n";
@@ -70,6 +73,7 @@ if [ -e ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/cache-warmer.sh ]; then
   # Venia
   if [ -e ${MAGENTO_DIRECTORY}/pub/venia.xml ]; then
     sed -i -e "s|http://${BASE_URL}/|http://${NEW_URL}/|g" "${MAGENTO_DIRECTORY}/pub/venia.xml";
+    sleep 1
     printf "Venia site map url reset to: http://${NEW_URL}/\n";
   else
     printf "You don't have a venia.xml sitemap file, so we'll skip it...\n";
@@ -78,6 +82,7 @@ if [ -e ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/cache-warmer.sh ]; then
   # Custom
   if [ -e ${MAGENTO_DIRECTORY}/pub/custom.xml ]; then
     sed -i -e "s|http://${BASE_URL}/|http://${NEW_URL}/|g" "${MAGENTO_DIRECTORY}/pub/custom.xml";
+    sleep 1
     printf "Custom site map url reset to: http://${NEW_URL}/\n";
   else
     printf "You don't have a custom.xml sitemap file, so we'll skip it...\n";
@@ -85,7 +90,7 @@ if [ -e ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/cache-warmer.sh ]; then
 else
   printf "Looks like you're missing the cache-warmer script, so we'll skip it...\n";
 fi
-sleep 1;
+sleep 1
 
 # Clean config cache
 printf "\nClearing config cache...\n"
