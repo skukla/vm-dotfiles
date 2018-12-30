@@ -2,6 +2,7 @@
 MAGENTO_DIRECTORY=/var/www/magento
 CLI_DIRECTORY=/home/vagrant/cli
 SCRIPTS_DIRECTORY=scripts
+BASE_URL=$(cd ${MAGENTO_DIRECTORY} && ./bin/magento config:show web/unsecure/base_url)
 NEW_URL=$1
 IP=$(hostname -I)
 HOSTNAME=$(hostname)
@@ -30,7 +31,7 @@ printf "\nSetting new Base URL...\n"
 cd ${MAGENTO_DIRECTORY}
 ./bin/magento config:set web/unsecure/base_url "http://${NEW_URL}/"
 sleep 1
-BASE_URL=$(cd /var/www/magento && ./bin/magento config:show web/unsecure/base_url)
+BASE_URL=$(cd ${MAGENTO_DIRECTORY} && ./bin/magento config:show web/unsecure/base_url)
 printf "\nBase URL set to: ${BASE_URL}\n"
 sleep 1
 
@@ -41,8 +42,10 @@ sudo hostnamectl set-hostname ${NEW_URL}
 sudo sed -i "s|${HOSTNAME}|${NEW_URL}|g" /etc/hosts
 sudo sed -i "s|${HOSTNAME}|${NEW_URL}|g" /etc/samba/smb.conf
 sleep 3
-printf "done.\n\nHostname set to: "
-hostname
+
+# Get the new hostname
+HOSTNAME=$(hostname)
+printf "done.\n\nHostname set to: ${HOSTNAME}"
 printf "\nRestarting Samba server..."
 sudo service smbd restart
 sleep 1
