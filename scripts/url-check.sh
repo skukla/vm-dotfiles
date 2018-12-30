@@ -2,7 +2,6 @@
 MAGENTO_DIRECTORY=/var/www/magento
 CLI_DIRECTORY=/home/vagrant/cli
 SCRIPTS_DIRECTORY=scripts
-BASE_URL=$(cd ${MAGENTO_DIRECTORY} && ./bin/magento config:show web/unsecure/base_url)
 NEW_URL=$1
 IP=$(hostname -I)
 HOSTNAME=$(hostname)
@@ -91,6 +90,7 @@ printf "\nClearing config cache...\n"
 sleep 1
 
 # Show Restart message and hosts entry
-printf "\nDone. Please restart the machine with the GUI to finish the process. \n\nAdd the following entry to your hosts file:\n\n${IP}\t${BASE_URL}\n\n"
+printf "\nDone. Please restart the machine with the GUI to finish the process."
+printf "\n\nAdd the following entry to your hosts file:\n\n${IP}\t${HOSTNAME}\n\n"
 sleep 2
 exit
