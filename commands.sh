@@ -430,11 +430,11 @@ function get-url() {
   MAGENTO_DIRECTORY=/var/www/magento
   IP=$(hostname -I)
   clear
-  printf "Hold up, grabbing your machine's IP and the current Base URL..."
+  printf "Hold up, grabbing your machine's IP and the current hostname..."
   sleep 1
   printf "done.\n\n"
   sleep 1
-  printf "Add the following to your hosts file:\n\n${IP}\t${HOSTNAME}\n\n"
+  printf "Add the following entry to your machine's /etc/hosts file:\n\n${IP}\t${HOSTNAME}\n\n"
 }
 export -f get-url
 

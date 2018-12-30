@@ -94,6 +94,6 @@ sleep 1
 
 # Show Restart message and hosts entry
 printf "\nDone. Please restart the machine with the GUI to finish the process."
-printf "\n\nAdd the following entry to your hosts file:\n\n${IP}\t${HOSTNAME}\n\n"
+printf "\n\nAdd the following entry to your machine's /etc/hosts file:\n\n${IP}\t${HOSTNAME}\n\n"
 sleep 2
 exit
