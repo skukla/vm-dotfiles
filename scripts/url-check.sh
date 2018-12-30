@@ -45,7 +45,7 @@ sleep 3
 
 # Get the new hostname
 HOSTNAME=$(hostname)
-printf "done.\n\nHostname set to: ${HOSTNAME}"
+printf "done.\n\nHostname set to: ${HOSTNAME}\n"
 printf "\nRestarting Samba server..."
 sudo service smbd restart
 sleep 1
