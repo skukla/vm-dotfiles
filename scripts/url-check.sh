@@ -1,4 +1,5 @@
 #!/bin/bash
+export TERM=xterm-256color
 MAGENTO_DIRECTORY=/var/www/magento
 CLI_DIRECTORY=/home/vagrant/cli
 SCRIPTS_DIRECTORY=scripts
@@ -6,6 +7,8 @@ BASE_URL=$(cd ${MAGENTO_DIRECTORY} && ./bin/magento config:show web/unsecure/bas
 NEW_URL=$1
 IP=$(hostname -I)
 HOSTNAME=$(hostname)
+BOLD=$(tput bold)
+REG=$(tput sgr0)
 
 # Clear the screen
 clear
@@ -98,7 +101,7 @@ printf "\nClearing config cache...\n"
 sleep 1
 
 # Show Restart message and hosts entry
-printf "\nDone. Please restart the machine with the GUI to finish the process."
-printf "\n\nAdd the following entry to your machine's /etc/hosts file:\n\n${IP}\t${HOSTNAME}\n\n"
+printf "\nDone. ${BOLD}Please restart the machine with the VMWare GUI to finish the process."
+printf "\n\n${REG}Add the following entry to your machine's /etc/hosts file:\n\n${IP}\t${HOSTNAME}\n\n"
 sleep 2
 exit

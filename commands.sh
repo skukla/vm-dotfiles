@@ -429,6 +429,7 @@ export -f mount-share
 function get-url() {
   MAGENTO_DIRECTORY=/var/www/magento
   IP=$(hostname -I)
+  HOSTNAME=$(hostname)
   clear
   printf "Hold up, grabbing your machine's IP and the current hostname..."
   sleep 1
