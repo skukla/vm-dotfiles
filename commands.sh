@@ -166,6 +166,7 @@ function add-key() {
   printf "\nAdding SSH Key...\n"
   eval $(ssh-agent)
   ssh-add ~/.ssh/id_rsa.gitlab.skukla
+  ssh-add ~/.ssh/Magento-Cloud
 }
 export -f add-key
 
