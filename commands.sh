@@ -201,6 +201,24 @@ function upgrade() {
 }
 export -f upgrade
 
+# PHP-FPM
+function start-fpm() {
+  printf "\nRestarting the PHP-FPM...\n"
+  sudo systemctl restart php7.2-fpm
+}
+export -f start-fpm
+
+function stop-web() {
+  printf "\nStopping the PHP-FPM...\n"
+  sudo systemctl stop php7.2-fpm
+}
+export -f stop-fpm
+
+function status-web() {
+  sudo systemctl status php7.2-fpm
+}
+export -f status-fpm
+
 # Web
 function start-web() {
   printf "\nRestarting the web server...\n"
