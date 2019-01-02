@@ -41,8 +41,7 @@ case "$TERM" in
     xterm-color|*-256color) color_prompt=yes;;
 esac
 
-# uncomment for a colored prompt, if the terminal has the capability; turned
-"~/.bashrc" 117L, 3771C                                                                                                                              1,1           Top
+# uncomment for a colored prompt, if the terminal has the capability; turned                                                                                                                     1,1           Top
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
