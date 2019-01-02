@@ -203,13 +203,13 @@ export -f upgrade
 
 # PHP-FPM
 function start-fpm() {
-  printf "\nRestarting the PHP-FPM...\n"
+  printf "\nRestarting PHP-FPM...\n"
   sudo systemctl restart php7.2-fpm
 }
 export -f start-fpm
 
 function stop-fpm() {
-  printf "\nStopping the PHP-FPM...\n"
+  printf "\nStopping PHP-FPM...\n"
   sudo systemctl stop php7.2-fpm
 }
 export -f stop-fpm
