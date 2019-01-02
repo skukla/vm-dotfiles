@@ -86,4 +86,4 @@ if ! shopt -oq posix; then
   fi
 fi
 
-source ./cli/commands.sh
+source ~/cli/commands.sh
