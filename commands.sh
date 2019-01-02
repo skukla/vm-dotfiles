@@ -165,8 +165,8 @@ export -f prod-mode
 function add-key() {
   printf "\nAdding SSH Key...\n"
   eval $(ssh-agent)
-  ssh-add ~/.ssh/id_rsa.gitlab.skukla
-  ssh-add ~/.ssh/Magento-Cloud
+  ssh-add ~/.ssh/id_rsa.skukla.gitlab
+  ssh-add ~/.ssh/id_rsa.skukla-github.magento-cloud
 }
 export -f add-key
 
