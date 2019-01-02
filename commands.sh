@@ -208,13 +208,13 @@ function start-fpm() {
 }
 export -f start-fpm
 
-function stop-web() {
+function stop-fpm() {
   printf "\nStopping the PHP-FPM...\n"
   sudo systemctl stop php7.2-fpm
 }
 export -f stop-fpm
 
-function status-web() {
+function status-fpm() {
   sudo systemctl status php7.2-fpm
 }
 export -f status-fpm
