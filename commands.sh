@@ -357,8 +357,8 @@ export -f warm-cache
 
 function update-cli() {
   MAGENTO_DIRECTORY=/var/www/magento
-  HOME_DIRECTORY=/home/vagrant
-  CLI_DIRECTORY=/home/vagrant/cli
+  HOME_DIRECTORY=~
+  CLI_DIRECTORY=~/cli
   SCRIPTS_DIRECTORY=scripts
   clear
   printf "Updating the VM CLI...\n"
