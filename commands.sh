@@ -383,10 +383,7 @@ function update-cli() {
   printf "Updating the VM CLI...\n"
 
   # Add SSH Key
-  printf "\nAdding SSH Key..."
-  eval $(ssh-agent) > /dev/null 2>&1
-  ssh-add ~/.ssh/Magento-Cloud > /dev/null 2>&1
-  printf "done.\n\n"
+  add-key
 
   # Update CLI
   cd ${CLI_DIRECTORY}
