@@ -180,6 +180,7 @@ export -f update-composer
 function add-modules() {
   www
   db-upgrade
+  own
   di-compile
   deploy-content
   clean
