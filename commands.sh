@@ -74,6 +74,18 @@ function cron() {
 }
 export -f cron
 
+function enable-cron() {
+  printf "\nEnabling cron...\n"
+  ./bin/magento cron:install
+}
+export -f enable-cron
+
+function disable-cron() {
+  printf "\nDisabling cron...\n"
+  ./bin/magento cron:remove 
+}
+export -f disable-cron
+
 function staging() {
   printf "\nUpdating Staging Dashboard...\n"
   reindex
@@ -179,11 +191,13 @@ export -f update-composer
 
 function add-modules() {
   www
+  disable-cron
   db-upgrade
   own
   di-compile
   deploy-content
   clean
+  enable-cron
 }
 export -f add-modules
 
