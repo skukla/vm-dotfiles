@@ -69,7 +69,7 @@ function clean() {
 export -f clean
 
 function enable-cron() {
-  printf "\nEnabling cron..."
+  printf "\nEnabling cron...\n"
   www
   ./bin/magento cron:install
   printf "done.\n"
@@ -84,7 +84,7 @@ function cron() {
 export -f cron
 
 function disable-cron() {
-  printf "\nDisabling cron..."
+  printf "\nDisabling cron...\n"
   www
   ./bin/magento cron:remove
   crontab -r
