@@ -45,11 +45,11 @@ sleep 1
 
 # Resetting store email addresses
 printf "\nSetting the new Store Email Addresses...\n"
-./bin/magento config:set trans_email/ident_general/email ${NEW_URL}
-./bin/magento config:set trans_email/ident_sales/email ${NEW_URL}
-./bin/magento config:set trans_email/ident_support/email ${NEW_URL}
-./bin/magento config:set trans_email/ident_custom1/email ${NEW_URL}
-./bin/magento config:set trans_email/ident_custom2/email ${NEW_URL} 
+./bin/magento config:set trans_email/ident_general/email info@${NEW_URL}
+./bin/magento config:set trans_email/ident_sales/email sales@${NEW_URL}
+./bin/magento config:set trans_email/ident_support/email support@${NEW_URL}
+./bin/magento config:set trans_email/ident_custom1/email custom1@${NEW_URL}
+./bin/magento config:set trans_email/ident_custom2/email custom2@${NEW_URL} 
 sleep 1
 
 # Set the new hostname
