@@ -14,7 +14,7 @@ function own() {
   www
   sudo chown -R ${GROUP}:${USER} var/cache/ var/page_cache/
   sudo chmod -R 777 var/ pub/ app/etc/ generated/
-  printf "done\n"
+  printf "done.\n"
 }
 export -f own
 
@@ -72,7 +72,7 @@ function enable-cron() {
   printf "\nEnabling cron..."
   www
   ./bin/magento cron:install
-  printf "done\n"
+  printf "done.\n"
 }
 export -f enable-cron
 
@@ -88,7 +88,7 @@ function disable-cron() {
   www
   ./bin/magento cron:remove
   crontab -r
-  printf "done\n" 
+  printf "done.\n" 
 }
 export -f disable-cron
 
