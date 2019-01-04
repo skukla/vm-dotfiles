@@ -87,6 +87,7 @@ function disable-cron() {
   printf "\nDisabling cron..."
   www
   ./bin/magento cron:remove
+  crontab -r
   printf "done\n" 
 }
 export -f disable-cron
