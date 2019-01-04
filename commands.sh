@@ -10,10 +10,11 @@ function own() {
   GROUP=vagrant
   USER=vagrant
   
-  printf "\nUpdating permissions...\n"
+  printf "\nUpdating permissions..."
   www
   sudo chown -R ${GROUP}:${USER} var/cache/ var/page_cache/
   sudo chmod -R 777 var/ pub/ app/etc/ generated/
+  printf "done\n"
 }
 export -f own
 
@@ -67,6 +68,14 @@ function clean() {
 }
 export -f clean
 
+function enable-cron() {
+  printf "\nEnabling cron..."
+  www
+  ./bin/magento cron:install
+  printf "done\n"
+}
+export -f enable-cron
+
 function cron() {
   printf "\nRunning cron jobs...\n"
   www
@@ -74,17 +83,11 @@ function cron() {
 }
 export -f cron
 
-function enable-cron() {
-  printf "\nEnabling cron...\n"
-  www
-  ./bin/magento cron:install
-}
-export -f enable-cron
-
 function disable-cron() {
-  printf "\nDisabling cron...\n"
+  printf "\nDisabling cron..."
   www
-  ./bin/magento cron:remove 
+  ./bin/magento cron:remove
+  printf "done\n" 
 }
 export -f disable-cron
 
@@ -193,13 +196,11 @@ export -f update-composer
 
 function add-modules() {
   www
-  disable-cron
   db-upgrade
   own
   di-compile
   deploy-content
   clean
-  enable-cron
 }
 export -f add-modules
 
@@ -213,8 +214,10 @@ export -f refresh-theme
 
 function upgrade() {
   www
+  disable-cron
   update-composer
   add-modules
+  enable-cron
 }
 export -f upgrade
 
