@@ -30,12 +30,26 @@ else
 fi
 
 # Set the new base URL
-printf "\nSetting new Base URL...\n"
+printf "\nSetting the new Base URL...\n"
 cd ${MAGENTO_DIRECTORY}
 ./bin/magento config:set web/unsecure/base_url "http://${NEW_URL}/"
 sleep 1
 BASE_URL=$(cd ${MAGENTO_DIRECTORY} && ./bin/magento config:show web/unsecure/base_url)
 printf "\nBase URL set to: ${BASE_URL}\n"
+sleep 1
+
+# Set the new email domain
+printf "\nSetting the new Sender Email domain...\n"
+./bin/magento config:set customer/create_account/email_domain ${NEW_URL}
+sleep 1
+
+# Resetting store email addresses
+printf "\nSetting the new Store Email Addresses...\n"
+./bin/magento config:set trans_email/ident_general/email ${NEW_URL}
+./bin/magento config:set trans_email/ident_sales/email ${NEW_URL}
+./bin/magento config:set trans_email/ident_support/email ${NEW_URL}
+./bin/magento config:set trans_email/ident_custom1/email ${NEW_URL}
+./bin/magento config:set trans_email/ident_custom2/email ${NEW_URL} 
 sleep 1
 
 # Set the new hostname
