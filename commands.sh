@@ -190,7 +190,6 @@ export -f add-key
 
 function update-composer() {
   www
-  add-key
   composer update
 }
 export -f update-composer
@@ -216,8 +215,11 @@ export -f refresh-theme
 function upgrade() {
   www
   disable-cron
+  add-key
+  sudo ssh -NL 443:connect20-qa04.magedevteam.com:443 6rssrdokkqe32-master-7rqtwti--mymagento@ssh.demo.magento.cloud &
   update-composer
   add-modules
+  pkill ssh
   enable-cron
 }
 export -f upgrade
