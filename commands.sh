@@ -216,12 +216,8 @@ function upgrade() {
   www
   disable-cron
   add-key
-  # Tunnel into a cloud project to use its connection to the QA server
-  sudo ssh -NL 443:connect20-qa04.magedevteam.com:443 6rssrdokkqe32-master-7rqtwti--mymagento@ssh.demo.magento.cloud &
   update-composer
   add-modules
-  # Kill the tunnel
-  pkill ssh
   enable-cron
 }
 
