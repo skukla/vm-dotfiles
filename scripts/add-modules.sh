@@ -5,9 +5,11 @@ MAGENTO_DIRECTORY=/var/www/magento
 
 clear
 
+printf "Beginning the update process...\n"
+
 cd ${MAGENTO_DIRECTORY} 
 
-printf "Updating permissions..."
+printf "\nUpdating permissions..."
 chown -R ${GROUP}:${USER} var/cache/ var/page_cache/
 chmod -R 777 var/ pub/ app/etc/ generated/
 printf "done.\n"
