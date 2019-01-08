@@ -214,13 +214,9 @@ function refresh-theme() {
 export -f refresh-theme
 
 function upgrade() {
-  www
-  disable-cron
-  add-key
-  update-composer
-  add-modules
-  enable-cache
-  enable-cron
+  CLI_DIRECTORY=~/cli
+  SCRIPTS_DIRECTORY=scripts
+  bash ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/add-modules.sh  
 }
 
 export -f upgrade
