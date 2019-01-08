@@ -3,6 +3,8 @@ GROUP=vagrant
 USER=vagrant
 MAGENTO_DIRECTORY=/var/www/magento
 
+clear
+
 cd ${MAGENTO_DIRECTORY} 
 
 printf "Updating permissions..."
