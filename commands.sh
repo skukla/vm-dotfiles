@@ -218,6 +218,7 @@ function upgrade() {
   add-key
   update-composer
   add-modules
+  enable-cache
   enable-cron
 }
 
