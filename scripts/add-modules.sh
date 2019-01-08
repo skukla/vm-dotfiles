@@ -34,4 +34,6 @@ printf "\nDeploying static content..."
 printf "\nReindexing...\n"
 ./bin/magento indexer:reindex
 
+printf "\nUpgrade finished!\n"
+
 exit
