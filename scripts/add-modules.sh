@@ -1,6 +1,6 @@
 #!/bin/bash
 #export TERM=xterm-256color
-export TERM=xterm
+export TERM=linux
 GROUP=vagrant
 USER=vagrant
 MAGENTO_DIRECTORY=/var/www/magento
