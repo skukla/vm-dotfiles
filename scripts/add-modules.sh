@@ -6,7 +6,7 @@ MAGENTO_DIRECTORY=/var/www/magento
 
 clear
 
-printf "Beginning the update process...\n"
+printf "\n\nBeginning the update process...\n"
 
 cd ${MAGENTO_DIRECTORY}
 sleep 2
