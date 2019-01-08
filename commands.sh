@@ -189,6 +189,7 @@ function add-key() {
 export -f add-key
 
 function update-composer() {
+  printf "\nDownloading code...\n"
   www
   composer update
 }
