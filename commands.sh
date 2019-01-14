@@ -159,7 +159,7 @@ export -f deploy-content
 function deploy-content-de() {
   printf "\nDeploying German theme static content...\n"
   www
-  ./bin/magento setup:static-content:deploy de_DE -f
+  ./bin/magento setup:static-content:deploy -f de_DE
 }
 export -f deploy-content-de
 
@@ -201,6 +201,7 @@ function add-modules() {
   db-upgrade
   di-compile
   deploy-content
+  deploy-content-de
   clean
 }
 export -f add-modules

@@ -40,6 +40,9 @@ printf "\nCompiling dependencies...\n"
 printf "\nDeploying static content..."
 ./bin/magento set:static-content:deploy -f
 
+printf "\nDeploying German static content..."
+./bin/magento setup:static-content:deploy -f de_DE
+
 printf "\nReindexing...\n"
 ./bin/magento indexer:reindex
 sleep 2
