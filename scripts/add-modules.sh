@@ -47,6 +47,11 @@ printf "\nReindexing...\n"
 ./bin/magento indexer:reindex
 sleep 2
 
+printf "\nInstalling cron...\n"
+./bin/magento cron:install
+crontab -r
+sleep 2
+
 printf "\nUpgrade finished!\n"
 
 exit
