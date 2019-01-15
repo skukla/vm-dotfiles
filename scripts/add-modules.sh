@@ -26,6 +26,12 @@ sleep 2
 printf "\nDownloading code...\n"
 composer update
 
+printf "\nUpdating permissions..."
+chown -R ${GROUP}:${USER} var/cache/ var/page_cache/
+chmod -R 777 var/ pub/ app/etc/ generated/
+printf "done.\n"
+sleep 2
+
 printf "\nUpdating the database...\n"
 ./bin/magento setup:upgrade
 
