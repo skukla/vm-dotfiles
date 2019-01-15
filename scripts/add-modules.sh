@@ -38,6 +38,9 @@ printf "\nDeploying static content..."
 printf "\nDeploying German static content..."
 ./bin/magento setup:static-content:deploy -f de_DE
 
+printf "\nEnabling cache..."
+./bin/magento cache:enable
+
 printf "\nReindexing...\n"
 ./bin/magento indexer:reindex
 sleep 2
