@@ -1,0 +1,110 @@
+#!/bin/bash
+
+# stop on errors
+set -e
+# turn on debugging
+set -x
+
+cur_dir=/var/www/magento
+
+##############################
+#
+# consolidated cron_groups.xml
+#
+##############################
+
+mkdir -p $cur_dir/etc
+path="$cur_dir/etc/cron_groups.xml"
+rm "$path" || :
+
+# find all cron_groups.xml files and combine them
+find $( cd $(dirname $0)/../../ ; pwd -P ) -not -path "*magentoese/magento-scripts*" -name 'cron_groups.xml*' -exec cat "{}" >> $path \; -exec mv "{}" "{}.old" \;
+
+# remove comments
+perl -i -pe 'BEGIN{undef $/;} s/<!--.*?-->//smg' $path
+
+# remove config tags, xml tags, and empty lines 
+perl -i -ne 's/^\s*<\/?config[^>]*>\s*$//;s/<\?xml.*//; print unless m/^\s*$/' $path
+
+perl -i -pe '
+  s/(_every.*>)\d+/${1}59/;
+  s/(ahead_for.*>)\d+/${1}1440/;
+  s/(lifetime.*>)\d+/${1}600/;
+  s/(schedule_lifetime.*>)\d+/${1}10/;
+  s/(process.*>)1/${1}0/;
+  ' $path
+
+# remove comments
+perl -i -pe 'BEGIN{undef $/;} s/<!--.*?-->//smg' $path
+
+# consolidate tags to a single line for further processing
+perl -i -pe 'BEGIN{undef $/;} s/\n//smg; s/>\s*?</></smg' $path
+
+# move groups to their own line
+perl -i -pe 's/<group/\n  <group/g;s/<\/group>/<\/group>\n/g' $path
+
+# only retain the group lines
+perl -i -ne '/<group/ and print' $path
+
+# sort and dedup in place
+sort -uo $path $path
+
+perl -i -pe 's/<\/group/\n  $&/;s/></>\n    </g' $path
+
+perl -i -pe 's/^/<config>\n/ if 1 .. 1; s/$/\n<\/config>/ if eof' $path
+
+##########################
+#
+# consolidated crontab.xml
+#
+##########################
+
+path="$cur_dir/etc/crontab.xml"
+rm "$path" || :
+
+# find all crontab.xml files and combine them
+find $( cd $(dirname $0)/../../ ; pwd -P ) -not -path "*magentoese/magento-scripts*" -name 'crontab.xml*' -exec cat "{}" >> $path \; -exec mv "{}" "{}.old" \;
+
+# remove comments
+perl -i -pe 'BEGIN{undef $/;} s/<!--.*?-->//smg' $path
+
+# consolidate tags to a single line for further processing
+perl -i -pe 'BEGIN{undef $/;} s/\n//smg; s/>\s*?</></smg' $path
+
+# move groups to their own line
+perl -i -pe 's/<group/\n<group/g;s/<\/group>/<\/group>\n/g' $path
+
+# only retain the group lines
+perl -i -ne '/^<group/ and print' $path
+
+# only jobs are self-closing; replace w/ explicit close for further processing
+perl -i -pe 's/\/></><\/job></g' $path
+
+# wrap each job in a group element to facilitate sorting
+perl -i -pe 's{</job><job}{</job></group>\n<group id="$id"><job}g if (/group id="([^"]+)"/ && ($id=$1))' $path
+
+# sort in place
+sort -o $path $path
+
+# combine groups w/ the same id by removing all but the 1st unique <group id=".." and close the group when a new id is found
+perl -i -pe 's{<group id="([^"]+)">}{($prev_match eq $1 ? "  " : (($prev_match="$1") && "</group>\n$&"))}e' $path
+# remove all closing </group> at the end of lines
+perl -i -pe 's/><\/group>/>/' $path
+
+# remove the very 1st </group> at the beginning of the file and add it to the end
+perl -i -pe 's/^<\/group>/<config>/ if 1 .. 1; s/$/\n<\/group>\n<\/config>/ if eof' $path
+
+# unset job schedules that you do not want to run at all; M2 will check db and not find any
+perl -i -pe 's/<schedule.*<\/job>/<\/job>/ if /backend_clean_cache|newsletter_send_all|amazon_payments_process_queued_refunds|newrelic|captcha/ ' $path
+
+# change hourly jobs to random daily jobs
+perl -i -pe 's/>[\d,]+ \* \* \* \*/( ">" . int(rand(60)) . " " . int(rand(24)) . " * * *")/e' $path
+
+# change any cron jobs that run more frequently than once every 10 min, to only once every 10 min
+perl -i -pe 's/0-59 \* \* \* \*/* * * * */; s/\*(\/\d)? \* \* \* \*/((($i=int(rand(10))) && join($i.",", qw(0 1 2 3 4 5)).$i) . " * * * *")/e' $path
+
+# change jobs running every X min (e.g. */15) to once an hour on a random min
+perl -i -pe 's/>\*\/\d\d \* \* \* \*/( ">" . int(rand(60)) . " * * * *")/e' $path
+
+# change daily jobs to run at random TOD
+perl -i -pe 's/>[\d,]+ [\d,]+ \* \* \*/( ">" . int(rand(60)) . " " . int(rand(24)) . " * * *")/e' $path
