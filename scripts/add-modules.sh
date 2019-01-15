@@ -47,6 +47,11 @@ printf "\nReindexing...\n"
 ./bin/magento indexer:reindex
 sleep 2
 
+printf "\nClearing cache...\n"
+./bin/magento cache:clean
+rm -rf var/cache/* var/page_cache/*
+sleep 2
+
 printf "\nInstalling cron...\n"
 ./bin/magento cron:install
 sleep 2
