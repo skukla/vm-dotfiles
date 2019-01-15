@@ -23,11 +23,6 @@ ssh-add ~/.ssh/id_rsa.skukla.gitlab
 ssh-add ~/.ssh/id_rsa.skukla.github.magento-cloud
 sleep 2
 
-printf "\nRemoving cron...\n"
-./bin/magento cron:remove
-crontab -r
-sleep 2
-
 printf "\nDownloading code...\n"
 composer update
 
@@ -50,10 +45,6 @@ sleep 2
 printf "\nClearing cache...\n"
 ./bin/magento cache:clean
 rm -rf var/cache/* var/page_cache/*
-sleep 2
-
-printf "\nInstalling cron...\n"
-./bin/magento cron:install
 sleep 2
 
 printf "\nUpgrade finished!\n"
