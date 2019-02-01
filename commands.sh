@@ -482,3 +482,8 @@ function set-url() {
   sudo bash ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/url-check.sh
 }
 export -f set-url
+
+function motd() {
+  cat /var/run/motd.dynamic
+}
+export -f motd
