@@ -17,10 +17,15 @@ chmod -R 777 var/ pub/ app/etc/ generated/
 printf "done.\n"
 sleep 2
 
-printf "\nAdding SSH keys...\n"
-eval $(ssh-agent)
-ssh-add ~/.ssh/id_rsa.skukla.gitlab
-ssh-add ~/.ssh/id_rsa.skukla.github.magento-cloud
+printf "\nProxying through gitlab firewall...\n\n"
+  export GIT_SSH_COMMAND='ssh -o ProxyCommand="nc -x 127.0.0.1:8889 %h %p"' HTTP_PROXY=http://127.0.0.1:8888
+  curl -sS https://raw.githubusercontent.com/PMET-public/magento-cloud-extension/0.0.23/sh-scripts/lib.sh \
+    https://raw.githubusercontent.com/PMET-public/magento-cloud-extension/0.0.23/sh-scripts/configure-proxies.sh | env ext_ver=0.0.23 tab_url=https://github.com bash
+  sleep 1
+  printf "\nAdding SSH keys...\n"
+  eval $(ssh-agent)
+  ssh-add ~/.ssh/id_rsa.skukla.gitlab
+  ssh-add ~/.ssh/id_rsa.skukla.github.magento-cloud
 sleep 2
 
 printf "\nDownloading code...\n"
