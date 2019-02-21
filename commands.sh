@@ -181,12 +181,12 @@ export -f prod-mode
 
 # Extensions and Upgrades
 function add-key() {
-  printf "\nProxying through gitlab firewall"
+  printf "\nProxying through gitlab firewall\n"
   bash -c "$(curl -sS https://raw.githubusercontent.com/PMET-public/magento-cloud-extension/0.0.23/sh-scripts/lib.sh          https://raw.githubusercontent.com/PMET-public/magento-cloud-extension/0.0.23/sh-scripts/configure-proxies.sh | env ext_ver=0.0.23 tab_url=https://github.com bash)"
   sleep 1
   printf "\nAdding SSH Key...\n"
   eval $(ssh-agent)
-  ssh-add ~/.ssh/id_rsa.skukla.gitlab
+  #ssh-add ~/.ssh/id_rsa.skukla.gitlab
   ssh-add ~/.ssh/id_rsa.skukla.github.magento-cloud
 }
 export -f add-key
