@@ -491,3 +491,10 @@ function motd() {
   cat /var/run/motd.dynamic
 }
 export -f motd
+
+function cloud-login() {
+  # We have to send this twice because the refresh token is invalid after a snapshot and cloud errors out
+  magento-cloud auth:password-login
+  magento-cloud auth:password-login
+}
+export -f cloud-login
