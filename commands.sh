@@ -341,6 +341,12 @@ function monitor-redis() {
 export -f monitor-redis
 
 # Elasticsearch
+function enable-elasticsearch() {
+  printf "\nEnabling Elasticsearch...\n"
+  sudo systemctl enable elasticsearch
+}
+export -f enable-elasticsearch
+
 function start-elasticsearch() {
   printf "\nRestarting Elasticsearch...\n"
   sudo systemctl restart elasticsearch
@@ -357,6 +363,12 @@ function status-elasticsearch() {
   sudo systemctl status elasticsearch
 }
 export -f status-elasticsearch
+
+function disable-elasticsearch() {
+  printf "\nDisabling Elasticsearch...\n"
+  sudo systemctl disable elasticsearch
+}
+export -f disable-elasticsearch
 
 # Kibana
 function start-kibana() {
