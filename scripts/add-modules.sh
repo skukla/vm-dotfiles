@@ -19,8 +19,8 @@ sleep 2
 
 printf "\nProxying through gitlab firewall..."
   export GIT_SSH_COMMAND='ssh -o ProxyCommand="nc -x 127.0.0.1:8889 %h %p"' HTTP_PROXY=http://127.0.0.1:8888
-  curl -sS https://raw.githubusercontent.com/PMET-public/magento-cloud-extension/0.0.23/sh-scripts/lib.sh \
-    https://raw.githubusercontent.com/PMET-public/magento-cloud-extension/0.0.23/sh-scripts/configure-proxies.sh | env ext_ver=0.0.23 tab_url=https://github.com bash
+  curl -sS https://raw.githubusercontent.com/PMET-public/magento-cloud-extension/0.0.25/sh-scripts/lib.sh \
+    https://raw.githubusercontent.com/PMET-public/magento-cloud-extension/0.0.25/sh-scripts/configure-proxies.sh | env ext_ver=0.0.25 tab_url=https://github.com bash
   sleep 1
   printf "done. \nAdding SSH keys...\n"
   eval $(ssh-agent)
