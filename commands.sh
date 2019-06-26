@@ -180,7 +180,7 @@ function prod-mode() {
 export -f prod-mode
 
 function configure-proxy() {
-  printf "\nProxying through gitlab firewall...\n\n"
+  printf "\nProxying through gitlab firewall...\n"
   export GIT_SSH_COMMAND='ssh -o ProxyCommand="nc -x 127.0.0.1:8889 %h %p"' HTTP_PROXY=http://127.0.0.1:8888
   curl -sS https://raw.githubusercontent.com/PMET-public/magento-cloud-extension/0.0.23/sh-scripts/lib.sh \
     https://raw.githubusercontent.com/PMET-public/magento-cloud-extension/0.0.23/sh-scripts/configure-proxies.sh | env ext_ver=0.0.23 tab_url=https://github.com bash
