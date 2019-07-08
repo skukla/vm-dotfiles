@@ -516,3 +516,10 @@ function cloud-login() {
   magento-cloud auth:password-login
 }
 export -f cloud-login
+
+function apply-patches() {
+  www
+  printf "Applying patches...\n\n"
+  php vendor/magentoese/ece-tools/bin/ece-tools patch
+}
+export -f apply-patches
