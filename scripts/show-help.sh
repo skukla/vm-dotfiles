@@ -40,4 +40,5 @@ printf '\n%23s : %s' "${BOLD}configure-proxy" "${REG}Configures a proxy connecti
 printf '\n%23s : %s' "${BOLD}add-modules" "${REG}Triggers module updates which have been added to the composer.json file."
 printf '\n%23s : %s' "${BOLD}upgrade" "${REG}Upgrade the codebase after adding a new module to your composer.json file."
 printf '\n%23s : %s' "${BOLD}start-web" "${REG}Starts/Re-starts the web server."
-printf "\n\n
+printf "\n\n"
+rule
