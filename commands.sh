@@ -525,6 +525,6 @@ function apply-patches() {
 export -f apply-patches
 
 function show-help() {
-  sh ~/cli/scripts/show-help.sh 
+  bash ~/cli/scripts/show-help.sh 
 }
 export -f show-help
