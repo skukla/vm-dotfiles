@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Variables
+export TERM=xterm-256color
 BOLD=$(tput bold)
 REG=$(tput sgr0)
 CYAN=$(tput setaf 6)
@@ -15,6 +16,9 @@ rulem ()  {
     # Fill line with ruler character ($2, default "-"), reset cursor, move 2 cols right, print message
     printf -v _hr "%*s" $(tput cols) && echo -en ${_hr// /${2--}} && echo -e "\r\033[2C$1"
 }
+
+# Intro
+figlet VM Commands
 
 # Useful Commands
 rulem "[ ${CYAN}Command List${REG} ]"
