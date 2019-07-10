@@ -523,3 +523,8 @@ function apply-patches() {
   php vendor/magentoese/ece-tools/bin/ece-tools patch
 }
 export -f apply-patches
+
+function show-help() {
+  sh ~/cli/scripts/show-help.sh 
+}
+export -f show-help
