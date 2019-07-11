@@ -1,9 +1,6 @@
 #!/bin/bash
 export TERM=xterm-256color
-GROUP=vagrant
-USER=vagrant
-MAGENTO_DIRECTORY=/var/www/magento
-source ~/cli/commands.sh
+MAGENTO_DIRECTORY=/var/www/magentos
 
 # Clear the screen
 clear
