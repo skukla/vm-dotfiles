@@ -35,7 +35,7 @@ printf '\n%23s : %s' "${BOLD}disable-cms-cache" "${REG}Disables the block_html, 
 printf '\n%23s : %s' "${BOLD}enable-cache" "${REG}Enables all caches."
 printf '\n%23s : %s' "${BOLD}cron" "${REG}Runs a single cron trigger."
 printf '\n%23s : %s' "${BOLD}cloud-login" "${REG}Logs into the Cloud CLI in the VM.  May need to do this twice."
-printf '\n%23s : %s' "${BOLD}add-key" "${REG}Adds SSH keys to the SSH agent."
+printf '\n%23s : %s' "${BOLD}add-keys" "${REG}Adds SSH keys to the SSH agent."
 printf '\n%23s : %s' "${BOLD}configure-proxy" "${REG}Configures a proxy connection to download module updates."
 printf '\n%23s : %s' "${BOLD}add-modules" "${REG}Triggers module updates which have been added to the composer.json file."
 printf '\n%23s : %s' "${BOLD}upgrade" "${REG}Upgrade the codebase after adding a new module to your composer.json file."

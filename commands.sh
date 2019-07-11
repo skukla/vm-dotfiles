@@ -192,13 +192,13 @@ function configure-proxy() {
 }
 export -f configure-proxy
 
-function add-key() {
+function add-keys() {
   printf "\nAdding SSH keys...\n"
   eval $(ssh-agent)
   ssh-add ~/.ssh/id_rsa.skukla.gitlab
   ssh-add ~/.ssh/id_rsa.skukla.github
 }
-export -f add-key
+export -f add-keys
 
 function update-composer() {
   printf "\nDownloading code...\n"
@@ -428,7 +428,7 @@ function update-cli() {
   printf "Updating the VM CLI...\n"
 
   # Add SSH Key
-  add-key
+  add-keys
 
   # Update CLI
   cd ${CLI_DIRECTORY}
@@ -520,8 +520,7 @@ export -f cloud-login
 function clear-cron-schedule() {
   export MYSQL_PWD=password
   printf "\nClearing the cron_schedule database table..."
-  sleep 1
-  mysql -u root -Bse "USE magento;DELETE FROM cron_schedule;"
+  mysql -u root -ppassword -Bse "USE magento;DELETE FROM cron_schedule;"
   printf "done.\n"
 }
 export -f clear-cron-schedule
