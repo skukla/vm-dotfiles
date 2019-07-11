@@ -1,6 +1,6 @@
 #!/bin/bash
 export TERM=xterm-256color
-MAGENTO_DIRECTORY=/var/www/magentos
+MAGENTO_DIRECTORY=/var/www/magento
 
 # Clear the screen
 clear
