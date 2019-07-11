@@ -210,11 +210,15 @@ export -f update-composer
 function add-modules() {
   www
   own
+  configure-proxy
+  disable-cron
+  clear-cron-schedule
   db-upgrade
   di-compile
   deploy-content
   deploy-content-de
   clean
+  enable-cron
 }
 export -f add-modules
 
@@ -518,9 +522,9 @@ function cloud-login() {
 export -f cloud-login
 
 function clear-cron-schedule() {
-  export MYSQL_PWD=password
   printf "\nClearing the cron_schedule database table..."
-  mysql -u root -ppassword -Bse "USE magento;DELETE FROM cron_schedule;"
+  mysql -u root -Bse "USE magento;DELETE FROM cron_schedule;"
+  sleep 1
   printf "done.\n"
 }
 export -f clear-cron-schedule
