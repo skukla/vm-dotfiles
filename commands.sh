@@ -210,15 +210,11 @@ export -f update-composer
 function add-modules() {
   www
   own
-  configure-proxy
-  disable-cron
-  clear-cron-schedule
   db-upgrade
   di-compile
   deploy-content
   deploy-content-de
   clean
-  enable-cron
 }
 export -f add-modules
 
@@ -231,9 +227,16 @@ function refresh-theme() {
 export -f refresh-theme
 
 function upgrade() {
-  CLI_DIRECTORY=~/cli
-  SCRIPTS_DIRECTORY=scripts
-  bash ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/add-modules.sh  
+  clear
+  printf "Beginning the upgrade process...\n"
+  www
+  own 
+  configure-proxy
+  disable-cron
+  clear-cron-schedule
+  update-composer
+  add-modules
+  printf "\nUpgrade finished!\n"
 }
 
 export -f upgrade
