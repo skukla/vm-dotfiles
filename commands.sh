@@ -517,6 +517,13 @@ function cloud-login() {
 }
 export -f cloud-login
 
+function clear-cron-schedule() {
+  printf "\nClearing the cron_schedule database table..."
+  mysql -u root -ppassword -Bse "USE magento;DELETE FROM cron_schedule;"
+  printf "done.\n"
+}
+export -f clear-cron-schedule
+
 function apply-patches() {
   www
   printf "Applying patches...\n\n"
