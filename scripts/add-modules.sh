@@ -3,7 +3,7 @@ export TERM=xterm-256color
 GROUP=vagrant
 USER=vagrant
 MAGENTO_DIRECTORY=/var/www/magento
-source ~/.bashrc
+source ~/cli/commands.sh
 
 # Clear the screen
 clear
