@@ -5,7 +5,7 @@ MAGENTO_DIRECTORY=/var/www/magento
 # Clear the screen
 clear
 
-printf "\nBeginning the upgrade process...\n"
+printf "Beginning the upgrade process...\n"
 
 # Change into the Magento directory
 cd ${MAGENTO_DIRECTORY}
