@@ -520,6 +520,7 @@ export -f cloud-login
 function clear-cron-schedule() {
   export MYSQL_PWD=password
   printf "\nClearing the cron_schedule database table..."
+  sleep 1
   mysql -u root -Bse "USE magento;DELETE FROM cron_schedule;"
   printf "done.\n"
 }
