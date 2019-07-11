@@ -14,6 +14,7 @@ function own() {
   www
   sudo chown -R ${GROUP}:${USER} var/cache/ var/page_cache/
   sudo chmod -R 777 var/ pub/ app/etc/ generated/
+  sleep 2
   printf "done.\n"
 }
 export -f own
