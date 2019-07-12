@@ -215,6 +215,7 @@ function add-modules() {
   di-compile
   deploy-content
   deploy-content-de
+  enable-cache
   clean
 }
 export -f add-modules
