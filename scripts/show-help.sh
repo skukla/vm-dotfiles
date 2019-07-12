@@ -22,7 +22,7 @@ figlet VM Commands
 
 # Useful Commands
 rulem "[ ${CYAN}Command List${REG} ]"
-printf '\n%23s : %s' "${BOLD}set-url" "${REG}Set a new base url and hostname."
+printf '\n%23s : %s' "${BOLD}www" "${REG}Moves into the web root."
 printf '\n%23s : %s' "${BOLD}clean" "${REG}Re-indexes and clears cache."
 printf '\n%23s : %s' "${BOLD}cache" "${REG}Clears cache."
 printf '\n%23s : %s' "${BOLD}reindex" "${REG}Reindexes all indexes."
@@ -40,5 +40,6 @@ printf '\n%23s : %s' "${BOLD}configure-proxy" "${REG}Configures a proxy connecti
 printf '\n%23s : %s' "${BOLD}add-modules" "${REG}Triggers module updates which have been added to the composer.json file."
 printf '\n%23s : %s' "${BOLD}upgrade" "${REG}Upgrade the codebase after adding a new module to your composer.json file."
 printf '\n%23s : %s' "${BOLD}start-web" "${REG}Starts/Re-starts the web server."
+printf '\n%23s : %s' "${BOLD}set-url" "${REG}Set a new base url and hostname."
 printf "\n\n"
 rule
