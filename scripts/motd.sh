@@ -36,7 +36,7 @@ printf "\n"
 
 # Useful Commands
 rulem "[ ${CYAN}Useful Commands${REG} ]"
-printf '\n%23s : %s' "${BOLD}www" "${REG}Move into the web root."
+printf '\n%23s : %s' "${BOLD}www" "${REG}Moves into the web root."
 printf '\n%23s : %s' "${BOLD}clean" "${REG}Re-indexes and clears cache."
 printf '\n%23s : %s' "${BOLD}cache" "${REG}Clears cache."
 printf '\n%23s : %s' "${BOLD}reindex" "${REG}Reindexes all indexes."
