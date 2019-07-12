@@ -448,10 +448,13 @@ function update-cli() {
   # Pull new changes and set permissions
   git pull
   printf "\nInstalling commands... "
+  # Install scripts and motd
   source ${HOME_DIRECTORY}/.bashrc
+  sudo cp ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/motd.sh /etc/update-motd.d/01-custom
   sleep 1
   printf "done. \n\nMaking scripts executable... "
   sudo chmod +x ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/*.sh
+  sudo chmod +x /etc/update-motd.d/01-custom
   sleep 1
   printf "done.\n\n"
 
