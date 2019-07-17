@@ -51,6 +51,6 @@ printf '\n%23s : %s' "${BOLD}upgrade" "${REG}Upgrade the codebase after adding a
 printf '\n%23s : %s' "${BOLD}start-web" "${REG}Starts/restarts the web server."
 printf '\n%23s : %s' "${BOLD}set-url" "${REG}Set a new base url and hostname."
 printf "\n\n"
-printf "${REG}Use ${BOLD}show-help ${REG} to see a full list of CLI commands."
+printf "${REG}Use ${BOLD}show-help${REG} to see a full list of CLI commands."
 printf "\n\n"
 rule
