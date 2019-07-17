@@ -18,6 +18,7 @@ rulem ()  {
 }
 
 # Intro
+clear
 figlet VM Commands
 
 # Useful Commands
