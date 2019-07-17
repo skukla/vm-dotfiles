@@ -29,7 +29,7 @@ printf "\n${BOLD}Welcome to the Kukla VM!${REG}\n\n"
 
 # Hosts Entry, Mailhog, and Webmin
 rulem "[ ${CYAN}Hosts Entry and Webmin${REG} ]"
-printf '\n%23s : %s %s\t%s\n' "${BOLD}Host Entry" "${REG}${IP}" "${HOSTNAME}" "b2b.${HOSTNAME}" "custom-demo.com" "b2b.custom-demo.com"
+printf '\n%23s : %s %s\t%s%s%s\n' "${BOLD}Host Entry" "${REG}${IP}" "${HOSTNAME}" "b2b.${HOSTNAME}" "custom-demo.com" "b2b.custom-demo.com"
 printf '%23s : %s  \n' "${BOLD}Mailhog Inbox" "${REG}http://${HOSTNAME}:${MAILHOG_PORT}"
 printf '%23s : %s  \n\t\t %7s : %s\n\t %15s : %s\n' "${BOLD}Webmin Console" "${REG}http://${HOSTNAME}:${WEBMIN_PORT}" "User" "${WEBMIN_USER}" "Password" "${WEBMIN_PASS}"
 printf "\n"
