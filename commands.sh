@@ -238,6 +238,7 @@ function upgrade() {
   clear-cron-schedule
   update-composer
   add-modules
+  enable-cron
   printf "\nUpgrade finished!\n"
 }
 
