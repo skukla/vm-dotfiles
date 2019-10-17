@@ -546,19 +546,18 @@ function apply-patches() {
   cd ../cloud
   git pull
   sleep 1
-  printf "done. \n"
-  sleep 2
+  printf "done.\n"
+  sleep 1
   printf "\nCopying patches..."
   cp m2-hotfixes/* ${MAGENTO_DIRECTORY}/m2-hotfixes/
-  sleep 1
   printf "done. \n"
-  sleep 2
-  printf "\nApplying patches..."
+  sleep 1
+  printf "\nApplying patches...\n"
   sleep 1
   www
   php vendor/magentoese/ece-tools/bin/ece-tools patch
   sleep 1
-  printf "done.\n"
+  printf "\ndone.\n"
 }
 export -f apply-patches
 
