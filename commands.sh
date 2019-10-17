@@ -216,6 +216,7 @@ function add-modules() {
   deploy-content
   deploy-content-de
   enable-cache
+  apply-patches
   clean
 }
 export -f add-modules
