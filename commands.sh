@@ -533,6 +533,11 @@ function cloud-login() {
 }
 export -f cloud-login
 
+function cloud-logout() {
+  magento-cloud logout
+}
+export -f cloud-logout
+
 function clear-cron-schedule() {
   printf "\nClearing the cron schedule database table..."
   mysql --login-path=local -e "USE magento;DELETE FROM cron_schedule;"
