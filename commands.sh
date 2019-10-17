@@ -540,11 +540,12 @@ function clear-cron-schedule() {
 export -f clear-cron-schedule
 
 function apply-patches() {
+  MAGENTO_DIRECTORY=/var/www/magento
   www
   printf "Getting patch list..."
   cd ../cloud
   git pull
-  cp -v m2-hotfixes/*
+  cp -Rv m2-hotfixes/* ${MAGENTO_DIRECTORY}/m2-hotfixes/
   www
   printf "Applying patches...\n\n"
   php vendor/magentoese/ece-tools/bin/ece-tools patch
