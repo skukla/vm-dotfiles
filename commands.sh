@@ -550,6 +550,7 @@ function apply-patches() {
   sleep 1
   printf "\nCopying patches..."
   cp m2-hotfixes/* ${MAGENTO_DIRECTORY}/m2-hotfixes/
+  sleep 1
   printf "done. \n"
   sleep 1
   printf "\nApplying patches...\n"
