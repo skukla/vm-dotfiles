@@ -545,7 +545,7 @@ function apply-patches() {
   printf "\nGetting patch list..."
   cd ../cloud
   git pull
-  cp -Rv m2-hotfixes/* ${MAGENTO_DIRECTORY}/m2-hotfixes/
+  cp -v m2-hotfixes/* ${MAGENTO_DIRECTORY}/m2-hotfixes/
   www
   printf "\nApplying patches..."
   php vendor/magentoese/ece-tools/bin/ece-tools patch
