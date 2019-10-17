@@ -558,7 +558,7 @@ function apply-patches() {
   www
   php vendor/magentoese/ece-tools/bin/ece-tools patch
   sleep 2
-  printf "\ndone.\n\n"
+  printf "done.\n"
 }
 export -f apply-patches
 
