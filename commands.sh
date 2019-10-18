@@ -548,9 +548,11 @@ export -f clear-cron-schedule
 
 function apply-patches() {
   MAGENTO_DIRECTORY=/var/www/magento
+  VERSION=2.3.3
   printf "\nGetting patch list...\n"
   www
   cd ../cloud
+  git checkout pmet-${VERSION}-demo
   git pull
   sleep 1
   printf "done.\n"
