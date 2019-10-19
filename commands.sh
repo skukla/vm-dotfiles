@@ -212,13 +212,13 @@ export -f update-composer
 
 function add-modules() {
   www
+  apply-patches
   own
   db-upgrade
   di-compile
   deploy-content
   deploy-content-de
   enable-cache
-  apply-patches
   clean
 }
 export -f add-modules
