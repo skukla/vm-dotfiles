@@ -348,18 +348,19 @@ function configure-php() {
       ;;
     2)
       # Check for PHP folders...
-      if [[ ! $(find /etc/php/${VERSION}/ -maxdepth 0 -type d >/dev/null 2>&1) ]]; then
+      if if [ ! -d "/etc/php/${VERSION}" ]; then
         printf "\nThere are no occurrences of PHP ${VERSION} on the system.\n"
       # We have a folder, continue and check for 7.0 specifically...
       elif [[ ${VERSION} == 7.0 ]] && [[ $(find /etc/php/* -maxdepth 0 -type d | wc -l) == 1 ]]; then
         printf "\nRemoving /etc/php/ folder contents...\n"
-        sudo rm -rf /etc/php/7.0/
+        sudo rm -rf /etc/php/7.0/ 
       else 
         # Process the other folders...
         sudo apt-get install ppa-purge -y && sudo ppa-purge ppa:ondrej/php -y && sudo apt-get purge php${VERSION}-common
       fi
       ;;
   esac
+  printf
   sudo apt autoremove -y
   sleep 1
   list-php
