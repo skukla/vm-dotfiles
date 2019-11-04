@@ -350,6 +350,7 @@ function configure-php() {
       sudo apt-get install ppa-purge -y && sudo ppa-purge ppa:ondrej/php-${VERSION} -y
       ;;
     *)
+      apt-get autoremove -y
       list-php
     ;;
   esac
