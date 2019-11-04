@@ -326,11 +326,11 @@ function install-php() {
   printf "\nSo, you wanna install PHP, eh?...\n"
   sleep 1
   printf "\nGot it. Which PHP version would you like to install?\n\n"
-  read $VERSION
+  read $CHOICE
   printf "\n10-4!\n"
-  printf "\nAttempting to install PHP ${VERSION}..."
+  printf "\nAttempting to install PHP ${CHOICE}..."
   sleep 1
-  sudo apt update -y && sudo add-apt-repository ppa:ondrej/php && sudo apt update -y && sudo apt install -y php${VERSION} libapache2-mod-php${VERSION} php${VERSION}-common php${VERSION}-gd php${VERSION}-mysql php${VERSION}-mcrypt php${VERSION}-curl php${VERSION}-intl php${VERSION}-xsl php${VERSION}-mbstring php${VERSION}-zip php${VERSION}-bcmath php${VERSION}-iconv php${VERSION}-soap php${VERSION}-fpm 
+  sudo apt update -y && sudo add-apt-repository ppa:ondrej/php && sudo apt update -y && sudo apt install -y php${CHOICE} libapache2-mod-php${CHOICE} php${CHOICE}-common php${CHOICE}-gd php${CHOICE}-mysql php${CHOICE}-mcrypt php${CHOICE}-curl php${CHOICE}-intl php${CHOICE}-xsl php${CHOICE}-mbstring php${CHOICE}-zip php${CHOICE}-bcmath php${CHOICE}-iconv php${CHOICE}-soap php${CHOICE}-fpm 
   printf "\ndone.\n"
 }
 export -f install-php
@@ -339,11 +339,10 @@ function remove-php() {
   printf "\nSo, you wanna remove PHP, eh?...\n"
   sleep 1
   printf "\nGot it. Which PHP version would you like to remove?\n\n"
-  read $VERSION
-  printf "\n10-4!\n\nAttempting to remove PHP ${VERSION}...\n"
+  read $CHOICE
+  printf "\n10-4!\n\nAttempting to remove PHP ${CHOICE}...\n"
   sleep 1
-  exit
-  sudo apt-get purge php${VERSION}-common -y
+  # sudo apt-get purge php${CHOICE}-common -y
   printf "\ndone.\n"
 }
 export -f remove-php
