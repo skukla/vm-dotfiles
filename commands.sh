@@ -283,19 +283,19 @@ function status-fpm72() {
 export -f status-fpm72
 
 function start-fpm71() {
-  printf "\nRestarting PHP-FPM ${VERSION}...\n"
-  sudo systemctl restart php${VERSION}-fpm
+  printf "\nRestarting PHP-FPM 7.1...\n"
+  sudo systemctl restart php7.1-fpm
 }
 export -f start-fpm71
 
 function stop-fpm71() {
-  printf "\nStopping PHP-FPM ${VERSION}...\n"
-  sudo systemctl stop php${VERSION}-fpm
+  printf "\nStopping PHP-FPM 7.1...\n"
+  sudo systemctl stop php7.1-fpm
 }
 export -f stop-fpm71
 
 function status-fpm71() {
-  sudo systemctl status php${VERSION}-fpm
+  sudo systemctl status php7.1-fpm
 }
 export -f status-fpm71
 
