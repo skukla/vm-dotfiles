@@ -318,7 +318,9 @@ export -f status-fpm70
 
 # PHP Installation and Removal
 function list-php() {
+  printf "\nHere are the versions of PHP currently available:\n\n"
   ls -la /etc/php
+  printf "\n"
 }
 export -f list-php
 
@@ -333,14 +335,18 @@ function configure-php() {
     CHOICE_TEXT="remove"
   fi
   sleep 1
-  printf "\nOkay, which version of PHP would you like ${CHOICE_TEXT}? (Ex: 7.3)\n\n"
+  printf "\nOkay, which version of PHP would you like to ${CHOICE_TEXT}? (Ex: 7.3)\n\n"
   read VERSION
   sleep 1
-  case CHOICE in
+  printf "\n10-4.  Attempting to remove PHP ${VERSION}..."
+  sleep 1
+  case ${CHOICE} in
     1)
+      list-php
       sudo apt update -y && sudo add-apt-repository ppa:ondrej/php && sudo apt update -y && sudo apt install -y php${VERSION} libapache2-mod-php${VERSION} php${VERSION}-common php${VERSION}-gd php${VERSION}-mysql php${VERSION}-mcrypt php${VERSION}-curl php${VERSION}-intl php${VERSION}-xsl php${VERSION}-mbstring php${VERSION}-zip php${VERSION}-bcmath php${VERSION}-iconv php${VERSION}-soap php${VERSION}-fpm
       ;;
     2)
+      list-php
       sudo apt-get purge php${VERSION}-common -y
       ;;
   esac
