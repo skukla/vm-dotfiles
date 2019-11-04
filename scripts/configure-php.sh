@@ -9,7 +9,7 @@ function inArray() {
 }
 
 function show_versions() {
-    printf "\nPlease select a supported PHP version. Supported versions are:"
+    printf "\nPlease select a supported PHP version. Supported versions are:\n\n        "
     for v in "${SUPPORTED_VERSIONS[@]}"; do printf "${v}\n"; done
 }
 
