@@ -335,28 +335,41 @@ function configure-php() {
     CHOICE_TEXT="remove"
   fi
   sleep 1
+
+  # If they want to remove a version, check to see if there are any versions at all
+  if [[ ${CHOICE} == 2 ]] && [[ ! $(find /etc/php/* -maxdepth 0 -type d | wc -l >/dev/null 2>&1) ]]
+    printf "\nThere are no occurrences of PHP on the system.\n"
+    return
+  fi
+  
+  # We have something installed, so show a list...
   list-php
-  sleep 1
   printf "\nOkay, which version of PHP would you like to ${CHOICE_TEXT}? (Ex: 7.3)\n\n"
   read VERSION
   sleep 1
-  printf "\n10-4.  Attempting to ${CHOICE_TEXT} PHP ${VERSION}...\n "
+  
+  # Check to see whether the request PHP version exists...
+  if [[ {$CHOICE} == 2 ]] && [ ! -d /etc/php/${VERSION} ]; then
+    printf "\nThere are no occurrences of PHP ${VERSION} on the system.\n"
+    return
+  fi
+
+  # We have the requested version
+  printf "\nYou got it!  Attempting to ${CHOICE_TEXT} PHP ${VERSION}...\n "
   sleep 1
   case ${CHOICE} in
     1)
+      # Install packages
       sudo apt update -y && sudo add-apt-repository ppa:ondrej/php -y && sudo apt update -y && sudo apt install -y php${VERSION} libapache2-mod-php${VERSION} php${VERSION}-common php${VERSION}-gd php${VERSION}-mysql php${VERSION}-mcrypt php${VERSION}-curl php${VERSION}-intl php${VERSION}-xsl php${VERSION}-mbstring php${VERSION}-zip php${VERSION}-bcmath php${VERSION}-iconv php${VERSION}-soap php${VERSION}-fpm
       ;;
     2)
-      # Check for PHP folders...
-      if [ ! -d /etc/php/${VERSION} ]; then
-        printf "\nThere are no occurrences of PHP ${VERSION} on the system.\n"
-      # We have a folder, continue and check for 7.0 specifically...
-      elif [[ ${VERSION} == 7.0 ]] && [[ $(find /etc/php/* -maxdepth 0 -type d | wc -l) == 1 ]]; then
+      # Process the package removal first
+      sudo apt-get install ppa-purge -y && sudo ppa-purge ppa:ondrej/php -y && sudo apt-get purge php${VERSION}-common
+      
+      # Check for 7.0 specifically and remove its folder
+      if [[ ${VERSION} == 7.0 ]] && [[ $(find /etc/php/* -maxdepth 0 -type d | wc -l) == 1 ]]; then
         printf "\nRemoving /etc/php/ folder contents...\n"
         sudo rm -rf /etc/php/7.0/ 
-      else 
-        # Process the other folders...
-        sudo apt-get install ppa-purge -y && sudo ppa-purge ppa:ondrej/php -y && sudo apt-get purge php${VERSION}-common
       fi
       ;;
   esac
