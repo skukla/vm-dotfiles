@@ -347,10 +347,11 @@ function configure-php() {
       sudo apt update -y && sudo add-apt-repository ppa:ondrej/php -y && sudo apt update -y && sudo apt install -y php${VERSION} libapache2-mod-php${VERSION} php${VERSION}-common php${VERSION}-gd php${VERSION}-mysql php${VERSION}-mcrypt php${VERSION}-curl php${VERSION}-intl php${VERSION}-xsl php${VERSION}-mbstring php${VERSION}-zip php${VERSION}-bcmath php${VERSION}-iconv php${VERSION}-soap php${VERSION}-fpm
       ;;
     2)
-      sudo apt-get install ppa-purge -y && sudo ppa-purge ppa:ondrej/php -y && sudo apt-get purge php${VERSION}-common
       # Check for PHP folders...
       if [[ $(find /etc/php/${VERSION}/ -maxdepth 0 -type d | wc -l) == 0 ]];
         printf "\nThere are no occurrences of PHP ${VERSION} on the system.\n"
+      else
+        sudo apt-get install ppa-purge -y && sudo ppa-purge ppa:ondrej/php -y && sudo apt-get purge php${VERSION}-common
       fi
       # Only remove 7.0 folder if it's the only folder left...
       if [[ ${VERSION} == 7.0 ]] && [[ $(find /etc/php/* -maxdepth 0 -type d | wc -l) == 1 ]]; then
