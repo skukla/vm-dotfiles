@@ -354,7 +354,7 @@ function configure-php() {
         sudo apt-get install ppa-purge -y && sudo ppa-purge ppa:ondrej/php -y && sudo apt-get purge php${VERSION}-common
       fi
       # Only remove 7.0 folder if it's the only folder left...
-      if [[ ${VERSION} == 7.0 ]] && [[ $(find /etc/php/* -maxdepth 0 -type d | wc -l) == 1 ]]; then
+      if [[ ${VERSION} == 7.0 ]] && [[ $(find /etc/php/* -maxdepth 0 -type d | wc -l >/dev/null 2>&1) == 1 ]]; then
         printf "\nRemoving /etc/php/ folder contents...\n"
         sudo rm -rf /etc/php/*
       else
