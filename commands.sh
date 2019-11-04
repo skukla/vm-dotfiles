@@ -337,8 +337,9 @@ function configure-php() {
   sleep 1
 
   # If they want to remove a version, check to see if there are any versions at all
-  if [[ ${CHOICE} == 2 ]] && [ "$(ls -A /etc/php)" ]; then
-    printf "\nThere are no occurrences of PHP on the system.\n\n"
+  if [[ ${CHOICE} == 2 ]] && [ $(ls -A /etc/php) ]; then
+    printf "Foo"
+    # printf "\nThere are no occurrences of PHP on the system.\n\n"
     return
   fi
   
