@@ -317,10 +317,10 @@ function status-fpm70() {
 export -f status-fpm70
 
 # PHP Installation and Removal
-function php-list() {
+function list-php() {
   ls -la /etc/php
 }
-export -f php-list
+export -f list-php
 
 function config-php() {
   printf "\nSo, you wanna configure PHP, eh?...\n"
