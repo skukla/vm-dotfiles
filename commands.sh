@@ -324,7 +324,9 @@ function list-php() {
 export -f list-php
 
 function configure-php() {
-  bash ./scripts/configure-php.sh  
+  CLI_DIRECTORY=~/cli
+  SCRIPTS_DIRECTORY=scripts
+  bash ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/configue-php.sh
 }
 export -f configure-php
 
