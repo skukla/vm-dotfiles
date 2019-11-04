@@ -11,7 +11,6 @@ function inArray() {
 function show_versions() {
     printf "\nPlease select a supported PHP version. Supported versions are:\n\n"
     for v in "${SUPPORTED_VERSIONS[@]}"; do printf "${v}\n"; done
-    bash ~/cli/scripts/configure-php.sh
 }
 
 function check_php() {
@@ -27,11 +26,17 @@ function check_version() {
     # Check to make sure we got the input we expected
     inArray "${REQUESTED_VERSION}" "${SUPPORTED_VERSIONS[@]}"
     if [[ $? != 0 ]]; then
-        show_versions 
+        show_versions
+        sleep 1
+        bash ~/cli/scripts/configure-php.sh 
     # Check to see if the requested version is installed already
     elif [ ! -d /etc/php/${REQUESTED_VERSION} ]; then 
         printf "\nThere are no occurrences of PHP ${REQUESTED_VERSION} on the system.\n"
-        return 1
+        sleep 1
+        bash ~/cli/scripts/configure-php.sh
+    # Successful choice
+    else
+        printf "\nThat version exists!\n"
     fi  
 }
 
