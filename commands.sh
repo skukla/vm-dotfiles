@@ -283,19 +283,19 @@ function status-fpm72() {
 export -f status-fpm72
 
 function start-fpm71() {
-  printf "\nRestarting PHP-FPM ${PHP_VERSION}...\n"
-  sudo systemctl restart php${PHP_VERSION}-fpm
+  printf "\nRestarting PHP-FPM ${VERSION}...\n"
+  sudo systemctl restart php${VERSION}-fpm
 }
 export -f start-fpm71
 
 function stop-fpm71() {
-  printf "\nStopping PHP-FPM ${PHP_VERSION}...\n"
-  sudo systemctl stop php${PHP_VERSION}-fpm
+  printf "\nStopping PHP-FPM ${VERSION}...\n"
+  sudo systemctl stop php${VERSION}-fpm
 }
 export -f stop-fpm71
 
 function status-fpm71() {
-  sudo systemctl status php${PHP_VERSION}-fpm
+  sudo systemctl status php${VERSION}-fpm
 }
 export -f status-fpm71
 
@@ -335,16 +335,18 @@ function php-config() {
   else
     CHOICE_TEXT="remove"
   fi
-  printf "\nGot it. Which PHP version would you like to ${CHOICE_TEXT}?\n"
+  printf "\nGot it. Which PHP version would you like to ${CHOICE_TEXT}?\n\n"
   read $VERSION
-  printf "\n10-4! Attempting to ${CHOICE_TEXT} PHP ${VERSION}..."
+  printf "\n10-4!\n"
+  sleep 1 
+  printf "\nAttempting to ${CHOICE_TEXT} PHP ${VERSION}..."
   sleep 1
   case $CHOICE in
     1)
-      sudo apt update -y && sudo add-apt-repository ppa:ondrej/php && sudo apt update -y && sudo apt install -y php${PHP_VERSION} libapache2-mod-php${PHP_VERSION} php${PHP_VERSION}-common php${PHP_VERSION}-gd php${PHP_VERSION}-mysql php${PHP_VERSION}-mcrypt php${PHP_VERSION}-curl php${PHP_VERSION}-intl php${PHP_VERSION}-xsl php${PHP_VERSION}-mbstring php${PHP_VERSION}-zip php${PHP_VERSION}-bcmath php${PHP_VERSION}-iconv php${PHP_VERSION}-soap php${PHP_VERSION}-fpm 
+      sudo apt update -y && sudo add-apt-repository ppa:ondrej/php && sudo apt update -y && sudo apt install -y php${VERSION} libapache2-mod-php${VERSION} php${VERSION}-common php${VERSION}-gd php${VERSION}-mysql php${VERSION}-mcrypt php${VERSION}-curl php${VERSION}-intl php${VERSION}-xsl php${VERSION}-mbstring php${VERSION}-zip php${VERSION}-bcmath php${VERSION}-iconv php${VERSION}-soap php${VERSION}-fpm 
       ;;
     2)    
-      sudo apt-get purge php${PHP_VERSION}-common -y
+      sudo apt-get purge php${VERSION}-common -y
       ;;
   esac
   printf "\ndone.\n"
