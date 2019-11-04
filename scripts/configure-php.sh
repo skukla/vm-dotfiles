@@ -1,5 +1,5 @@
 #!/bin/bash
-SUPPORTED_VERSIONS=(7.0 7.1 7.2 7.3)
+SUPPORTED_VERSIONS=("7.0" "7.1" "7.2" "7.3")
 
 function inArray() {
   local e match="$1"
@@ -43,7 +43,9 @@ function list_php() {
 
 ### START ###
 clear
-if [[ $(inArray 7.0 ${SUPPORTED_VERSIONS[@]}) == 0 ]]; then
+
+
+if [[ $(inArray "7.0" "${SUPPORTED_VERSIONS[@]}") == 0 ]]; then
     printf "Match\n"
 else
     printf "No match\ns"
