@@ -324,6 +324,7 @@ function list-php() {
 export -f list-php
 
 function configure-php() {
+  clear
   printf "\nSo, you wanna configure PHP, eh?...\n"
   sleep 1
   printf "\nGot it. You lookin' to install or remove PHP?\n\n1) Install\n2) Remove\n\n"
