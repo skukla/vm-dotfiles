@@ -331,9 +331,9 @@ function php-config() {
   read $CHOICE
   sleep 1
   if [[ $CHOICE == 1 ]]; then
-    $CHOICE_TEXT="install"  
+    CHOICE_TEXT="install"  
   else
-    $CHOICE_TEXT="remove"
+    CHOICE_TEXT="remove"
   fi
   printf "\nGot it. Which PHP version would you like to ${CHOICE_TEXT}?"
   read $PHP_VERSION
