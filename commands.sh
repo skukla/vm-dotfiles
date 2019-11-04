@@ -340,9 +340,9 @@ function remove-php() {
   sleep 1
   printf "\nGot it. Which PHP version would you like to remove?\n\n"
   read $VERSION
-  printf "\n10-4!\n"
-  printf "\nAttempting to remove PHP ${VERSION}..."
+  printf "\n10-4!\n\nAttempting to remove PHP ${VERSION}...\n"
   sleep 1
+  exit
   sudo apt-get purge php${VERSION}-common -y
   printf "\ndone.\n"
 }
