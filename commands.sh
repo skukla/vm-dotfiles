@@ -348,7 +348,7 @@ function configure-php() {
       ;;
     2)
       # Check for PHP folders...
-      if if [ ! -d "/etc/php/${VERSION}" ]; then
+      if if [ ! -d /etc/php/${VERSION} ]; then
         printf "\nThere are no occurrences of PHP ${VERSION} on the system.\n"
       # We have a folder, continue and check for 7.0 specifically...
       elif [[ ${VERSION} == 7.0 ]] && [[ $(find /etc/php/* -maxdepth 0 -type d | wc -l) == 1 ]]; then
@@ -360,7 +360,7 @@ function configure-php() {
       fi
       ;;
   esac
-  printf
+  printf "\nRemoving any unnecessary packages left behind by the PHP installation...\n"
   sudo apt autoremove -y
   sleep 1
   list-php
