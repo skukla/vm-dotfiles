@@ -322,7 +322,7 @@ function list-php() {
 }
 export -f list-php
 
-function config-php() {
+function php-config() {
   printf "\nSo, you wanna configure PHP, eh?...\n"
   sleep 1
   printf "\nAre you looking to install or remove a PHP version?...\n"
