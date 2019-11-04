@@ -338,7 +338,7 @@ function configure-php() {
 
   # If they want to remove a version, check to see if there are any versions at all
   if [[ ${CHOICE} == 2 ]] && [[ ! $(ls -A /etc/php) ]]; then
-    printf "\nThere are no occurrences of PHP on the system.\n\n"
+        printf "\nThere are no occurrences of PHP on the system.\n\n"
     return
   fi
   
@@ -359,7 +359,7 @@ function configure-php() {
   sleep 1
   case ${CHOICE} in
     1)
-      sudo apt update -y && sudo add-apt-repository ppa:ondrej/php -y && sudo apt update -y && sudo apt install -y php${VERSION} libapache2-mod-php${VERSION} php${VERSION}-common php${VERSION}-gd php${VERSION}-mysql php${VERSION}-curl php${VERSION}-intl php${VERSION}-xsl php${VERSION}-mbstring php${VERSION}-zip php${VERSION}-bcmath php${VERSION}-iconv php${VERSION}-soap php${VERSION}-fpm
+      sudo apt update -y && sudo add-apt-repository ppa:  php -y && sudo apt update -y && sudo apt install -y php${VERSION} libapache2-mod-php${VERSION} php${VERSION}-common php${VERSION}-gd php${VERSION}-mysql php${VERSION}-curl php${VERSION}-intl php${VERSION}-xsl php${VERSION}-mbstring php${VERSION}-zip php${VERSION}-bcmath php${VERSION}-iconv php${VERSION}-soap php${VERSION}-fpm
       # Only install mcypt for 7.0 or 7.1
       case ${VERSION} in
         7.0|7.1)
@@ -369,11 +369,12 @@ function configure-php() {
       ;;
     2)
       # Process the package removal first
-      sudo apt-get install ppa-purge -y && sudo ppa-purge ppa:ondrej/php -y && sudo apt-get purge php${VERSION}-common
+      sudo apt-get install ppa-purge -y && sudo apt-get purge php${VERSION}-common
       
       # Check for 7.0 specifically and remove its folder
-      if [[ ${VERSION} == 7.0 ]] && [[ $(find /etc/php/* -maxdepth 0 -type d | wc -l) == 1 ]]; then
+      if [[ ${VERSION} == 7.0 ]]; then
         printf "\nRemoving /etc/php/ folder contents...\n"
+        sudo apt-get remove -y --purge php7.0*
         sudo rm -rf /etc/php/7.0/ 
       fi
       ;;
