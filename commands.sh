@@ -327,7 +327,8 @@ function php-config() {
   sleep 1
   printf "\nAre you looking to install or remove a PHP version?...\n"
   printf "\n1) Install"
-  printf "\n2) Remove\n"
+  printf "\n2) Remove"
+  printf "\n\n"
   read $CHOICE
   sleep 1
   if [[ $CHOICE == 1 ]]; then
