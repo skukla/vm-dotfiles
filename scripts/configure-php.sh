@@ -43,7 +43,8 @@ function list_php() {
 
 ### START ###
 clear
-echo $(inArray "7.0" "${SUPPORTED_VERSIONS[@]}")
+$(inArray "7.0" "${SUPPORTED_VERSIONS[@]}")
+echo $?
 
 # printf "\nSo, you wanna configure PHP, eh?...\n"
 # sleep 1
