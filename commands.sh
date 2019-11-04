@@ -320,7 +320,6 @@ export -f status-fpm70
 function list-php() {
   printf "\nHere are the versions of PHP currently available:\n"
   ls -la /etc/php
-  printf "\n"
 }
 export -f list-php
 
