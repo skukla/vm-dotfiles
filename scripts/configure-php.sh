@@ -46,10 +46,16 @@ clear
 printf "\nSo, you wanna configure PHP, eh?...\n"
 sleep 1
 
-printf "You lookin' to install or remove PHP?\n\n1) Install\n2) Remove\n\n"
+printf "\nYou lookin' to install or remove PHP?\n\n1) Install\n2) Remove\n\n"
 read CHOICE
 
 sleep 1
+
+# Set version choice text
+case ${CHOICE} in
+    1) CHOICE_TEXT="install" ;;
+    2) CHOICE_TEXT="remove" ;;
+esac
 
 # Which version?
 printf "\nOkay, which version of PHP would you like to ${CHOICE_TEXT}? (Ex: 7.3)\n\n"
@@ -58,12 +64,11 @@ read VERSION
 # Install or remove?
 case ${CHOICE} in
     1)
-        CHOICE_TEXT="install"
+        
     ;;
     2)
-        CHOICE_TEXT="remove"
         check_php
-        check_version
+        check_version $VERSION
     ;;
     1|2)
         printf "\nOkay, which version of PHP would you like to ${CHOICE_TEXT}? (Ex: 7.3)\n\n"
