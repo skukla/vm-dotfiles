@@ -248,22 +248,102 @@ function upgrade() {
 export -f upgrade
 
 # PHP-FPM
-function start-fpm() {
-  printf "\nRestarting PHP-FPM...\n"
-  sudo systemctl restart php7.2-fpm
+function start-fpm73() {
+  printf "\nRestarting PHP-FPM 7.3...\n"
+  sudo systemctl restart php7.3-fpm
 }
-export -f start-fpm
+export -f start-fpm73
 
-function stop-fpm() {
-  printf "\nStopping PHP-FPM...\n"
-  sudo systemctl stop php7.2-fpm
+function stop-fpm73() {
+  printf "\nStopping PHP-FPM 7.3...\n"
+  sudo systemctl stop php7.3-fpm
 }
-export -f stop-fpm
+export -f stop-fpm73
 
-function status-fpm() {
+function status-fpm73() {
   sudo systemctl status php7.2-fpm
 }
-export -f status-fpm
+export -f status-fpm73
+
+function start-fpm72() {
+  printf "\nRestarting PHP-FPM 7.2...\n"
+  sudo systemctl restart php7.2-fpm
+}
+export -f start-fpm72
+
+function stop-fpm72() {
+  printf "\nStopping PHP-FPM 7.2...\n"
+  sudo systemctl stop php7.2-fpm
+}
+export -f stop-fpm72
+
+function status-fpm72() {
+  sudo systemctl status php7.2-fpm
+}
+export -f status-fpm72
+
+function start-fpm71() {
+  printf "\nRestarting PHP-FPM ${PHP_VERSION}...\n"
+  sudo systemctl restart php${PHP_VERSION}-fpm
+}
+export -f start-fpm71
+
+function stop-fpm71() {
+  printf "\nStopping PHP-FPM ${PHP_VERSION}...\n"
+  sudo systemctl stop php${PHP_VERSION}-fpm
+}
+export -f stop-fpm71
+
+function status-fpm71() {
+  sudo systemctl status php${PHP_VERSION}-fpm
+}
+export -f status-fpm71
+
+function start-fpm70() {
+  printf "\nRestarting PHP-FPM 7.0...\n"
+  sudo systemctl restart php7.0-fpm
+}
+export -f start-fpm70
+
+function stop-fpm70() {
+  printf "\nStopping PHP-FPM 7.0...\n"
+  sudo systemctl stop php7.0-fpm
+}
+export -f stop-fpm70
+
+function status-fpm70() {
+  sudo systemctl status php7.0-fpm
+}
+export -f status-fpm70
+
+# PHP Installation and Removal
+function config-php() {
+  printf "\nSo, you wanna configure PHP, eh?...\n"
+  sleep 1
+  printf "\nAre you looking to install or remove a PHP version?...\n"
+  printf "\n1) Install"
+  printf "\n2) Remove\n"
+  read $CHOICE
+  sleep 1
+  if [ $CHOICE == 1 ]; then
+    $CHOICE_TEXT="install"  
+  else
+    $CHOICE_TEXT="remove"
+  fi
+  printf "\nGot it. Which PHP version would you like to ${CHOICE_TEXT}?"
+  read $PHP_VERSION
+  printf "\n10-4, good buddy! Attempting to ${CHOICE_TEXT}  PHP ${PHP_VERSION}..."
+  case $CHOICE in
+    1)
+      sudo apt update -y && sudo add-apt-repository ppa:ondrej/php && sudo apt update -y && sudo apt install -y php${PHP_VERSION} libapache2-mod-php${PHP_VERSION} php${PHP_VERSION}-common php${PHP_VERSION}-gd php${PHP_VERSION}-mysql php${PHP_VERSION}-mcrypt php${PHP_VERSION}-curl php${PHP_VERSION}-intl php${PHP_VERSION}-xsl php${PHP_VERSION}-mbstring php${PHP_VERSION}-zip php${PHP_VERSION}-bcmath php${PHP_VERSION}-iconv php${PHP_VERSION}-soap php${PHP_VERSION}-fpm 
+      ;;
+    2)    
+      sudo apt-get purge php${PHP_VERSION}-common -y
+      ;;
+  esac
+  printf "\ndone.\n"
+}
+export -f config-php
 
 # Web
 function start-web() {
@@ -334,6 +414,12 @@ function status-db() {
 export -f status-db
 
 # Redis
+function enable-redis() {
+  printf "\nEnabling Redis...\n"
+  sudo systemctl enable redis
+}
+export -f enable-redis
+
 function start-redis() {
   printf "\nRestarting the Redis server...\n"
   sudo systemctl restart redis-server
