@@ -330,7 +330,7 @@ function php-config() {
   printf "\n2) Remove\n"
   read $CHOICE
   sleep 1
-  if [ $CHOICE == 1 ]; then
+  if [[ $CHOICE == 1 ]]; then
     $CHOICE_TEXT="install"  
   else
     $CHOICE_TEXT="remove"
