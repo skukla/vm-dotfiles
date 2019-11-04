@@ -348,7 +348,7 @@ function configure-php() {
       ;;
     2)
       # Check for PHP folders...
-      if [[ !$(find /etc/php/${VERSION}/ -maxdepth 0 -type d | wc -l >/dev/null 2>&1) ]]; then
+      if [[ ! $(find /etc/php/${VERSION}/ -maxdepth 0 -type d >/dev/null 2>&1) ]]; then
         printf "\nThere are no occurrences of PHP ${VERSION} on the system.\n"
       else
         sudo apt-get install ppa-purge -y && sudo ppa-purge ppa:ondrej/php -y && sudo apt-get purge php${VERSION}-common
