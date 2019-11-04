@@ -318,7 +318,7 @@ export -f status-fpm70
 
 # PHP Installation and Removal
 function list-php() {
-  printf "\nHere are the versions of PHP currently available:\n\n"
+  printf "\nHere are the versions of PHP currently available:\n"
   ls -la /etc/php
   printf "\n"
 }
@@ -335,8 +335,9 @@ function configure-php() {
     CHOICE_TEXT="remove"
   fi
   sleep 1
-  printf "\nOkay, which version of PHP would you like to ${CHOICE_TEXT}? (Ex: 7.3)\n\n"
   list-php
+  sleep 1
+  printf "\nOkay, which version of PHP would you like to ${CHOICE_TEXT}? (Ex: 7.3)\n\n"
   read VERSION
   sleep 1
   printf "\n10-4.  Attempting to remove PHP ${VERSION}..."
