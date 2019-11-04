@@ -339,7 +339,7 @@ function configure-php() {
   # If they want to remove a version, check to see if there are any versions at all
   FOLDER_SEARCH=$(find /etc/php/* -maxdepth 0 -type d >/dev/null 2>&1)
   if [[ ${CHOICE} == 2 ]] && [[ !${FOLDER_SEARCH} ]]; then
-    printf "\nThere are no occurrences of PHP on the system.\n"
+    printf "\nThere are no occurrences of PHP on the system.\n\n"
     return
   fi
   
