@@ -339,7 +339,7 @@ function remove-php() {
   printf "\nSo, you wanna remove PHP, eh?...\n"
   sleep 1
   printf "\nGot it. Which PHP version would you like to remove?"
-  read $CHOICE
+  read -p $CHOICE
   printf "\n10-4!\n\nAttempting to remove PHP ${CHOICE}...\n"
   sleep 1
   # sudo apt-get purge php${CHOICE}-common -y
