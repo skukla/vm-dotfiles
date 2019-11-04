@@ -322,39 +322,31 @@ function list-php() {
 }
 export -f list-php
 
-function php-config() {
-  printf "\nSo, you wanna configure PHP, eh?...\n"
+function install-php() {
+  printf "\nSo, you wanna install PHP, eh?...\n"
   sleep 1
-  printf "\nAre you looking to install or remove a PHP version?...\n"
-  printf "\n1) Install"
-  printf "\n2) Remove"
-  printf "\n\n"
-  read $CHOICE
-  sleep 1
-  if [[ $CHOICE == 1 ]]; then
-    CHOICE_TEXT="install"  
-  else
-    CHOICE_TEXT="remove"
-  fi
-  printf "\nGot it. Which PHP version would you like to ${CHOICE_TEXT}?\n\n"
+  printf "\nGot it. Which PHP version would you like to install?\n\n"
   read $VERSION
   printf "\n10-4!\n"
-  sleep 1 
-  echo "Version is set to:"
-  echo ${VERSION}
-  # printf "\nAttempting to ${CHOICE_TEXT} PHP ${VERSION}..."
-  # sleep 1
-  # case $CHOICE in
-  #   1)
-  #     sudo apt update -y && sudo add-apt-repository ppa:ondrej/php && sudo apt update -y && sudo apt install -y php${VERSION} libapache2-mod-php${VERSION} php${VERSION}-common php${VERSION}-gd php${VERSION}-mysql php${VERSION}-mcrypt php${VERSION}-curl php${VERSION}-intl php${VERSION}-xsl php${VERSION}-mbstring php${VERSION}-zip php${VERSION}-bcmath php${VERSION}-iconv php${VERSION}-soap php${VERSION}-fpm 
-  #     ;;
-  #   2)    
-  #     sudo apt-get purge php${VERSION}-common -y
-  #     ;;
-  # esac
-  # printf "\ndone.\n"
+  printf "\nAttempting to install PHP ${VERSION}..."
+  sleep 1
+  sudo apt update -y && sudo add-apt-repository ppa:ondrej/php && sudo apt update -y && sudo apt install -y php${VERSION} libapache2-mod-php${VERSION} php${VERSION}-common php${VERSION}-gd php${VERSION}-mysql php${VERSION}-mcrypt php${VERSION}-curl php${VERSION}-intl php${VERSION}-xsl php${VERSION}-mbstring php${VERSION}-zip php${VERSION}-bcmath php${VERSION}-iconv php${VERSION}-soap php${VERSION}-fpm 
+  printf "\ndone.\n"
 }
-export -f config-php
+export -f install-php
+
+function remove-php() {
+  printf "\nSo, you wanna remove PHP, eh?...\n"
+  sleep 1
+  printf "\nGot it. Which PHP version would you like to install?\n\n"
+  read $VERSION
+  printf "\n10-4!\n"
+  printf "\nAttempting to remove PHP ${VERSION}..."
+  sleep 1
+  sudo apt-get purge php${VERSION}-common -y
+  printf "\ndone.\n"
+}
+export -f remove-php
 
 # Web
 function start-web() {
