@@ -340,17 +340,19 @@ function php-config() {
   read $VERSION
   printf "\n10-4!\n"
   sleep 1 
-  printf "\nAttempting to ${CHOICE_TEXT} PHP ${VERSION}..."
-  sleep 1
-  case $CHOICE in
-    1)
-      sudo apt update -y && sudo add-apt-repository ppa:ondrej/php && sudo apt update -y && sudo apt install -y php${VERSION} libapache2-mod-php${VERSION} php${VERSION}-common php${VERSION}-gd php${VERSION}-mysql php${VERSION}-mcrypt php${VERSION}-curl php${VERSION}-intl php${VERSION}-xsl php${VERSION}-mbstring php${VERSION}-zip php${VERSION}-bcmath php${VERSION}-iconv php${VERSION}-soap php${VERSION}-fpm 
-      ;;
-    2)    
-      sudo apt-get purge php${VERSION}-common -y
-      ;;
-  esac
-  printf "\ndone.\n"
+  echo "Version is set to:"
+  echo ${VERSION}
+  # printf "\nAttempting to ${CHOICE_TEXT} PHP ${VERSION}..."
+  # sleep 1
+  # case $CHOICE in
+  #   1)
+  #     sudo apt update -y && sudo add-apt-repository ppa:ondrej/php && sudo apt update -y && sudo apt install -y php${VERSION} libapache2-mod-php${VERSION} php${VERSION}-common php${VERSION}-gd php${VERSION}-mysql php${VERSION}-mcrypt php${VERSION}-curl php${VERSION}-intl php${VERSION}-xsl php${VERSION}-mbstring php${VERSION}-zip php${VERSION}-bcmath php${VERSION}-iconv php${VERSION}-soap php${VERSION}-fpm 
+  #     ;;
+  #   2)    
+  #     sudo apt-get purge php${VERSION}-common -y
+  #     ;;
+  # esac
+  # printf "\ndone.\n"
 }
 export -f config-php
 
