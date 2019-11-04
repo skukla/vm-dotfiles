@@ -339,14 +339,14 @@ function configure-php() {
   printf "\nOkay, which version of PHP would you like to ${CHOICE_TEXT}? (Ex: 7.3)\n\n"
   read VERSION
   sleep 1
-  printf "\n10-4.  Attempting to remove PHP ${VERSION}..."
+  printf "\n10-4.  Attempting to remove PHP ${VERSION}...\n "
   sleep 1
   case ${CHOICE} in
     1)
       sudo apt update -y && sudo add-apt-repository ppa:ondrej/php && sudo apt update -y && sudo apt install -y php${VERSION} libapache2-mod-php${VERSION} php${VERSION}-common php${VERSION}-gd php${VERSION}-mysql php${VERSION}-mcrypt php${VERSION}-curl php${VERSION}-intl php${VERSION}-xsl php${VERSION}-mbstring php${VERSION}-zip php${VERSION}-bcmath php${VERSION}-iconv php${VERSION}-soap php${VERSION}-fpm
       ;;
     2)
-      sudo apt-get purge php${VERSION}-common -y
+      sudo apt-get install ppa-purge && sudo ppa-purge ppa:ondrej/php-${VERSION} -y
       ;;
     *)
       list-php
