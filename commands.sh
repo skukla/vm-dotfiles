@@ -318,12 +318,13 @@ export -f status-fpm70
 
 # PHP Installation and Removal
 function list-php() {
-  printf "\nHere are the versions of PHP currently available:\n\n"
+  printf "\nHere are the versions of PHP currently available on the system:\n\n"
   ls -la /etc/php
 }
 export -f list-php
 
 function configure-php() {
+  SUPPORTED_VERSIONS=(7.0 7.1 7.2 7.3)
   clear
   printf "\nSo, you wanna configure PHP, eh?...\n"
   sleep 1
@@ -338,7 +339,7 @@ function configure-php() {
 
   # If they want to remove a version, check to see if there are any versions at all
   if [[ ${CHOICE} == 2 ]] && [[ ! $(ls -A /etc/php) ]]; then
-        printf "\nThere are no occurrences of PHP on the system.\n\n"
+    printf "\nThere are no occurrences of PHP on the system.\n\n"
     return
   fi
   
@@ -347,7 +348,20 @@ function configure-php() {
   printf "\nOkay, which version of PHP would you like to ${CHOICE_TEXT}? (Ex: 7.3)\n\n"
   read VERSION
   sleep 1
-  
+
+  # Check to make sure we got the input we expected...
+  for v in "${SUPPORTED_VERSIONS[@]}";
+  do 
+    if [[ ${VERSION} != ${i} ]]; then
+      printf "\nPlease select a supported PHP version. Supported versions are:"
+      for i in "${SUPPORTED_VERSIONS[@]}"; 
+      do
+        printf "${i}/n" 
+      done
+      return
+    fi
+  done
+ 
   # Check to see whether the request PHP version exists...
   if [[ {$CHOICE} == 2 ]] && [ ! -d /etc/php/${VERSION} ]; then
     printf "\nThere are no occurrences of PHP ${VERSION} on the system.\n"
