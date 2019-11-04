@@ -43,7 +43,7 @@ function list_php() {
 
 ### START ###
 clear
-if [[ ! $(inArray 7.0 ${SUPPORTED_VERSIONS[@]}) ]]; then
+if [[ ! $(inArray "7.0" ${SUPPORTED_VERSIONS[@]}) ]]; then
     printf "No match"
 else
     printf "Match"
