@@ -67,8 +67,8 @@ case ${CHOICE} in
         
     ;;
     2)
-        check_php
         check_version $VERSION
+        check_php
     ;;
 esac
 
