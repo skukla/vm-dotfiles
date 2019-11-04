@@ -338,7 +338,7 @@ export -f install-php
 function remove-php() {
   printf "\nSo, you wanna remove PHP, eh?...\n"
   sleep 1
-  printf "\nGot it. Which PHP version would you like to install?\n\n"
+  printf "\nGot it. Which PHP version would you like to remove?\n\n"
   read $VERSION
   printf "\n10-4!\n"
   printf "\nAttempting to remove PHP ${VERSION}..."
