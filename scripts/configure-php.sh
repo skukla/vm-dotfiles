@@ -13,7 +13,7 @@ function show_versions() {
     for v in "${SUPPORTED_VERSIONS[@]}"; do printf "${v}\n"; done
 }
 
-function php_check() {
+function check_php() {
     # If they want to remove a version, check to see if there are any versions at all
     if [[ ! $(ls -A /etc/php) ]]; then
         printf "\nThere are no versions of PHP on the system.\n\n"
@@ -21,19 +21,18 @@ function php_check() {
     fi
 }
 
-function match_version() {
+function check_version() {
     REQUESTED_VERSION=$1
-    # Check to make sure we got the input we expected...
-    for MENU_ITEM in "${SUPPORTED_VERSIONS[@]}";
-    do 
-        if [[ ${REQUESTED_  VERSION} != ${MENU_ITEM} ]]; then
-            show_versions
-        fi
-    done
-    if  [ ! -d /etc/php/${VERSION} ]; then
-        printf "\nThere are no occurrences of PHP ${VERSION} on the system.\n"
-        return
+    # Check to make sure we got the input we expected
+    inArray "${REQUESTED_VERSION}" "${SUPPORTED_VERSIONS[@]}"
+    if [[ $? != 0 ]]; then
+        show_versions 
     fi
+    # Check to see if the requested version is installed already
+    if  [ ! -d /etc/php/${REQUESTED_VERSION} ]; then
+        printf "\nThere are no occurrences of PHP ${REQUESTED_VERSION} on the system.\n"
+        return 1
+    fi  
 }
 
 function list_php() {
@@ -43,38 +42,33 @@ function list_php() {
 
 ### START ###
 clear
-inArray "7.0" "${SUPPORTED_VERSIONS[@]}"
-if [[ $? == 0 ]]; then
-    printf "Match\n"
-else
-    printf "No match\n"
-fi
 
-# printf "\nSo, you wanna configure PHP, eh?...\n"
-# sleep 1
+printf "\nSo, you wanna configure PHP, eh?...\n"
+sleep 1
 
-# printf "You lookin' to install or remove PHP?\n\n1) Install\n2) Remove\n\n"
-# read CHOICE
+printf "You lookin' to install or remove PHP?\n\n1) Install\n2) Remove\n\n"
+read CHOICE
 
-# sleep 1
+sleep 1
 
-# # Which version?
-# printf "\nOkay, which version of PHP would you like to ${CHOICE_TEXT}? (Ex: 7.3)\n\n"
-# read VERSION
+# Which version?
+printf "\nOkay, which version of PHP would you like to ${CHOICE_TEXT}? (Ex: 7.3)\n\n"
+read VERSION
 
-# # Install or remove?
-# case ${CHOICE} in
-#     1)
-#         CHOICE_TEXT="install"
-#     ;;
-#     2)
-#         CHOICE_TEXT="remove"
-#         # Check to see whether the request PHP version exists...
-#     ;;
-#     1|2)
-#         printf "\nOkay, which version of PHP would you like to ${CHOICE_TEXT}? (Ex: 7.3)\n\n"
-#     ;;
-# esac
+# Install or remove?
+case ${CHOICE} in
+    1)
+        CHOICE_TEXT="install"
+    ;;
+    2)
+        CHOICE_TEXT="remove"
+        check_php
+        check_version
+    ;;
+    1|2)
+        printf "\nOkay, which version of PHP would you like to ${CHOICE_TEXT}? (Ex: 7.3)\n\n"
+    ;;
+esac
 
 
 # # We have something installed, so show a list...
