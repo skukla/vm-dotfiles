@@ -356,7 +356,7 @@ function configure-php() {
   fi
 
   # We have the requested version
-  printf "\nYou got it!  Attempting to ${CHOICE_TEXT} PHP ${VERSION}...\n "
+  printf "\nYou got it!  Attempting to ${CHOICE_TEXT} PHP ${VERSION}...\n\n "
   sleep 1
   case ${CHOICE} in
     1)
