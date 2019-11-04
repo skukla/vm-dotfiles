@@ -336,8 +336,8 @@ function php-config() {
     CHOICE_TEXT="remove"
   fi
   printf "\nGot it. Which PHP version would you like to ${CHOICE_TEXT}?\n"
-  read $PHP_VERSION
-  printf "\n10-4! Attempting to ${CHOICE_TEXT} PHP ${PHP_VERSION}..."
+  read $VERSION
+  printf "\n10-4! Attempting to ${CHOICE_TEXT} PHP ${VERSION}..."
   sleep 1
   case $CHOICE in
     1)
