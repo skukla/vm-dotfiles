@@ -366,6 +366,7 @@ function configure-php() {
         7.0|7.1)
           sudo apt install -y php${VERSION}-mcrypt
         ;;
+      esac
       ;;
     2)
       # Process the package removal first
