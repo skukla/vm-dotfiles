@@ -322,29 +322,32 @@ function list-php() {
 }
 export -f list-php
 
-function install-php() {
-  printf "\nSo, you wanna install PHP, eh?...\n"
+function configure-php() {
+  printf "\nSo, you wanna configure PHP, eh?...\n"
   sleep 1
-  printf "\nGot it. Which PHP version would you like to install?"
-  read $CHOICE
-  printf "\n10-4!\n"
-  printf "\nAttempting to install PHP ${CHOICE}..."
+  printf "\nGot it. You lookin' to install or remove PHP?\n\n1) Install\n2) Remove\n\n"
+  read CHOICE
+  if [[ $CHOICE == 1 ]]; then
+    CHOICE_TEXT="install"
+  else
+    CHOICE_TEXT="remove"
+  fi
   sleep 1
-  sudo apt update -y && sudo add-apt-repository ppa:ondrej/php && sudo apt update -y && sudo apt install -y php${CHOICE} libapache2-mod-php${CHOICE} php${CHOICE}-common php${CHOICE}-gd php${CHOICE}-mysql php${CHOICE}-mcrypt php${CHOICE}-curl php${CHOICE}-intl php${CHOICE}-xsl php${CHOICE}-mbstring php${CHOICE}-zip php${CHOICE}-bcmath php${CHOICE}-iconv php${CHOICE}-soap php${CHOICE}-fpm 
+  printf "\nOkay, which version of PHP would you like ${CHOICE_TEXT}? (Ex: 7.3)\n\n"
+  read VERSION
+  sleep 1
+  case CHOICE in
+    1)
+      sudo apt update -y && sudo add-apt-repository ppa:ondrej/php && sudo apt update -y && sudo apt install -y php${VERSION} libapache2-mod-php${VERSION} php${VERSION}-common php${VERSION}-gd php${VERSION}-mysql php${VERSION}-mcrypt php${VERSION}-curl php${VERSION}-intl php${VERSION}-xsl php${VERSION}-mbstring php${VERSION}-zip php${VERSION}-bcmath php${VERSION}-iconv php${VERSION}-soap php${VERSION}-fpm
+      ;;
+    2)
+      sudo apt-get purge php${VERSION}-common -y
+      ;;
+  esac
+  sleep 1
   printf "\ndone.\n"
 }
-export -f install-php
-
-function remove-php() {
-  printf "\nSo, you wanna remove PHP, eh?...\n"
-  sleep 1
-  read -p "Got it. Which PHP version would you like to remove?" CHOICE
-  printf "\n10-4!\n\nAttempting to remove PHP ${CHOICE}...\n"
-  sleep 1
-  # sudo apt-get purge php${CHOICE}-common -y
-  printf "\ndone.\n"
-}
-export -f remove-php
+export -f configure-php
 
 # Web
 function start-web() {
@@ -577,7 +580,7 @@ function mount-share() {
   printf "\nLooks like you want to share the following folder: ${BOLD}${HOST_FOLDER_NAME}\n"
   sleep 1
   printf "\n${NORMAL}What folder would you like to mount ${BOLD}${HOST_FOLDER_NAME} to inside the VM?: "
-  read $GUEST_FOLDER_NAME
+  read GUEST_FOLDER_NAME
   printf "\nMounting ${HOST_FOLDER_NAME} to ${GUEST_FOLDER_NAME}..."
   sleep 1
   sudo vmhgfs-fuse -o nonempty -o allow_other .host:${HOST_FOLDER_NAME} /vagrant
