@@ -9,7 +9,7 @@ function inArray() {
 }
 
 function show_versions() {
-    printf "\nPlease select a supported PHP version. Supported versions are:\n\n        "
+    printf "\nPlease select a supported PHP version. Supported versions are:\n\n"
     for v in "${SUPPORTED_VERSIONS[@]}"; do printf "${v}\n"; done
 }
 
@@ -69,9 +69,6 @@ case ${CHOICE} in
     2)
         check_php
         check_version $VERSION
-    ;;
-    1|2)
-        printf "\nOkay, which version of PHP would you like to ${CHOICE_TEXT}? (Ex: 7.3)\n\n"
     ;;
 esac
 
