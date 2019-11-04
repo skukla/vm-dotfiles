@@ -43,11 +43,7 @@ function list_php() {
 
 ### START ###
 clear
-if [[ ! $(inArray "7.0" "${SUPPORTED_VERSIONS[@]}") ]]; then
-    printf "No match"
-else
-    printf "Match"
-fi
+echo $(inArray "7.0" "${SUPPORTED_VERSIONS[@]}")
 
 # printf "\nSo, you wanna configure PHP, eh?...\n"
 # sleep 1
