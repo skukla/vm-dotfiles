@@ -335,9 +335,10 @@ function php-config() {
   else
     CHOICE_TEXT="remove"
   fi
-  printf "\nGot it. Which PHP version would you like to ${CHOICE_TEXT}?"
+  printf "\nGot it. Which PHP version would you like to ${CHOICE_TEXT}?\n"
   read $PHP_VERSION
-  printf "\n10-4, good buddy! Attempting to ${CHOICE_TEXT}  PHP ${PHP_VERSION}..."
+  printf "\n10-4! Attempting to ${CHOICE_TEXT} PHP ${PHP_VERSION}..."
+  sleep 1
   case $CHOICE in
     1)
       sudo apt update -y && sudo add-apt-repository ppa:ondrej/php && sudo apt update -y && sudo apt install -y php${PHP_VERSION} libapache2-mod-php${PHP_VERSION} php${PHP_VERSION}-common php${PHP_VERSION}-gd php${PHP_VERSION}-mysql php${PHP_VERSION}-mcrypt php${PHP_VERSION}-curl php${PHP_VERSION}-intl php${PHP_VERSION}-xsl php${PHP_VERSION}-mbstring php${PHP_VERSION}-zip php${PHP_VERSION}-bcmath php${PHP_VERSION}-iconv php${PHP_VERSION}-soap php${PHP_VERSION}-fpm 
