@@ -351,6 +351,8 @@ function configure-php() {
       if [[ ${VERSION} == 7.0 && $(find /etc/php* -maxdepth 0 -type d | wc -l) == 1 ]]; then
         printf "\nRemoving /etc/php/ folder contents...\n"
         sudo rm -rf /etc/php/*
+      else
+        sudo rm -rf /etc/php/7.0/
       fi
       ;;
   esac
