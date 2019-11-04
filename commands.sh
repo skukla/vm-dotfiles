@@ -318,7 +318,7 @@ export -f status-fpm70
 
 # PHP Installation and Removal
 function list-php() {
-  printf "\nHere are the versions of PHP currently available:\n"
+  printf "\nHere are the versions of PHP currently available:\n\n"
   ls -la /etc/php
 }
 export -f list-php
