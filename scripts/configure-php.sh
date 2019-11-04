@@ -27,9 +27,8 @@ function check_version() {
     inArray "${REQUESTED_VERSION}" "${SUPPORTED_VERSIONS[@]}"
     if [[ $? != 0 ]]; then
         show_versions 
-    fi
     # Check to see if the requested version is installed already
-    if  [ ! -d /etc/php/${REQUESTED_VERSION} ]; then
+    elif [ ! -d /etc/php/${REQUESTED_VERSION} ]; then 
         printf "\nThere are no occurrences of PHP ${REQUESTED_VERSION} on the system.\n"
         return 1
     fi  
