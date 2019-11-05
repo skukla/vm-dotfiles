@@ -31,7 +31,7 @@ function check_php() {
 
 function check_version() {
     REQUESTED_VERSION=$1
-    ACTION_CHOICE=$2
+    ACTION_CHOICE_TEXT=$2
     # Check to make sure we got the input we expected
     in_array "${REQUESTED_VERSION}" "${SUPPORTED_VERSIONS[@]}"
     if [[ $? != 0 ]]; then
@@ -39,7 +39,7 @@ function check_version() {
         show_versions
         exit
     # If removal is selected, check to see if the requested version is already s    installed
-    elif [[ ${ACTION_CHOICE} == 2 ]] && [ ! -d /etc/php/${REQUESTED_VERSION} ]; then 
+    elif [[ ${ACTION_CHOICE} == "install" ]] && [ ! -d /etc/php/${REQUESTED_VERSION} ]; then 
         printf "\nPHP ${REQUESTED_VERSION} is not installed on the system.\n"
         exit
     # Successful choice
@@ -84,7 +84,7 @@ case ${ACTION_CHOICE} in
     # Install
     1)
         # Check to see if requested version is installed
-        check_version $REQUESTED_VERSION $ACTION_CHOICE
+        check_version $REQUESTED_VERSION $ACTION_CHOICE_TEXT
     
         # Install common packages
         printf "\nYou got it! Attempting to ${ACTION_CHOICE_TEXT} PHP ${REQUESTED_VERSION}...\n\n "
@@ -100,7 +100,7 @@ case ${ACTION_CHOICE} in
     # Remove
     2)
         # Check to see if requested version is installed
-        check_version $REQUESTED_VERSION $ACTION_CHOICE
+        check_version $REQUESTED_VERSION $ACTION_CHOICE_TEXT
 
         # We have the requested version
         printf "\nYou got it! Attempting to ${ACTION_CHOICE_TEXT} PHP ${REQUESTED_VERSION}...\n\n "
