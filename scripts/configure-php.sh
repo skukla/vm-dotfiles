@@ -28,11 +28,11 @@ function check_version() {
     if [[ $? != 0 ]]; then
         printf "\nThat isn't a supported  version.  Please try again and select one of the following:\n\n"
         show_versions
-        return 1
+        exit
     # Check to see if the requested version is installed already
     elif [ ! -d /etc/php/${REQUESTED_VERSION} ]; then 
         printf "\nThere are no occurrences of PHP ${REQUESTED_VERSION} on the system.\n"
-        return 1
+        exit
     # Successful choice
     else
         return 0
