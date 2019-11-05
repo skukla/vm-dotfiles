@@ -10,6 +10,7 @@ function inArray() {
 
 function show_versions() {
     for v in "${SUPPORTED_VERSIONS[@]}"; do printf "${v}\n"; done
+    printf "\n"
 }
 
 function check_php() {
@@ -25,7 +26,7 @@ function check_version() {
     # Check to make sure we got the input we expected
     inArray "${REQUESTED_VERSION}" "${SUPPORTED_VERSIONS[@]}"
     if [[ $? != 0 ]]; then
-        printf "\nThat isn't a supported  version.  Please select one of the following:\n"
+        printf "\nThat isn't a supported  version.  Please try again and select one of the following:\n\n"
         show_versions
         return 1
     # Check to see if the requested version is installed already
