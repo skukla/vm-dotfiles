@@ -106,13 +106,7 @@ case ${ACTION_CHOICE} in
 
         # Process the package removal first
         sudo apt-get purge php${REQUESTED_VERSION}-common -y
-        sudo apt-get remove -y --purge php${REQUESTED_VERSION}*
-
-        # Check for 7.0 specifically and remove its folder
-        # if [ ${REQUESTED_VERSION} == 7.0 ]; then
-        #     printf "\nRemoving /etc/php/ folder contents...\n"
-        #     sudo rm -rf /etc/php/${REQUESTED_VERSION}/
-        # fi
+        #sudo apt-get remove -y --purge php${REQUESTED_VERSION}*
     ;;
 esac
 # Remove unnecessary packages
