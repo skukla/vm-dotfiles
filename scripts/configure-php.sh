@@ -112,6 +112,7 @@ case ${ACTION_CHOICE} in
         check_php
         exit ;;
 esac
+sleep 1
 # Version prompt
 printf "Okay, which version of PHP would you like to ${ACTION_CHOICE_TEXT}? (Ex: 7.3)\n\n"
 read REQUESTED_VERSION
