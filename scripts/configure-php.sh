@@ -42,13 +42,6 @@ function check_version() {
     fi  
 }
 
-# function list_installed_php_versions() {
-#     if [ -d /etc/php ]; then
-#         printf "\nHere are the versions of PHP currently available on the system:\n\n"
-#         ls -la /etc/php
-#     fi
-# }
-
 clear
 printf "\nSo, you wanna configure PHP, eh?...\n"
 sleep 1
@@ -70,8 +63,6 @@ case ${ACTION_CHOICE} in
         ACTION_CHOICE_TEXT="remove"
         # Check to see if any version of PHP is installed
         check_php
-        # Show the list of installed PHP versions
-        # list_installed_php_versions
         ;;
 esac
 
@@ -111,8 +102,9 @@ case ${ACTION_CHOICE} in
         sudo apt-get purge php${REQUESTED_VERSION}-common -y
     ;;
 esac
+sleep 1
 # Remove unnecessary packages
-printf "\nRemoving any unnecessary packages left behind by the process...\n"
+printf "\nRemoving any unnecessary packages left behind by the process...\n\n"
 sudo apt autoremove -y
 sleep 1
 
