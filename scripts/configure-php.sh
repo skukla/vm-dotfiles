@@ -76,6 +76,7 @@ case ${ACTION_CHOICE} in
     1|2)
         # Check to see if requested version is installed
         check_version $REQUESTED_VERSION
+    ;;
     # Install
     1)
         sudo apt update -y && sudo add-apt-repository ppa:ondrej/php -y && sudo apt update -y && sudo apt install -y php${REQUESTED_VERSION} libapache2-mod-php${REQUESTED_VERSION} php${REQUESTED_VERSION}-common php${REQUESTED_VERSION}-gd php${REQUESTED_VERSION}-mysql php${REQUESTED_VERSION}-curl php${REQUESTED_VERSION}-intl php${REQUESTED_VERSION}-xsl php${REQUESTED_VERSION}-mbstring php${REQUESTED_VERSION}-zip php${REQUESTED_VERSION}-bcmath php${REQUESTED_VERSION}-iconv php${REQUESTED_VERSION}-soap php${REQUESTED_VERSION}-fpm
