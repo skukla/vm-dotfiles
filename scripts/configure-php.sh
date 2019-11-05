@@ -66,18 +66,10 @@ fi
 
 # Set version choice text
 case ${ACTION_CHOICE} in
-    1) 
-        # Get a list of installed PHP versions, then exit
-        check_php
-        exit ;;
+    1) check_php; exit ;;
     2) ACTION_CHOICE_TEXT="install" ;;
-    3) 
-        ACTION_CHOICE_TEXT="remove"
-        # Check to see if any version of PHP is installed before we offer to remove one
-        check_php
-        ;;
-    4)  # Purge all versions of PHP from the system
-        apt-get remove --purge php7
+    3) ACTION_CHOICE_TEXT="remove"; check_php ;;
+    4) apt-get remove --purge php7; check_php; exit ;;
 esac
 
 # Version prompt
