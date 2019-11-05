@@ -65,7 +65,6 @@ function install_or_remove() {
         remove)
             # Check to see if any PHP is installed
             check_php; if [ "$?" = 1 ]; then exit; fi
-            
             # Check to see if requested version is installed
             check_version $REQUESTED_VERSION $ACTION_CHOICE_TEXT
             # We have the requested version
