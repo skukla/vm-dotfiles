@@ -16,7 +16,6 @@ function show_choices() {
 
 function show_versions() {
     for VERSION in "${SUPPORTED_VERSIONS[@]}"; do printf "${VERSION}\n"; done
-    printf "\n"
 }
 
 function check_php() {
