@@ -37,8 +37,8 @@ function check_version() {
         printf "\nThat isn't a supported  version.  Please try again and select one of the following:\n\n"
         show_versions
         exit
-    # If removal is selected, check to see if the requested version is already s    installed
-    elif [[ ${ACTION_CHOICE} == "install" ]] && [ ! -d /etc/php/${REQUESTED_VERSION} ]; then 
+    # If removal is selected, check to see if the requested version is already installed
+    elif [[ ${ACTION_CHOICE} == "remove" ]] && [ ! -d /etc/php/${REQUESTED_VERSION} ]; then 
         printf "\nPHP ${REQUESTED_VERSION} is not installed on the system.\n"
         exit
     # Successful choice
@@ -66,7 +66,7 @@ fi
 # Set version choice text
 case ${ACTION_CHOICE} in
     1) check_php; exit ;;
-    2) ACTION_CHOICE_TEXT="install"; printf "\nPlease choose between:\n\n"; show_versions ;;
+    2) ACTION_CHOICE_TEXT="install" ;;
     3) ACTION_CHOICE_TEXT="remove"; check_php ;;
     4) sudo apt-get remove --purge php7.* -y; sudo apt autoremove -y; check_php; exit ;;
 esac
@@ -79,6 +79,13 @@ read REQUESTED_VERSION
 # Install or remove actions
 case ${ACTION_CHOICE_TEXT} in
     install)
+        # Show a list of versions to choose from
+        printf "\nPlease choose between:\n\n"
+        show_versions
+
+        # Show a list of installed versions
+        check_php
+        
         # Check to see if requested version is installed
         check_version $REQUESTED_VERSION $ACTION_CHOICE_TEXT
     
