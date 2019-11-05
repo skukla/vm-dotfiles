@@ -65,7 +65,6 @@ case ${ACTION_CHOICE} in
         # Show versions on system
         php_versions_on_system
         ;;
-    *) exit ;;
 esac
 
 # Version prompt
