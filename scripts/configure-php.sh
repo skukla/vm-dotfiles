@@ -60,7 +60,7 @@ read ACTION_CHOICE
 # Enforce a proper choice
 
 if [[ ${ACTION_CHOICE} =~ ^[0-9]+$ ]] && [[ ${ACTION_CHOICE} != "" ]]; then
-    if [ "${ACTION_CHOICE}" -lt 1 -a "${ACTION_CHOICE}" -lt 3 -a "${ACTION_CHOICE}" -gt 3 ]; then
+    if [ "${ACTION_CHOICE}" -ne 1 -a "${ACTION_CHOICE}" -ne 2 -a "${ACTION_CHOICE}" -ngt 3 ]; then
         printf "\nTry again and please choose 1-3\n"
         exit
     fi
