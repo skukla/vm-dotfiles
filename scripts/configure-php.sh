@@ -1,5 +1,6 @@
 #!/bin/bash
 SUPPORTED_VERSIONS=("7.0" "7.1" "7.2" "7.3")
+ACTION_CHOICES=("List" "Install" "Remove")
 
 function in_array() {
   local e match="$1"
@@ -8,8 +9,13 @@ function in_array() {
   return 1
 }
 
+function show_choices() {
+    for CHOICE in "${ACTION_CHOICES[@]}"; do printf "${CHOICE}\n"; done
+    printf "\n"
+}
+
 function show_versions() {
-    for v in "${SUPPORTED_VERSIONS[@]}"; do printf "${v}\n"; done
+    for VERSION in "${SUPPORTED_VERSIONS[@]}"; do printf "${VERSION}\n"; done
     printf "\n"
 }
 
@@ -47,7 +53,9 @@ printf "\nSo, you wanna configure PHP, eh?...\n"
 sleep 1
 
 # Action choice prompt
-printf "\nYou lookin' to list, install, or remove PHP?\n\n1) List\n2) Remove\n3) Install\n\n"
+printf "\nYou lookin' to list, install, or remove PHP?\n\n"
+show_choices
+printf "\n\n"
 read ACTION_CHOICE
 
 # Enforce a proper choice
