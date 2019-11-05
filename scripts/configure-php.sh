@@ -15,7 +15,7 @@ function show_versions() {
 
 function check_php() {
     # If they want to remove a version, check to see if there are any versions at all
-    if [[ ! $(ls -A /etc/php) ]]; then
+    if [[ ! $(ls -A /etc/php >/dev/null 2>&1) ]]; then
         printf "\nThere are no versions of PHP on the system.\n\n"
         return 1
     elif [[ $1 = "list" ]]; then
@@ -37,7 +37,7 @@ function check_version() {
         exit
     # If removal is selected, check to see if the requested version is already s    installed
     elif [[ ${ACTION_CHOICE} == 2 ]] && [ ! -d /etc/php/${REQUESTED_VERSION} ]; then 
-        printf "\nThere are no occurrences of PHP ${REQUESTED_VERSION} on the system.\n"
+        printf "\nPHP ${REQUESTED_VERSION} is not installed     on the system.\n"
         exit
     # Successful choice
     else
