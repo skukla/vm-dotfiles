@@ -15,7 +15,7 @@ function show_choices() {
 }
 
 function show_versions() {
-    for VERSION in "${SUPPORTED_VERSIONS[@]}"; do printf "${VERSION} "; done
+    for VERSION in "${SUPPORTED_VERSIONS[@]}"; do printf "${VERSION}\n"; done
 }
 
 function check_php() {
@@ -101,10 +101,10 @@ case ${ACTION_CHOICE} in
         exit ;;
     2) 
         ACTION_CHOICE_TEXT="install"
-        printf "\nPlease choose between these versions: "
+        printf "\nPlease choose between these versions:\n\n"
         show_versions
         check_php 
-        printf "\n\n" ;;
+        printf "\n" ;;
     3) 
         ACTION_CHOICE_TEXT="remove"
         check_php
