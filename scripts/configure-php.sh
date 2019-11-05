@@ -1,6 +1,6 @@
 #!/bin/bash
 SUPPORTED_VERSIONS=("7.0" "7.1" "7.2" "7.3")
-ACTION_CHOICES=("List" "Install" "Remove")
+ACTION_CHOICES=("1) List" "2) Install" "3) Remove")
 
 function in_array() {
   local e match="$1"
@@ -55,7 +55,6 @@ sleep 1
 # Action choice prompt
 printf "\nYou lookin' to list, install, or remove PHP?\n\n"
 show_choices
-printf "\n\n"
 read ACTION_CHOICE
 
 # Enforce a proper choice
