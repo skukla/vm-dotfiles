@@ -50,7 +50,7 @@ function intro() {
     sleep 1
 }
 
-function choose_version()
+function choose_version() {
     ACTION_CHOICE=$1
     ACTION_CHOICE_TEXT=$2
     
