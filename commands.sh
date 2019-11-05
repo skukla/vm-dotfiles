@@ -407,18 +407,18 @@ export -f enable-redis
 
 function start-redis() {
   printf "\nRestarting the Redis server...\n"
-  sudo systemctl restart redis-server
+  sudo systemctl restart redis
 }
 export -f start-redis
 
 function stop-redis() {
   printf "\nStopping the Redis server...\n"
-  sudo systemctl stop redis-server
+  sudo systemctl stop redis
 }
 export -f stop-redis
 
 function status-redis() {
-  sudo systemctl status redis-server
+  sudo systemctl status redis
 }
 export -f status-redis
 
