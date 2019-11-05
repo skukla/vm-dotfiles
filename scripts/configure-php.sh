@@ -69,7 +69,7 @@ case ${ACTION_CHOICE} in
     1) check_php; exit ;;
     2) ACTION_CHOICE_TEXT="install" ;;
     3) ACTION_CHOICE_TEXT="remove"; check_php ;;
-    4) sudo apt-get remove --purge php7.*; check_php; exit ;;
+    4) sudo apt-get remove --purge php7.* -y; sudo apt autoremove -y; check_php; exit ;;
 esac
 
 # Version prompt
