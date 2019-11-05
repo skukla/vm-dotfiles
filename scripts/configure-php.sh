@@ -48,20 +48,13 @@ function check_version() {
 }
 
 function install_or_remove() {
-    ACTION_CHOICE_TEXT=$1
-    REQUESTED_VERSION=$2
-
-    # Install or remove actions
     case ${ACTION_CHOICE_TEXT} in
         install)
-            
             # Check to see if requested version is installed
             check_version $REQUESTED_VERSION $ACTION_CHOICE_TEXT
-        
             # Install common packages
             printf "\nYou got it! Attempting to ${ACTION_CHOICE_TEXT} PHP ${REQUESTED_VERSION}...\n\n "
             sudo apt update -y && sudo add-apt-repository ppa:ondrej/php -y && sudo apt update -y && sudo apt install -y php${REQUESTED_VERSION} libapache2-mod-php${REQUESTED_VERSION} php${REQUESTED_VERSION}-common php${REQUESTED_VERSION}-gd php${REQUESTED_VERSION}-mysql php${REQUESTED_VERSION}-curl php${REQUESTED_VERSION}-intl php${REQUESTED_VERSION}-xsl php${REQUESTED_VERSION}-mbstring php${REQUESTED_VERSION}-zip php${REQUESTED_VERSION}-bcmath php${REQUESTED_VERSION}-iconv php${REQUESTED_VERSION}-soap php${REQUESTED_VERSION}-fpm
-            
             # Only install mcypt for 7.0 or 7.1
             case ${REQUESTED_VERSION} in
                 7.0|7.1)
@@ -72,11 +65,9 @@ function install_or_remove() {
         remove)
             # Check to see if requested version is installed
             check_version $REQUESTED_VERSION $ACTION_CHOICE_TEXT
-
             # We have the requested version
             printf "\nYou got it! Attempting to ${ACTION_CHOICE_TEXT} PHP ${REQUESTED_VERSION}...\n\n "
             sleep 1
-
             # Process the package removal first
             sudo apt-get purge php${REQUESTED_VERSION}-common -y
         ;;
@@ -86,56 +77,33 @@ function install_or_remove() {
     printf "\nRemoving any unnecessary packages left behind by the process...\n\n"
     sudo apt autoremove -y
     sleep 1
-
     # Show resultant PHP versions
     check_php
 }
 
-# Check to see whether the commandline shorthand was used
-if ! [ $# -eq 0 ]; then
-    install_or_remove $1 $2
-# No shortcut, run the GUI version
-else
-    clear
-    printf "\nSo, you wanna configure PHP, eh?...\n"
-    sleep 1
-
-    # Action choice prompt
-    printf "\nYou lookin' to list, install, or remove PHP?\n\n"
-    show_choices
-    read ACTION_CHOICE
-
-    # Enforce a proper choice (Must be an integer and between 1 and 3)
-    if ! [[ ${ACTION_CHOICE} =~ ^[0-9]+$ ]] || [[ ${ACTION_CHOICE} = "" ]] || [ "${ACTION_CHOICE}" -ne 1 -a "${ACTION_CHOICE}" -ne 2 -a "${ACTION_CHOICE}" -gt 4 ]; then
-            printf "\nTry again and please choose 1-3\n"
-            sleep 1
-            bash ~/cli/scripts/configure-php.sh
-    fi
-
-    # Set version choice text
-    case ${ACTION_CHOICE} in
-        1) check_php; exit ;;
-        2) 
-                ACTION_CHOICE_TEXT="install"; 
-            
-            # Show a list of versions to choose from
-            printf "\nPlease choose between:\n\n"
-            show_versions
-
-            # Show a list of installed versions
-            check_php ;;
-        3) ACTION_CHOICE_TEXT="remove"; check_php ;;
-        4) sudo apt-get remove --purge php7.* -y; sudo apt autoremove -y; check_php; exit ;;
-    esac
-
-    # Version prompt
-    printf "\nOkay, which version of PHP would you like to ${ACTION_CHOICE_TEXT}? (Ex: 7.3)\n\n"
-
-    read REQUESTED_VERSION
-
-    install_or_remove ${ACTION_CHOICE_TEXT} ${REQUESTED_VERSION}
-
-    sleep 1
-    printf "\ndone.\n"
+clear
+printf "\nSo, you wanna configure PHP, eh?...\n"
+sleep 1
+# Action choice prompt
+printf "\nYou lookin' to list, install, or remove PHP?\n\n"
+show_choices
+read ACTION_CHOICE
+# Enforce a proper choice (Must be an integer and between 1 and 4s)
+if ! [[ ${ACTION_CHOICE} =~ ^[0-9]+$ ]] || [[ ${ACTION_CHOICE} = "" ]] || [ "${ACTION_CHOICE}" -ne 1 -a "${ACTION_CHOICE}" -ne 2 -a "${ACTION_CHOICE}" -ne 3 -a "${ACTION_CHOICE}" -gt 4 ]; then
+        printf "\nTry again and please choose 1-3\n"
+        exit
 fi
+# Set version choice text
+case ${ACTION_CHOICE} in
+    1) check_php; exit ;;
+    2) ACTION_CHOICE_TEXT="install"; printf "\nPlease choose between:\n\n"; show_versions; check_php ;;
+    3) ACTION_CHOICE_TEXT="remove"; check_php ;;
+    4) sudo apt-get remove --purge php7.* -y; sudo apt autoremove -y; check_php; exit ;;
+esac
+# Version prompt
+printf "\nOkay, which version of PHP would you like to ${ACTION_CHOICE_TEXT}? (Ex: 7.3)\n\n"
+read REQUESTED_VERSION
+install_or_remove
+sleep 1
+printf "\ndone.\n"
 exit 0
