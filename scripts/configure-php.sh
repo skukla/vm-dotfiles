@@ -30,8 +30,8 @@ function check_version() {
         printf "\nThat isn't a supported  version.  Please try again and select one of the following:\n\n"
         show_versions
         exit
-    # Check to see if the requested version is installed already
-    elif [ ! -d /etc/php/${REQUESTED_VERSION} ]; then 
+    # If removal is selected, check to see if the requested version is already s    installed
+    elif [[ ${ACTION_CHOICE} == 2 ]] && [ ! -d /etc/php/${REQUESTED_VERSION} ]; then 
         printf "\nThere are no occurrences of PHP ${REQUESTED_VERSION} on the system.\n"
         exit
     # Successful choice
