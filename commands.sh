@@ -405,6 +405,12 @@ function enable-redis() {
 }
 export -f enable-redis
 
+function disable-redis() {
+  printf "\nDisabling Redis...\n"
+  sudo systemctl disable redis
+}
+export -f disable-redis
+
 function start-redis() {
   printf "\nRestarting the Redis server...\n"
   sudo systemctl restart redis
