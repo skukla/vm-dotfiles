@@ -26,7 +26,7 @@ function check_php() {
     else
         printf "\nHere are the versions of PHP currently available on the system:\n\n"
         ls -la /etc/php
-        return 1
+        exit
     fi
 }
 
