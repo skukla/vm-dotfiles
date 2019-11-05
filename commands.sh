@@ -326,7 +326,16 @@ export -f list-php
 function configure-php() {
   CLI_DIRECTORY=~/cli
   SCRIPTS_DIRECTORY=scripts
-  bash ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/configure-php.sh
+
+  if ! [ $# -eq 0 ]; then
+    bash ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/configure-php.sh
+  elif ! [ -z "$1" ]
+    bash ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/configure-php.sh $1
+  elif ! [ -z "$2" ]
+    bash ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/configure-php.sh $2
+  elif ! [ -z "$1"  && -z "$2" ]
+    bash ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/configure-php.sh $1 $2
+  fi
 }
 export -f configure-php
 

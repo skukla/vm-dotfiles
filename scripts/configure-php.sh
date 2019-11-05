@@ -1,12 +1,6 @@
 #!/bin/bash
 SUPPORTED_VERSIONS=("7.0" "7.1" "7.2" "7.3")
 ACTION_CHOICES=("1) List" "2) Install" "3) Remove" "4) Purge All")
-ACTION_CHOICE_TEXT=$1
-REQUESTED_VERSION=$2
-
-echo $ACTION_CHOICE_TEXT;
-
-exit
 
 function in_array() {
   local e match="$1"
@@ -98,7 +92,7 @@ function install_or_remove() {
 }
 
 # Check to see whether the commandline shorthand was used
-if !([ -z "$1" ] || [ -z "$2" ]); then
+if ! [ $# -eq 0 ]; then
     install_or_remove $1 $2
 # No shortcut, run the GUI version
 else
