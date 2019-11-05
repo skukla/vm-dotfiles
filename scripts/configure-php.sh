@@ -107,7 +107,9 @@ case ${ACTION_CHOICE} in
         show_versions
         check_php 
         printf "\n" ;;
-    3) ACTION_CHOICE_TEXT="remove" ;;
+    3) 
+        ACTION_CHOICE_TEXT="remove"
+        printf "\n";;
     4) 
         sudo apt-get remove --purge php7.* -y
         sudo apt autoremove -y
