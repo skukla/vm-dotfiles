@@ -1,12 +1,4 @@
 #!/bin/bash
-if ! [ -z "$1" ]; then
-    ACTION_CHOICE=$1
-fi
-
-if ! [ -z "$2" ]; then
-    REQUESTED_VERSION=$2
-fi
-
 SUPPORTED_VERSIONS=("7.0" "7.1" "7.2" "7.3")
 ACTION_CHOICES=("1) List" "2) Install" "3) Remove" "4) Purge All")
 
