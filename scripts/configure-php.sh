@@ -112,7 +112,7 @@ case ${ACTION_CHOICE} in
     4) 
         printf "\nYou got it! Attempting to purge all versions of PHP 7...\n\n "
         sleep 1
-        check_php
+        check_php; if [ "$?" -e 1 ]; then exit; fi
         sudo apt-get remove --purge php7.* -y
         sudo apt autoremove -y
         check_php
