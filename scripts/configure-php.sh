@@ -99,9 +99,11 @@ function set_action_choice() {
             check_php
             printf "\n";;
         4) 
-            printf "\nYou got it! Attempting to purge all versions of PHP 7...\n\n "
+            printf "\nYou got it! Attempting to purge all versions of PHP 7...\n "
             sleep 1
-            check_php; if [ "$?" = 1 ]; then exit; fi; sleep 1
+            check_php; if [ "$?" = 1 ]; then exit; fi; 
+            printf "\n"
+            sleep 1
             sudo apt-get remove --purge php7.* -y
             sudo apt autoremove -y
             check_php
