@@ -21,7 +21,6 @@ function show_versions() {
 function check_php() {
     if [ ! -d /etc/php ]; then
         printf "\nThere are no versions of PHP on the system.\n\n"
-        exit
     else
         printf "\nHere are the versions of PHP currently available on the system:\n\n"
         ls -la /etc/php
