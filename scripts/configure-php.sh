@@ -21,6 +21,7 @@ function show_versions() {
 function check_php() {
     if [ ! -d /etc/php ]; then
         printf "\nThere are no versions of PHP on the system.\n\n"
+        return 1
     else
         printf "\nHere are the versions of PHP currently available on the system:\n\n"
         ls -la /etc/php
@@ -62,6 +63,9 @@ function install_or_remove() {
             esac
         ;;
         remove)
+            # Check to see if any PHP is installed
+            check_php; if [ "$?" = 1 ]; then exit; fi
+            
             # Check to see if requested version is installed
             check_version $REQUESTED_VERSION $ACTION_CHOICE_TEXT
             # We have the requested version
@@ -96,7 +100,7 @@ fi
 case ${ACTION_CHOICE} in
     1) check_php; exit ;;
     2) ACTION_CHOICE_TEXT="install"; printf "\nPlease choose between:\n\n"; show_versions; check_php ;;
-    3) ACTION_CHOICE_TEXT="remove"; check_php ;;
+    3) ACTION_CHOICE_TEXT="remove" ;;
     4) sudo apt-get remove --purge php7.* -y; sudo apt autoremove -y; check_php; exit ;;
 esac
 # Version prompt
