@@ -329,11 +329,11 @@ function configure-php() {
 
   if ! [ $# -eq 0 ]; then
     bash ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/configure-php.sh
-  elif ! [ -z "$1" ]
+  elif ! [ -z "$1" ]; then
     bash ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/configure-php.sh $1
-  elif ! [ -z "$2" ]
+  elif ! [ -z "$2" ]; then
     bash ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/configure-php.sh $2
-  elif ! [ -z "$1"  && -z "$2" ]
+  elif ! [ -z "$1"  && -z "$2" ]; then
     bash ${CLI_DIRECTORY}/${SCRIPTS_DIRECTORY}/configure-php.sh $1 $2
   fi
 }
