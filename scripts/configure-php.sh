@@ -67,7 +67,9 @@ fi
 
 # Set version choice text
 case ${ACTION_CHOICE} in
-    1) check_php && exit ;;
+    1) 
+        check_php
+        exit ;;
     2) ACTION_CHOICE_TEXT="install" ;;
     3) 
         ACTION_CHOICE_TEXT="remove"
