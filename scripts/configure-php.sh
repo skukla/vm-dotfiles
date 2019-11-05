@@ -78,11 +78,10 @@ case ${ACTION_CHOICE} in
         
         # Only install mcypt for 7.0 or 7.1
         case ${REQUESTED_VERSION} in
-        7.0|7.1)
-            sudo apt install -y php${REQUESTED_VERSION}-mcrypt
-        ;;
+            7.0|7.1)
+                sudo apt install -y php${REQUESTED_VERSION}-mcrypt
+            ;;
         esac
-        ;;  
     ;;
     # Remove
     2)
