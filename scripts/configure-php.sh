@@ -51,6 +51,10 @@ sleep 1
 
 # Action choice prompt
 printf "\nYou lookin' to install or remove PHP?\n\n1) Install\n2) Remove\n\n"
+read -s -n 1 key
+if [[ $key = "" ]]; then 
+    exit
+fi
 read ACTION_CHOICE
 sleep 1
 
