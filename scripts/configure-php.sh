@@ -55,7 +55,7 @@ sleep 1
 
 # Enforce a proper choice
 if [ ${ACTION_CHOICE} != 1 ] || [ ${ACTION_CHOICE} != 2 ]; then
-    printf "\nPlease make a correct choice\n"
+    printf "\nTry again and please choose either 1 or 2\n"
     exit
 fi
 
