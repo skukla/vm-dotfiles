@@ -84,7 +84,7 @@ function install_or_remove() {
 }
 
 clear
-printf "\nSo, you wanna configure PHP, eh?...\n"
+printf "\nSo, you wanna configure PHP, eh?...\n\n"
 sleep 1
 # Action choice prompt
 show_choices
