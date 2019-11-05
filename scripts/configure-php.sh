@@ -58,7 +58,7 @@ show_choices
 read ACTION_CHOICE
 
 # Enforce a proper choice (Must be an integer and between 1 and 3)
-if ! [[ ${ACTION_CHOICE} =~ ^[0-9]+$ ]] || [[ ${ACTION_CHOICE} = "" ]] || [ "${ACTION_CHOICE}" -ne 1 -a "${ACTION_CHOICE}" -ne 2 -a "${ACTION_CHOICE}" -gt 3 ]; then
+if ! [[ ${ACTION_CHOICE} =~ ^[0-9]+$ ]] || [[ ${ACTION_CHOICE} = "" ]] || [ "${ACTION_CHOICE}" -ne 1 -a "${ACTION_CHOICE}" -ne 2 -a "${ACTION_CHOICE}" -gt 4 ]; then
         printf "\nTry again and please choose 1-3\n"
         sleep 1
         bash ~/cli/scripts/configure-php.sh
