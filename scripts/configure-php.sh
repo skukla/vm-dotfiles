@@ -58,13 +58,13 @@ fi
 
 # Set version choice text
 case ${ACTION_CHOICE} in
-    1) ACTION_CHOICE_TEXT="install" ;;
-    2) 
+    1) check_php ;;
+    2) ACTION_CHOICE_TEXT="install" ;;
+    3) 
         ACTION_CHOICE_TEXT="remove"
         # Check to see if any version of PHP is installed
         check_php
         ;;
-    3) check_php ;;
 esac
 
 # Version prompt
