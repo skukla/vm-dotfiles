@@ -96,10 +96,21 @@ if ! [[ ${ACTION_CHOICE} =~ ^[0-9]+$ ]] || [[ ${ACTION_CHOICE} = "" ]] || [ "${A
 fi
 # Set version choice text
 case ${ACTION_CHOICE} in
-    1) check_php; exit ;;
-    2) ACTION_CHOICE_TEXT="install"; printf "\nPlease choose between these versions             :\n\n"; show_versions; printf "\n"; check_php ;;
+    1) 
+        check_php
+        exit ;;
+    2) 
+        ACTION_CHOICE_TEXT="install"
+        printf "\nPlease choose between these versions:\n\n"
+        show_versions
+        printf "\n"
+        check_php ;;
     3) ACTION_CHOICE_TEXT="remove" ;;
-    4) sudo apt-get remove --purge php7.* -y; sudo apt autoremove -y; check_php; exit ;;
+    4) 
+        sudo apt-get remove --purge php7.* -y
+        sudo apt autoremove -y
+        check_php
+        exit ;;
 esac
 # Version prompt
 printf "Okay, which version of PHP would you like to ${ACTION_CHOICE_TEXT}? (Ex: 7.3)\n\n"
