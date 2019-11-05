@@ -26,7 +26,6 @@ function check_php() {
     else
         printf "\nHere are the versions of PHP currently available on the system:\n\n"
         ls -la /etc/php
-        exit
     fi
 }
 
@@ -66,7 +65,7 @@ fi
 
 # Set version choice text
 case ${ACTION_CHOICE} in
-    1) check_php ;;
+    1) check_php && exit ;;
     2) ACTION_CHOICE_TEXT="install" ;;
     3) 
         ACTION_CHOICE_TEXT="remove"
