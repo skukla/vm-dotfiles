@@ -18,7 +18,7 @@ function check_php() {
     if [[ ! $(ls -A /etc/php) ]]; then
         printf "\nThere are no versions of PHP on the system.\n\n"
         return 1
-    elif [[ $1 == "list" ]]
+    elif [[ $1 == "list" ]]; then
         printf "\nHere are the versions of PHP currently available on the system:\n\n"
         ls -la /etc/php    
     fi
