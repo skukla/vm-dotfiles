@@ -101,10 +101,10 @@ case ${ACTION_CHOICE} in
         exit ;;
     2) 
         ACTION_CHOICE_TEXT="install"
-        printf "\nPlease choose between these versions: \n\n"
+        printf "\nPlease choose between these versions: "
         show_versions
         check_php 
-        printf "\n" ;;
+        printf "\n\n" ;;
     3) 
         ACTION_CHOICE_TEXT="remove"
         check_php
