@@ -62,10 +62,11 @@ read ACTION_CHOICE
 if [[ ${ACTION_CHOICE} =~ ^[0-9]+$ ]] && [[ ${ACTION_CHOICE} != "" ]]; then
     if [ "${ACTION_CHOICE}" -ne 1 -a "${ACTION_CHOICE}" -ne 2 -a "${ACTION_CHOICE}" -gt 3 ]; then
         printf "\nTry again and please choose 1-3\n"
-        exit
+        bash ~/cli/scripts/configure-php.sh
     fi
 else 
     printf "\nTry again and please choose 1-3\n"
+    bash ~/cli/scripts/configure-php.sh
     exit
 fi
 
