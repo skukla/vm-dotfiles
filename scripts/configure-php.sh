@@ -92,7 +92,7 @@ function install_or_remove() {
 }
 
 # Check to see whether the commandline shorthand was used
-if ! [ $# -eq 0 ]; then
+if !([ -z "$1" ] || [ -z "$2" ]); then
     install_or_remove $1 $2
 # No shortcut, run the GUI version
 else
