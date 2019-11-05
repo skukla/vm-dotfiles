@@ -55,18 +55,19 @@ sleep 1
 
 # Set version choice text
 case ${ACTION_CHOICE} in
-    1) 
-        ACTION_CHOICE_TEXT="install" 
-    ;;
-    2)
+    1) ACTION_CHOICE_TEXT="install" ;;
+    2) 
         ACTION_CHOICE_TEXT="remove" 
-        # Check for any PHP versions
+        # Check to see if any version of PHP is installed
         check_php
-    ;;
+        # Show versions on system
+        php_versions_on_system
+        ;;
 esac
 
 # Version prompt
 printf "\nOkay, which version of PHP would you like to ${ACTION_CHOICE_TEXT}? (Ex: 7.3)\n\n"
+
 read REQUESTED_VERSION
 
 # Install or remove actions
@@ -85,8 +86,6 @@ case ${ACTION_CHOICE} in
     ;;
     # Remove
     2)
-        # We have something installed so show a list
-        php_versions_on_system
         # Check to see if requested version is installed
         check_version $REQUESTED_VERSION
         # We have the requested version
