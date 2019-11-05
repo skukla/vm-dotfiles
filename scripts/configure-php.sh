@@ -1,6 +1,6 @@
 #!/bin/bash
 SUPPORTED_VERSIONS=("7.0" "7.1" "7.2" "7.3")
-ACTION_CHOICES=("1) List" "2) Install" "3) Remove")
+ACTION_CHOICES=("1) List" "2) Install" "3) Remove" "4) Purge All")
 
 function in_array() {
   local e match="$1"
@@ -76,6 +76,8 @@ case ${ACTION_CHOICE} in
         # Check to see if any version of PHP is installed before we offer to remove one
         check_php
         ;;
+    4)  # Purge all versions of PHP from the system
+        apt-get remove --purge php7
 esac
 
 # Version prompt
