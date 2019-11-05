@@ -87,7 +87,6 @@ clear
 printf "\nSo, you wanna configure PHP, eh?...\n"
 sleep 1
 # Action choice prompt
-printf "\nYou lookin' to list, install, or remove PHP?\n\n"
 show_choices
 read ACTION_CHOICE
 # Enforce a proper choice (Must be an integer and between 1 and 4s)
