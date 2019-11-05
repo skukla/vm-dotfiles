@@ -1,7 +1,7 @@
 #!/bin/bash
 SUPPORTED_VERSIONS=("7.0" "7.1" "7.2" "7.3")
 
-function inArray() {
+function in_array() {
   local e match="$1"
   shift
   for e; do [[ "$e" == "$match" ]] && return 0; done
@@ -27,7 +27,7 @@ function check_version() {
     REQUESTED_VERSION=$1
     ACTION_CHOICE=$2
     # Check to make sure we got the input we expected
-    inArray "${REQUESTED_VERSION}" "${SUPPORTED_VERSIONS[@]}"
+    in_array "${REQUESTED_VERSION}" "${SUPPORTED_VERSIONS[@]}"
     if [[ $? != 0 ]]; then
         printf "\nThat isn't a supported  version.  Please try again and select one of the following:\n\n"
         show_versions
@@ -47,12 +47,12 @@ printf "\nSo, you wanna configure PHP, eh?...\n"
 sleep 1
 
 # Action choice prompt
-printf "\nYou lookin' to install or remove PHP?\n\n1) Install\n2) Remove\n\n"
+printf "\nYou lookin' to list, install, or remove PHP?\n\n1) List\n2) Remove\n3) Install\n\n"
 read ACTION_CHOICE
 
 # Enforce a proper choice
-if [[ ${ACTION_CHOICE} = "" ]] || [[ ${ACTION_CHOICE} != 1 ]] && [[ ${ACTION_CHOICE} != 2 ]]; then
-    printf "\nTry again and please choose either 1 or 2\n"
+if [[ ${ACTION_CHOICE} = "" ]] || if [[ ${ACTION_CHOICE} >= 1 ]] && [[ ${ACTION_CHOICE} <= 3 ]]; then
+    printf "\nTry again and please choose 1-3\n"
     exit
 fi
 
@@ -64,6 +64,7 @@ case ${ACTION_CHOICE} in
         # Check to see if any version of PHP is installed
         check_php
         ;;
+    3) check_php ;;
 esac
 
 # Version prompt
