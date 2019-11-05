@@ -1,6 +1,12 @@
 #!/bin/bash
 SUPPORTED_VERSIONS=("7.0" "7.1" "7.2" "7.3")
 ACTION_CHOICES=("1) List" "2) Install" "3) Remove" "4) Purge All")
+ACTION_CHOICE_TEXT=$1
+REQUESTED_VERSION=$2
+
+echo $ACTION_CHOICE_TEXT;
+
+exit
 
 function in_array() {
   local e match="$1"
