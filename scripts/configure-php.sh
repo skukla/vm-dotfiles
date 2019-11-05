@@ -26,14 +26,11 @@ function check_version() {
     # Check to make sure we got the input we expected
     inArray "${REQUESTED_VERSION}" "${SUPPORTED_VERSIONS[@]}"
     if [[ $? != 0 ]]; then
-        show_versions
-        sleep 3
-        main 
+        show_versions && sleep 3 && clear && choose_version 
     # Check to see if the requested version is installed already
     elif [ ! -d /etc/php/${REQUESTED_VERSION} ]; then 
         printf "\nThere are no occurrences of PHP ${REQUESTED_VERSION} on the system.\n"
-        sleep 3
-        main
+        sleep 3 && show_versions && choose_version
     # Successful choice
     else
         printf "\nThat version exists!\n"
