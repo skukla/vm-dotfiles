@@ -127,9 +127,10 @@ function main() {
 # list-php
 # sleep 1
 # printf "\ndone.\n"
-}
+# }
 
 ### START ###
 clear
 intro
+main
 
