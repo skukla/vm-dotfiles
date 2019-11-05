@@ -97,12 +97,12 @@ fi
 # Set version choice text
 case ${ACTION_CHOICE} in
     1) check_php; exit ;;
-    2) ACTION_CHOICE_TEXT="install"; printf "\nPlease choose between:\n\n"; show_versions; check_php ;;
+    2) ACTION_CHOICE_TEXT="install"; printf "\nPlease choose between these versions:\n\n"; show_versions; check_php ;;
     3) ACTION_CHOICE_TEXT="remove" ;;
     4) sudo apt-get remove --purge php7.* -y; sudo apt autoremove -y; check_php; exit ;;
 esac
 # Version prompt
-printf "\nOkay, which version of PHP would you like to ${ACTION_CHOICE_TEXT}? (Ex: 7.3)\n\n"
+printf "Okay, which version of PHP would you like to ${ACTION_CHOICE_TEXT}? (Ex: 7.3)\n\n"
 read REQUESTED_VERSION
 install_or_remove
 sleep 1
