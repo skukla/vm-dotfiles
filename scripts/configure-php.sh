@@ -66,7 +66,15 @@ fi
 # Set version choice text
 case ${ACTION_CHOICE} in
     1) check_php; exit ;;
-    2) ACTION_CHOICE_TEXT="install" ;;
+    2) 
+        ACTION_CHOICE_TEXT="install"; 
+        
+        # Show a list of versions to choose from
+        printf "\nPlease choose between:\n\n"
+        show_versions
+
+        # Show a list of installed versions
+        check_php ;;
     3) ACTION_CHOICE_TEXT="remove"; check_php ;;
     4) sudo apt-get remove --purge php7.* -y; sudo apt autoremove -y; check_php; exit ;;
 esac
@@ -79,12 +87,6 @@ read REQUESTED_VERSION
 # Install or remove actions
 case ${ACTION_CHOICE_TEXT} in
     install)
-        # Show a list of versions to choose from
-        printf "\nPlease choose between:\n\n"
-        show_versions
-
-        # Show a list of installed versions
-        check_php
         
         # Check to see if requested version is installed
         check_version $REQUESTED_VERSION $ACTION_CHOICE_TEXT
