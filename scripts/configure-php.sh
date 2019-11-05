@@ -109,6 +109,7 @@ case ${ACTION_CHOICE} in
         printf "\n" ;;
     3) 
         ACTION_CHOICE_TEXT="remove"
+        check_php
         printf "\n";;
     4) 
         sudo apt-get remove --purge php7.* -y
