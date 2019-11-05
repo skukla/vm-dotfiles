@@ -88,10 +88,10 @@ case ${ACTION_CHOICE} in
         # Check to see if requested version is installed
         check_version $REQUESTED_VERSION
         # We have the requested version
-        printf "\nYou got it!  Attempting to ${ACTION_CHOICE_TEXT} PHP ${REQUESTED_VERSION}...\n\n "
+        printf "\nYou got it! Attempting to ${ACTION_CHOICE_TEXT} PHP ${REQUESTED_VERSION}...\n\n "
         sleep 1
         # Process the package removal first
-        sudo apt-get install ppa-purge -y && sudo apt-get purge php${VERSION}-common
+        sudo apt-get purge php${VERSION}-common
         # Check for 7.0 specifically and remove its folder
         if [[ ${REQUESTED_VERSION} == 7.0 ]]; then
             printf "\nRemoving /etc/php/ folder contents...\n"
