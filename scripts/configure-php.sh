@@ -55,7 +55,7 @@ read -s -n 1 key
 read ACTION_CHOICE
 
 # Enforce a proper choice
-if [ ${key} == "" ] || [ ${ACTION_CHOICE} != 1 ] && [ ${ACTION_CHOICE} != 2 ]; then
+if [[ ${key} == "" ]] || [ ${ACTION_CHOICE} != 1 ] && [ ${ACTION_CHOICE} != 2 ]; then
     printf "\nTry again and please choose either 1 or 2\n"
     exit
 fi
