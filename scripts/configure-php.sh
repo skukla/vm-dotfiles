@@ -50,7 +50,7 @@ printf "\nSo, you wanna configure PHP, eh?...\n"
 sleep 1
 
 # Action choice prompt
-printf "\nYou lookin' to install or remove PHP?\n\n1) Install\n2) Remove\n"
+printf "\nYou lookin' to install or remove PHP?\n\n1) Install\n2) Remove\n\n"
 read ACTION_CHOICE
 
 # Enforce a proper choice
