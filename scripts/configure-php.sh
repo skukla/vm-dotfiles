@@ -23,6 +23,7 @@ function check_php() {
 
 function check_version() {
     REQUESTED_VERSION=$1
+    ACTION_CHOICE=$2
     # Check to make sure we got the input we expected
     inArray "${REQUESTED_VERSION}" "${SUPPORTED_VERSIONS[@]}"
     if [[ $? != 0 ]]; then
@@ -83,9 +84,8 @@ case ${ACTION_CHOICE} in
     # Install
     1)
         # Check to see if requested version is installed
-        check_version $REQUESTED_VERSION
-
-        
+        check_version $REQUESTED_VERSION $ACTION_CHOICE
+    
         # Install common packages
         printf "\nYou got it! Attempting to ${ACTION_CHOICE_TEXT} PHP ${REQUESTED_VERSION}...\n\n "
         sudo apt update -y && sudo add-apt-repository ppa:ondrej/php -y && sudo apt update -y && sudo apt install -y php${REQUESTED_VERSION} libapache2-mod-php${REQUESTED_VERSION} php${REQUESTED_VERSION}-common php${REQUESTED_VERSION}-gd php${REQUESTED_VERSION}-mysql php${REQUESTED_VERSION}-curl php${REQUESTED_VERSION}-intl php${REQUESTED_VERSION}-xsl php${REQUESTED_VERSION}-mbstring php${REQUESTED_VERSION}-zip php${REQUESTED_VERSION}-bcmath php${REQUESTED_VERSION}-iconv php${REQUESTED_VERSION}-soap php${REQUESTED_VERSION}-fpm
@@ -100,7 +100,7 @@ case ${ACTION_CHOICE} in
     # Remove
     2)
         # Check to see if requested version is installed
-        check_version $REQUESTED_VERSION
+        check_version $REQUESTED_VERSION $ACTION_CHOICE
 
         # We have the requested version
         printf "\nYou got it! Attempting to ${ACTION_CHOICE_TEXT} PHP ${REQUESTED_VERSION}...\n\n "
