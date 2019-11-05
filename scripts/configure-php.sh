@@ -83,41 +83,48 @@ function install_or_remove() {
     check_php
 }
 
+function set_action_choice() {
+    # Set version choice text
+    case ${ACTION_CHOICE} in
+        1) 
+            check_php
+            exit ;;
+        2) 
+            ACTION_CHOICE_TEXT="install"
+            printf "\nPlease choose between these versions:\n\n"
+            show_versions
+            check_php ;;
+        3) 
+            ACTION_CHOICE_TEXT="remove"
+            check_php
+            printf "\n";;
+        4) 
+            printf "\nYou got it! Attempting to purge all versions of PHP 7...\n "
+            sleep 1
+            check_php; if [ "$?" = 1 ]; then exit; fi; sleep 1
+            sudo apt-get remove --purge php7.* -y
+            sudo apt autoremove -y
+            check_php
+            exit ;;
+    esac
+}
+
 clear
+
+# Action choice prompt
 printf "\nSo, you wanna configure PHP, eh?...\n\n"
 sleep 1
-# Action choice prompt
 show_choices
 read ACTION_CHOICE
+
 # Enforce a proper choice (Must be an integer and between 1 and 4s)
 if ! [[ ${ACTION_CHOICE} =~ ^[0-9]+$ ]] || [[ ${ACTION_CHOICE} = "" ]] || [ "${ACTION_CHOICE}" -ne 1 -a "${ACTION_CHOICE}" -ne 2 -a "${ACTION_CHOICE}" -ne 3 -a "${ACTION_CHOICE}" -gt 4 ]; then
         printf "\nTry again and please choose 1-3\n"
         exit
 fi
-# Set version choice text
-case ${ACTION_CHOICE} in
-    1) 
-        check_php
-        exit ;;
-    2) 
-        ACTION_CHOICE_TEXT="install"
-        printf "\nPlease choose between these versions:\n\n"
-        show_versions
-        check_php ;;
-    3) 
-        ACTION_CHOICE_TEXT="remove"
-        check_php
-        printf "\n";;
-    4) 
-        printf "\nYou got it! Attempting to purge all versions of PHP 7...\n "
-        sleep 1
-        check_php; if [ "$?" = 1 ]; then exit; fi; sleep 1
-        sudo apt-get remove --purge php7.* -y
-        sudo apt autoremove -y
-        check_php
-        exit ;;
-esac
+set_action_choice
 sleep 1
+
 # Version prompt
 printf "Okay, which version of PHP would you like to ${ACTION_CHOICE_TEXT}? (Ex: 7.3)\n\n"
 read REQUESTED_VERSION
