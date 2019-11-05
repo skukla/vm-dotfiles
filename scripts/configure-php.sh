@@ -18,7 +18,7 @@ function check_php() {
     if [[ ! $(ls -A /etc/php) ]]; then
         printf "\nThere are no versions of PHP on the system.\n\n"
         return 1
-    else
+    elif [[ $1 == "list" ]]
         printf "\nHere are the versions of PHP currently available on the system:\n\n"
         ls -la /etc/php    
     fi
@@ -101,7 +101,6 @@ case ${ACTION_CHOICE} in
 
         # Process the package removal first
         sudo apt-get purge php${REQUESTED_VERSION}-common -y
-        #sudo apt-get remove -y --purge php${REQUESTED_VERSION}*
     ;;
 esac
 # Remove unnecessary packages
@@ -110,6 +109,6 @@ sudo apt autoremove -y
 sleep 1
 
 # Show resultant PHP versions
-check_php
+check_php list
 sleep 1
 printf "\ndone.\n"
