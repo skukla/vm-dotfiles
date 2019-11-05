@@ -137,4 +137,5 @@ else
 
     sleep 1
     printf "\ndone.\n"
-}
+fi
+exit 0
