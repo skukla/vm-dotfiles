@@ -53,6 +53,12 @@ printf "\nYou lookin' to install or remove PHP?\n\n1) Install\n2) Remove\n\n"
 read ACTION_CHOICE
 sleep 1
 
+# Enforce a proper choice
+if [ ${ACTION_CHOICE} != 1 ] || [ ${ACTION_CHOICE} != 2 ]; then
+    printf "\nPlease make a correct choice\n"
+    exit
+fi
+
 # Set version choice text
 case ${ACTION_CHOICE} in
     1) ACTION_CHOICE_TEXT="install" ;;
