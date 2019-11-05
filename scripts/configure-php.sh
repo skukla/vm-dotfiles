@@ -27,13 +27,13 @@ function check_version() {
     inArray "${REQUESTED_VERSION}" "${SUPPORTED_VERSIONS[@]}"
     if [[ $? != 0 ]]; then
         show_versions
-        sleep 1
-        bash ~/cli/scripts/configure-php.sh 
+        sleep 3
+        main 
     # Check to see if the requested version is installed already
     elif [ ! -d /etc/php/${REQUESTED_VERSION} ]; then 
         printf "\nThere are no occurrences of PHP ${REQUESTED_VERSION} on the system.\n"
-        sleep 1
-        bash ~/cli/scripts/configure-php.sh
+        sleep 3
+        main
     # Successful choice
     else
         printf "\nThat version exists!\n"
@@ -45,38 +45,44 @@ function list_php() {
   ls -la /etc/php
 }
 
-### START ###
-clear
+function intro() {
+    printf "\nSo, you wanna configure PHP, eh?...\n"
+    sleep 1
+}
 
-printf "\nSo, you wanna configure PHP, eh?...\n"
-sleep 1
+function choose_version()
+    ACTION_CHOICE=$1
+    ACTION_CHOICE_TEXT=$2
+    
+    # Which version?
+    printf "\nOkay, which version of PHP would you like to ${ACTION_CHOICE_TEXT}? (Ex: 7.3)\n\n"
+    read VERSION
 
-printf "\nYou lookin' to install or remove PHP?\n\n1) Install\n2) Remove\n\n"
-read CHOICE
-
-sleep 1
-
-# Set version choice text
-case ${CHOICE} in
-    1) CHOICE_TEXT="install" ;;
-    2) CHOICE_TEXT="remove" ;;
-esac
-
-# Which version?
-printf "\nOkay, which version of PHP would you like to ${CHOICE_TEXT}? (Ex: 7.3)\n\n"
-read VERSION
-
-# Install or remove?
-case ${CHOICE} in
-    1)
+    # Install or remove?
+    case ${ACTION_CHOICE} in
+        1)
         
-    ;;
-    2)
-        check_version $VERSION
-        check_php
-    ;;
-esac
+        ;;
+        2)
+            check_version $VERSION
+            check_php
+        ;;
+    esac
+}
 
+function main() {
+    printf "\nYou lookin' to install or remove PHP?\n\n1) Install\n2) Remove\n\n"
+    read ACTION_CHOICE
+    sleep 1
+
+    # Set version choice text
+    case ${ACTION_CHOICE} in
+        1) ACTION_CHOICE_TEXT="install" ;;
+        2) ACTION_CHOICE_TEXT="remove" ;;
+    esac
+
+    choose_version $ACTION_CHOICE $ACTION_CHOICE_TEXT
+}
 
 # # We have something installed, so show a list...
 # list_php
@@ -121,3 +127,9 @@ esac
 # list-php
 # sleep 1
 # printf "\ndone.\n"
+}
+
+### START ###
+clear
+intro
+
