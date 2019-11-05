@@ -51,7 +51,7 @@ printf "\nYou lookin' to list, install, or remove PHP?\n\n1) List\n2) Remove\n3)
 read ACTION_CHOICE
 
 # Enforce a proper choice
-if [ "${ACTION_CHOICE}" = "" ] || [ "${ACTION_CHOICE}" -ge 1 -a "${ACTION_CHOICE}" -le 3 ]; then
+if [ "${ACTION_CHOICE}" = "" ] || [ "${ACTION_CHOICE}" -lt 1 -a "${ACTION_CHOICE}" -lt 3 ]; then
     printf "\nTry again and please choose 1-3\n"
     exit
 fi
