@@ -35,101 +35,74 @@ function check_version() {
         return 1
     # Successful choice
     else
-        printf "\nThat version exists!\n"
+        return 0
     fi  
 }
 
-function list_php() {
+function php_versions_on_system() {
   printf "\nHere are the versions of PHP currently available on the system:\n\n"
   ls -la /etc/php
 }
 
-function intro() {
-    printf "\nSo, you wanna configure PHP, eh?...\n"
-    sleep 1
-}
-
-function choose_version() {
-    ACTION_CHOICE=$1
-    ACTION_CHOICE_TEXT=$2
-    
-    # Which version?
-    printf "\nOkay, which version of PHP would you like to ${ACTION_CHOICE_TEXT}? (Ex: 7.3)\n\n"
-    read VERSION
-
-    # Install or remove?
-    case ${ACTION_CHOICE} in
-        1)
-        
-        ;;
-        2)
-            check_version $VERSION
-            check_php
-        ;;
-    esac
-}
-
-function main() {
-    printf "\nYou lookin' to install or remove PHP?\n\n1) Install\n2) Remove\n\n"
-    read ACTION_CHOICE
-    sleep 1
-
-    # Set version choice text
-    case ${ACTION_CHOICE} in
-        1) ACTION_CHOICE_TEXT="install" ;;
-        2) ACTION_CHOICE_TEXT="remove" ;;
-    esac
-
-    choose_version $ACTION_CHOICE $ACTION_CHOICE_TEXT
-}
-
-# # We have something installed, so show a list...
-# list_php
-
-# # Version match
-# match_version
-
-# # Check to see whether the request PHP version exists...
-# if [[ {$CHOICE} == 2 ]] && [ ! -d /etc/php/${VERSION} ]; then
-# printf "\nThere are no occurrences of PHP ${VERSION} on the system.\n"
-# return
-# fi
-
-# # We have the requested version
-# printf "\nYou got it!  Attempting to ${CHOICE_TEXT} PHP ${VERSION}...\n\n "
-# sleep 1
-# case ${CHOICE} in
-# 1)
-#     sudo apt update -y && sudo add-apt-repository ppa:ondrej/php -y && sudo apt update -y && sudo apt install -y php${VERSION} libapache2-mod-php${VERSION} php${VERSION}-common php${VERSION}-gd php${VERSION}-mysql php${VERSION}-curl php${VERSION}-intl php${VERSION}-xsl php${VERSION}-mbstring php${VERSION}-zip php${VERSION}-bcmath php${VERSION}-iconv php${VERSION}-soap php${VERSION}-fpm
-#     # Only install mcypt for 7.0 or 7.1
-#     case ${VERSION} in
-#     7.0|7.1)
-#         sudo apt install -y php${VERSION}-mcrypt
-#     ;;
-#     esac
-#     ;;
-# 2)
-#     # Process the package removal first
-#     sudo apt-get install ppa-purge -y && sudo apt-get purge php${VERSION}-common
-    
-#     # Check for 7.0 specifically and remove its folder
-#     if [[ ${VERSION} == 7.0 ]]; then
-#     printf "\nRemoving /etc/php/ folder contents...\n"
-#     sudo apt-get remove -y --purge php7.0*
-#     sudo rm -rf /etc/php/7.0/ 
-#     fi
-#     ;;
-# esac
-# printf "\nRemoving any unnecessary packages left behind by the PHP installation...\n"
-# sudo apt autoremove -y
-# sleep 1
-# list-php
-# sleep 1
-# printf "\ndone.\n"
-# }
-
-### START ###
 clear
-intro
-main
+printf "\nSo, you wanna configure PHP, eh?...\n"
+sleep 1
 
+# Action choice prompt
+printf "\nYou lookin' to install or remove PHP?\n\n1) Install\n2) Remove\n\n"
+read ACTION_CHOICE
+sleep 1
+
+# Set version choice text
+case ${ACTION_CHOICE} in
+    1) ACTION_CHOICE_TEXT="install" ;;
+    2) ACTION_CHOICE_TEXT="remove" ;;
+esac
+
+# Version prompt
+printf "\nOkay, which version of PHP would you like to ${ACTION_CHOICE_TEXT}? (Ex: 7.3)\n\n"
+read REQUESTED_VERSION
+
+# Install or remove actions
+case ${ACTION_CHOICE} in
+    # Install
+    1)
+        sudo apt update -y && sudo add-apt-repository ppa:ondrej/php -y && sudo apt update -y && sudo apt install -y php${REQUESTED_VERSION} libapache2-mod-php${REQUESTED_VERSION} php${REQUESTED_VERSION}-common php${REQUESTED_VERSION}-gd php${REQUESTED_VERSION}-mysql php${REQUESTED_VERSION}-curl php${REQUESTED_VERSION}-intl php${REQUESTED_VERSION}-xsl php${REQUESTED_VERSION}-mbstring php${REQUESTED_VERSION}-zip php${REQUESTED_VERSION}-bcmath php${REQUESTED_VERSION}-iconv php${REQUESTED_VERSION}-soap php${REQUESTED_VERSION}-fpm
+        
+        # Only install mcypt for 7.0 or 7.1
+        case ${REQUESTED_VERSION} in
+        7.0|7.1)
+            sudo apt install -y php${REQUESTED_VERSION}-mcrypt
+        ;;
+        esac
+        ;;  
+    ;;
+    # Remove
+    2)
+        # Check for any PHP versions
+        check_php
+        # We have something installed so show a list
+        php_versions_on_system
+        # Check to see if requested version is installed
+        check_version $REQUESTED_VERSION
+        # We have the requested version
+        printf "\nYou got it!  Attempting to ${ACTION_CHOICE_TEXT} PHP ${REQUESTED_VERSION}...\n\n "
+        sleep 1
+        # Process the package removal first
+        sudo apt-get install ppa-purge -y && sudo apt-get purge php${VERSION}-common
+        # Check for 7.0 specifically and remove its folder
+        if [[ ${REQUESTED_VERSION} == 7.0 ]]; then
+            printf "\nRemoving /etc/php/ folder contents...\n"
+            sudo apt-get remove -y --purge php${REQUESTED_VERSION}*
+            sudo rm -rf /etc/php/${REQUESTED_VERSION}/ 
+        fi
+        # Remove unnecessary packages
+        printf "\nRemoving any unnecessary packages left behind by the process...\n"
+        sudo apt autoremove -y
+        sleep 1
+        # Show resultant PHP versions
+        php_versions_on_system
+        sleep 1
+        printf "\ndone.\n"
+    ;;
+esac
