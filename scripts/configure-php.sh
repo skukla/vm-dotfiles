@@ -64,11 +64,9 @@ fi
 case ${ACTION_CHOICE} in
     1) ACTION_CHOICE_TEXT="install" ;;
     2) 
-        ACTION_CHOICE_TEXT="remove" 
-        
+        ACTION_CHOICE_TEXT="remove"
         # Check to see if any version of PHP is installed
         check_php
-        
         # Show versions on system
         php_versions_on_system
         ;;
@@ -115,15 +113,14 @@ case ${ACTION_CHOICE} in
             printf "\nRemoving /etc/php/ folder contents...\n"
             sudo rm -rf /etc/php/${REQUESTED_VERSION}/ 
         fi
-
-        # Remove unnecessary packages
-        printf "\nRemoving any unnecessary packages left behind by the process...\n"
-        sudo apt autoremove -y
-        sleep 1
-
-        # Show resultant PHP versions
-        php_versions_on_system
-        sleep 1
-        printf "\ndone.\n"
     ;;
 esac
+# Remove unnecessary packages
+printf "\nRemoving any unnecessary packages left behind by the process...\n"
+sudo apt autoremove -y
+sleep 1
+
+# Show resultant PHP versions
+php_versions_on_system
+sleep 1
+printf "\ndone.\n"
