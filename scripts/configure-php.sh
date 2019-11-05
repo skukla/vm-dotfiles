@@ -99,7 +99,7 @@ case ${ACTION_CHOICE} in
         sleep 1
 
         # Process the package removal first
-        sudo apt-get purge php${REQUESTED_VERSION}-common
+        sudo apt-get purge php${REQUESTED_VERSION} -y
 
         # Check for 7.0 specifically and remove its folder
         if [[ ${REQUESTED_VERSION} == 7.0 ]]; then
