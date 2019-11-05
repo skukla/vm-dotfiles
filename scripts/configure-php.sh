@@ -17,10 +17,10 @@ function check_php() {
     # If they want to remove a version, check to see if there are any versions at all
     if [[ ! $(ls -A /etc/php >/dev/null 2>&1) ]]; then
         printf "\nThere are no versions of PHP on the system.\n\n"
-        return 1
+        exit
     elif [[ $1 = "list" ]]; then
         printf "\nHere are the versions of PHP currently available on the system:\n\n"
-        ls -la /etc/php    
+        ls -la /etc/php  
     else
         return 1
     fi
