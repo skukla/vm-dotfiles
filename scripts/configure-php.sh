@@ -51,7 +51,7 @@ printf "\nYou lookin' to list, install, or remove PHP?\n\n1) List\n2) Remove\n3)
 read ACTION_CHOICE
 
 # Enforce a proper choice
-if [[ ${ACTION_CHOICE} = "" ]] || if [[ ${ACTION_CHOICE} >= 1 ]] && [[ ${ACTION_CHOICE} <= 3 ]]; then
+if [[ ${ACTION_CHOICE} = "" ]] || [[ ${ACTION_CHOICE} >= 1 ]] && [[ ${ACTION_CHOICE} <= 3 ]]; then
     printf "\nTry again and please choose 1-3\n"
     exit
 fi
