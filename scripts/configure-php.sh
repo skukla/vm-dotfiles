@@ -58,8 +58,10 @@ case ${ACTION_CHOICE} in
     1) ACTION_CHOICE_TEXT="install" ;;
     2) 
         ACTION_CHOICE_TEXT="remove" 
+        
         # Check to see if any version of PHP is installed
         check_php
+        
         # Show versions on system
         php_versions_on_system
         ;;
@@ -72,13 +74,12 @@ read REQUESTED_VERSION
 
 # Install or remove actions
 case ${ACTION_CHOICE} in
-    # Either Install or Remove
-    1|2)
-        # Check to see if requested version is installed
-        check_version $REQUESTED_VERSION
-    ;;
     # Install
     1)
+        # Check to see if requested version is installed
+        check_version $REQUESTED_VERSION
+
+        # Install common packages
         sudo apt update -y && sudo add-apt-repository ppa:ondrej/php -y && sudo apt update -y && sudo apt install -y php${REQUESTED_VERSION} libapache2-mod-php${REQUESTED_VERSION} php${REQUESTED_VERSION}-common php${REQUESTED_VERSION}-gd php${REQUESTED_VERSION}-mysql php${REQUESTED_VERSION}-curl php${REQUESTED_VERSION}-intl php${REQUESTED_VERSION}-xsl php${REQUESTED_VERSION}-mbstring php${REQUESTED_VERSION}-zip php${REQUESTED_VERSION}-bcmath php${REQUESTED_VERSION}-iconv php${REQUESTED_VERSION}-soap php${REQUESTED_VERSION}-fpm
         
         # Only install mcypt for 7.0 or 7.1
@@ -90,21 +91,28 @@ case ${ACTION_CHOICE} in
     ;;
     # Remove
     2)
+        # Check to see if requested version is installed
+        check_version $REQUESTED_VERSION
+
         # We have the requested version
         printf "\nYou got it! Attempting to ${ACTION_CHOICE_TEXT} PHP ${REQUESTED_VERSION}...\n\n "
         sleep 1
+
         # Process the package removal first
         sudo apt-get purge php${VERSION}-common
+
         # Check for 7.0 specifically and remove its folder
         if [[ ${REQUESTED_VERSION} == 7.0 ]]; then
             printf "\nRemoving /etc/php/ folder contents...\n"
             sudo apt-get remove -y --purge php${REQUESTED_VERSION}*
             sudo rm -rf /etc/php/${REQUESTED_VERSION}/ 
         fi
+
         # Remove unnecessary packages
         printf "\nRemoving any unnecessary packages left behind by the process...\n"
         sudo apt autoremove -y
         sleep 1
+
         # Show resultant PHP versions
         php_versions_on_system
         sleep 1
