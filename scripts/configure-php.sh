@@ -52,14 +52,10 @@ sleep 1
 # Action choice prompt
 printf "\nYou lookin' to install or remove PHP?\n\n1) Install\n2) Remove\n\n"
 read -s -n 1 key
-if [[ $key = "" ]]; then 
-    exit
-fi
 read ACTION_CHOICE
-sleep 1
 
 # Enforce a proper choice
-if [ ${ACTION_CHOICE} != 1 ] && [ ${ACTION_CHOICE} != 2 ]; then
+if [ ${key} == "" ] || [ ${ACTION_CHOICE} != 1 ] && [ ${ACTION_CHOICE} != 2 ]; then
     printf "\nTry again and please choose either 1 or 2\n"
     exit
 fi
