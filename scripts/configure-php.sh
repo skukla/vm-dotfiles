@@ -80,9 +80,8 @@ printf "\nOkay, which version of PHP would you like to ${ACTION_CHOICE_TEXT}? (E
 read REQUESTED_VERSION
 
 # Install or remove actions
-case ${ACTION_CHOICE} in
-    # Install
-    1)
+case ${ACTION_CHOICE_TEXT} in
+    install)
         # Check to see if requested version is installed
         check_version $REQUESTED_VERSION $ACTION_CHOICE_TEXT
     
@@ -97,8 +96,7 @@ case ${ACTION_CHOICE} in
             ;;
         esac
     ;;
-    # Remove
-    2)
+    remove)
         # Check to see if requested version is installed
         check_version $REQUESTED_VERSION $ACTION_CHOICE_TEXT
 
