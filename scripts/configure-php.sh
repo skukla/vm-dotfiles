@@ -103,8 +103,8 @@ case ${ACTION_CHOICE} in
         ACTION_CHOICE_TEXT="install"
         printf "\nPlease choose between these versions:\n\n"
         show_versions
-        printf "\n"
-        check_php ;;
+        check_php 
+        printf "\n" ;;
     3) ACTION_CHOICE_TEXT="remove" ;;
     4) 
         sudo apt-get remove --purge php7.* -y
