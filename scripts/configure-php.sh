@@ -18,6 +18,9 @@ function check_php() {
     if [[ ! $(ls -A /etc/php) ]]; then
         printf "\nThere are no versions of PHP on the system.\n\n"
         return 1
+    else
+        printf "\nHere are the versions of PHP currently available on the system:\n\n"
+        ls -la /etc/php    
     fi
 }
 
@@ -38,11 +41,6 @@ function check_version() {
     else
         return 0
     fi  
-}
-
-function php_versions_on_system() {
-  printf "\nHere are the versions of PHP currently available on the system:\n\n"
-  ls -la /etc/php
 }
 
 clear
@@ -66,8 +64,6 @@ case ${ACTION_CHOICE} in
         ACTION_CHOICE_TEXT="remove"
         # Check to see if any version of PHP is installed
         check_php
-        # Show versions on system
-        php_versions_on_system
         ;;
 esac
 
@@ -114,6 +110,6 @@ sudo apt autoremove -y
 sleep 1
 
 # Show resultant PHP versions
-php_versions_on_system
+check_php
 sleep 1
 printf "\ndone.\n"
