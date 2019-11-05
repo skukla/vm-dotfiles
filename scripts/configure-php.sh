@@ -103,8 +103,7 @@ case ${ACTION_CHOICE} in
         ACTION_CHOICE_TEXT="install"
         printf "\nPlease choose between these versions:\n\n"
         show_versions
-        check_php 
-        printf "\n" ;;
+        check_php ;;
     3) 
         ACTION_CHOICE_TEXT="remove"
         check_php
