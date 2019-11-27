@@ -182,6 +182,15 @@ function prod-mode() {
 }
 export -f prod-mode
 
+function start-all-consumers() {
+  CONSUMERS_LIST=(product_action_attribute.update product_action_attribute.website.update codegeneratorProcessor exportProcessor negotiableQuotePriceUpdate sharedCatalogUpdatePrice sharedCatalogUpdateCategoryPermissions quoteItemCleaner inventoryQtyCounter)
+  printf "\nStarting all consumers...\n"
+  for consumer in "${CONSUMERS_LIST[@]}"
+    do bin/magento queue:consumers:start $consumer &
+  done
+} 
+export -f start-all-consumers
+
 function configure-proxy() {
   printf "\nProxying through gitlab firewall...\n"
   export GIT_SSH_COMMAND='ssh -o ProxyCommand="nc -x 127.0.0.1:8889 %h %p"' HTTP_PROXY=http://127.0.0.1:8888
@@ -546,13 +555,6 @@ function update-cli() {
   cd ${MAGENTO_DIRECTORY}
 }
 export -f update-cli
-
-function vm-help() {
-  CLI_DIRECTORY=~/cli
-  clear
-  cat ${CLI_DIRECTORY}/help.txt
-}
-export -f vm-help
 
 function mount-share() {
   HOST_FOLDER_NAME=$(vmware-hgfsclient)
