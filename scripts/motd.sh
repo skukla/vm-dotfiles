@@ -7,8 +7,8 @@ HOSTNAME=$(hostname)
 BOLD=$(tput bold)
 REG=$(tput sgr0)
 CYAN=$(tput setaf 6)
-WEBMIN_USER=magento
-WEBMIN_PASS=magento
+WEBMIN_USER=vagrant
+WEBMIN_PASS=vagrant
 WEBMIN_PORT=$(netstat -tulpn | grep "LISTEN" | grep "perl" | awk '{print $4}' | sed -e 's/.*://')
 MAILHOG_PORT=$(netstat -tulpn | grep "LISTEN" | grep "mailhog" | awk '{print $4;exit;}' | sed -e 's/.*://')
 
