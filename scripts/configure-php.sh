@@ -65,7 +65,7 @@ function install_or_remove() {
             esac
             # Update FPM
             printf "\nUpdating the FPM www.conf file..."
-            sudo sed -i -e 's/user = www-data/user = vagrant/' -e '0,/group =/{s/group = www-data/group = vagrant/}' -e 's/^listen = \/run\/php/listen = 127.0.0.1:9000;/' /etc/php/${REQUESTED_VERSION}/fpm/pool.d/www.conf
+            sudo sed -i -e 's/user = www-data/user = vagrant/' -e '0,/group =/{s/group = www-data/group = vagrant/}' -e 's/^listen = \/run\/php/c\listen = 127.0.0.1:9000;/' /etc/php/${REQUESTED_VERSION}/fpm/pool.d/www.conf
             sleep 1
             printf "done.\n"
             # Update PHP ini files (CLI and FPM)
@@ -74,6 +74,9 @@ function install_or_remove() {
             sudo sed -i -e 's/;date.timezone =/date.timezone = America\/Los_Angeles/' -e 's/max_execution_time = 30/max_execution_time = 1800/' -e 's/memory_limit = 128M/memory_limit = 2G/' -e 's/zlib.output_compression = Off/zlib.output_compression = On/' /etc/php/${REQUESTED_VERSION}/fpm/php.ini
             sleep 1
             printf "done.\n"
+            # Restart FPM
+            printf "\nRestarting PHP-FPM ${REQUESTED_VERSION}...\n"
+            sudo systemctl restart php${REQUESTED_VERSION}-fpm
         ;;
         remove)
             # Check to see if requested version is installed
