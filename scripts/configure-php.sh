@@ -65,7 +65,7 @@ function install_or_remove() {
             esac
             # Update FPM
             printf "\nUpdating the FPM www.conf file..."
-            sudo sed -i -e 's/user = www-data/user = vagrant/' -e '0,/group =/{s/group = www-data/group = vagrant/}' -e 's/listen = \/run\/php\/php"${REQUESTED_VERSION}"-fpm.sock/listen = 127.0.0.1:9000;/' /etc/php/${REQUESTED_VERSION}/fpm/pool.d/www.conf
+            sudo sed -i -e 's/user = www-data/user = vagrant/' -e '0,/group =/{s/group = www-data/group = vagrant/}' -e 's/^listen = \/run\/php\/listen = 127.0.0.1:9000;/' /etc/php/${REQUESTED_VERSION}/fpm/pool.d/www.conf
             sleep 1
             printf "done.\n"
             # Update PHP ini files (CLI and FPM)
