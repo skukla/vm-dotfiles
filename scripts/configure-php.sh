@@ -54,7 +54,7 @@ function install_or_remove() {
             # Check to see if requested version is installed
             check_version $REQUESTED_VERSION $ACTION_CHOICE_TEXT
             # Install common packages
-            printf "\nYou got it! Attempting to ${ACTION_CHOICE_TEXT} PHP ${REQUESTED_VERSION}...\n\n "
+            printf "\nYou got it! Attempting to ${ACTION_CHOICE_TEXT} PHP ${REQUESTED_VERSION}...\n\n"
             sleep 1
             sudo apt update -y && sudo add-apt-repository ppa:ondrej/php -y && sudo apt update -y && sudo apt install -y php${REQUESTED_VERSION} libapache2-mod-php${REQUESTED_VERSION} php${REQUESTED_VERSION}-common php${REQUESTED_VERSION}-gd php${REQUESTED_VERSION}-mysql php${REQUESTED_VERSION}-curl php${REQUESTED_VERSION}-intl php${REQUESTED_VERSION}-xsl php${REQUESTED_VERSION}-mbstring php${REQUESTED_VERSION}-zip php${REQUESTED_VERSION}-bcmath php${REQUESTED_VERSION}-iconv php${REQUESTED_VERSION}-soap php${REQUESTED_VERSION}-fpm
             # Only install mcypt for 7.0 or 7.1
@@ -63,6 +63,15 @@ function install_or_remove() {
                     sudo apt install -y php${REQUESTED_VERSION}-mcrypt
                 ;;
             esac
+            # Update FPM
+            printf "\nUpdating the FPM www.conf file...\n\n"
+            sudo sed -i -e 's/user = www-data/user = vagrant/' -e '0,/group =/{s/group = www-data/group = vagrant/}' -e 's/listen = \/run\/php\/php${REQUESTED_VERSION}-fpm.sock/listen = 127.0.0.1:9000;/' /etc/php/${REQUESTED_VERSION}/fpm/pool.d/www.conf
+            sleep 1
+            printf "done."
+            # Update PHP ini files (CLI and FPM)
+            printf "\nUpdating the FPM and CLI ini files...\n\n"
+            sudo sed -i -e 's/;date.timezone =/date.timezone = America\/Los_Angeles/' -e 's/max_execution_time = 30/max_execution_time = 1800/' -e 's/memory_limit = -1/memory_limit = 2G/' -e 's/zlib.output_compression = Off/zlib.output_compression = On/' /etc/php/${REQUESTED_VERSION}/cli/php.ini;sudo sed -i -e 's/;date.timezone =/date.timezone = America\/Los_Angeles/' -e 's/max_execution_time = 30/max_execution_time = 1800/' -e 's/memory_limit = 128M/memory_limit = 2G/' -e 's/zlib.output_compression = Off/zlib.output_compression = On/' /etc/php/${REQUESTED_VERSION}/fpm/php.ini
+            printf "done."
         ;;
         remove)
             # Check to see if requested version is installed
