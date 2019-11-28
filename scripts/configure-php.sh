@@ -75,7 +75,7 @@ function install_or_remove() {
             sleep 1
             printf "done.\n"
             # Restart FPM
-            printf "\nRestarting PHP-FPM ${REQUESTED_VERSION}...\n"
+            printf "\nRestarting PHP-FPM ${REQUESTED_VERSION}..."
             sudo systemctl restart php${REQUESTED_VERSION}-fpm
             sleep 1
             printf "done.\n"
