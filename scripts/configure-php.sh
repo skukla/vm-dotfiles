@@ -64,15 +64,15 @@ function install_or_remove() {
                 ;;
             esac
             # Update FPM
-            printf "\nUpdating the FPM www.conf file...\n\n"
+            printf "\nUpdating the FPM www.conf file..."
             sudo sed -i -e 's/user = www-data/user = vagrant/' -e '0,/group =/{s/group = www-data/group = vagrant/}' -e 's/listen = \/run\/php\/php${REQUESTED_VERSION}-fpm.sock/listen = 127.0.0.1:9000;/' /etc/php/${REQUESTED_VERSION}/fpm/pool.d/www.conf
             sleep 1
-            printf "done."
+            printf "done.\n"
             # Update PHP ini files (CLI and FPM)
-            printf "\nUpdating the FPM and CLI ini files...\n\n"
+            printf "\nUpdating the FPM and CLI ini files..."
             sudo sed -i -e 's/;date.timezone =/date.timezone = America\/Los_Angeles/' -e 's/max_execution_time = 30/max_execution_time = 1800/' -e 's/memory_limit = -1/memory_limit = 2G/' -e 's/zlib.output_compression = Off/zlib.output_compression = On/' /etc/php/${REQUESTED_VERSION}/cli/php.ini;sudo sed -i -e 's/;date.timezone =/date.timezone = America\/Los_Angeles/' -e 's/max_execution_time = 30/max_execution_time = 1800/' -e 's/memory_limit = 128M/memory_limit = 2G/' -e 's/zlib.output_compression = Off/zlib.output_compression = On/' /etc/php/${REQUESTED_VERSION}/fpm/php.ini
             sleep 1
-            printf "done."
+            printf "done.\n"
         ;;
         remove)
             # Check to see if requested version is installed
