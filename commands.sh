@@ -270,7 +270,7 @@ function stop-fpm73() {
 export -f stop-fpm73
 
 function status-fpm73() {
-  sudo systemctl status php7.2-fpm
+  sudo systemctl status php7.3-fpm
 }
 export -f status-fpm73
 
