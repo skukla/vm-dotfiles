@@ -77,6 +77,8 @@ function install_or_remove() {
             # Restart FPM
             printf "\nRestarting PHP-FPM ${REQUESTED_VERSION}...\n"
             sudo systemctl restart php${REQUESTED_VERSION}-fpm
+            sleep 1
+            printf "done.\n"
         ;;
         remove)
             # Check to see if requested version is installed
