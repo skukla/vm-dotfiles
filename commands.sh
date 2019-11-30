@@ -8,7 +8,9 @@ export -f www
 # Git
 function reset-vm-branch() {
   www
+
   # Check out to a temporary branch:
+  git checkout master
   git checkout --orphan vm2
 
   # Add all the files:
@@ -19,14 +21,25 @@ function reset-vm-branch() {
 
   # Delete the old branch:
   git branch -D vm
+  git push origin --delete vm
 
   # Rename the temporary branch to master:
   git branch -m vm
 
-  # Finally, force update to our repository:
+  # Force update to our repository:
   git push -f origin master  
+  
+  # Finally, set the remote branch to tack the local branch
+  git push -u origin vm
 }
 export -f reset-vm-branch
+
+function get-code() {
+  www
+  add-keys
+  git clone git@github.com:tiledaily/codebase.git .
+}
+export -f get-code
 
 # CLI
 function own() {
