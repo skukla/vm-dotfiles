@@ -55,6 +55,7 @@ function flush-cache() {
   printf "\nFlushing cache...\n"
   ./bin/magento cache:flush
   rm -rf var/cache/* var/page_cache/*
+  redis-cli -h 127.0.0.1 -p 6379 -a jdtHadridbdnqevw6xeswqq1Nljapf flushall
 }
 export -f flush-cache
 
