@@ -7,6 +7,7 @@ export -f www
 
 # Git
 function reset-vm() {
+  www
   git push origin :vm
 }
 export -f reset-vm
