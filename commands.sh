@@ -5,6 +5,12 @@ function www() {
 }
 export -f www
 
+# Git
+function reset-vm() {
+  git push origin :vm
+}
+export -f reset-vm
+
 # CLI
 function own() {
   GROUP=vagrant
