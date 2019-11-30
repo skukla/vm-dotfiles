@@ -6,11 +6,27 @@ function www() {
 export -f www
 
 # Git
-function reset-vm() {
+function reset-vm-branch() {
   www
-  git push origin :vm
+  # Check out to a temporary branch:
+  git checkout --orphan vm2
+
+  # Add all the files:
+  git add -A
+
+  # Commit the changes:
+  git commit -am "Initial commit"
+
+  # Delete the old branch:
+  git branch -D vm
+
+  # Rename the temporary branch to master:
+  git branch -m vm
+
+  # Finally, force update to our repository:
+  git push -f origin master  
 }
-export -f reset-vm
+export -f reset-vm-branch
 
 # CLI
 function own() {
