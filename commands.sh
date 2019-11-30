@@ -207,8 +207,7 @@ export -f configure-proxy
 function add-keys() {
   printf "\nAdding SSH keys...\n"
   eval $(ssh-agent)
-  ssh-add ~/.ssh/id_rsa.skukla.gitlab
-  ssh-add ~/.ssh/id_rsa.skukla.github
+  ssh-add ~/.ssh/id_rsa.tiledaily.github
 }
 export -f add-keys
 
