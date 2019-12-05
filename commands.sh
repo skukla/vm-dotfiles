@@ -628,11 +628,11 @@ export -f clear-cron-schedule
 function sanitize-vm() {
   printf "\nSanitizing the VM..."
   sleep 1
-  printf "\nRemoving the currently installed composer credentials...\n"
+  printf "\nRemoving the currently installed composer credentials..."
   rm -rf ~/.composer/auth.json
   sleep 1
   printf "done.\n"
-  printf "\nClearing composer cache..."
+  printf "\nClearing composer cache...\n"
   composer clearcache
   sleep 1
   printf "done.\n"
