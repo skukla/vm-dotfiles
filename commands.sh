@@ -631,7 +631,7 @@ function sanitize-vm() {
   printf "\nRemoving the currently installed composer credentials..."
   rm -rf ~/.composer/auth.json
   sleep 1
-  printf "done.\n"
+  printf "done.\n\n"
   printf "\nClearing composer cache..."
   composer clearcache
   sleep 1
