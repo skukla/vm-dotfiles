@@ -63,6 +63,12 @@ function install_or_remove() {
                     sudo apt install -y php${REQUESTED_VERSION}-mcrypt
                 ;;
             esac
+            # Remove Apache
+            printf "\nRemoving Apache..."
+            sudo systemctl stop apache2
+            sudo apt-get purge apache2 apache2-utils -y
+            sleep 1
+            printf "done.\n"
             # Update FPM
             printf "\nUpdating the FPM www.conf file..."
             sudo sed -i -e 's/user = www-data/user = vagrant/' -e '0,/group =/{s/group = www-data/group = vagrant/}' -e '/^listen = \/run\/php/c\listen = 127.0.0.1:9000;' /etc/php/${REQUESTED_VERSION}/fpm/pool.d/www.conf
@@ -80,11 +86,6 @@ function install_or_remove() {
             sleep 1
             printf "done.\n"
             sleep 1
-            # Remove Apache
-            printf "\n\nEnsuring Apache is removed..."
-            sudo systemctl stop apache2
-            sudo apt-get purge apache2 apache2-utils -y
-            printf "done.\n"
         ;;
         remove)
             # Check to see if requested version is installed
