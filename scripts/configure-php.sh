@@ -80,7 +80,7 @@ function install_or_remove() {
             sleep 1
             printf "done.\n"
             # Remove Apache
-            printf "\nEnsuring Apache is removed..."
+            printf "\n\nEnsuring Apache is removed..."
             sudo systemctl stop apache2
             sudo apt-get purge apache2 apache2-utils -y
             sudo apt-get autoremove -y
