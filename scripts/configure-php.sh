@@ -64,11 +64,9 @@ function install_or_remove() {
                 ;;
             esac
             # Remove Apache
-            printf "\nRemoving Apache..."
             sudo systemctl stop apache2
             sudo apt-get purge apache2 apache2-utils -y
             sleep 1
-            printf "done.\n"
             # Update FPM
             printf "\nUpdating the FPM www.conf file..."
             sudo sed -i -e 's/user = www-data/user = vagrant/' -e '0,/group =/{s/group = www-data/group = vagrant/}' -e '/^listen = \/run\/php/c\listen = 127.0.0.1:9000;' /etc/php/${REQUESTED_VERSION}/fpm/pool.d/www.conf
