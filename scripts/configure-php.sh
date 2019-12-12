@@ -63,6 +63,10 @@ function install_or_remove() {
                     sudo apt install -y php${REQUESTED_VERSION}-mcrypt
                 ;;
             esac
+            # Remove Apache
+            sudo systemctl stop apache2
+            sudo apt-get purge apache2 apache2-utils -y
+            sleep 1
             # Update FPM
             printf "\nUpdating the FPM www.conf file..."
             sudo sed -i -e 's/user = www-data/user = vagrant/' -e '0,/group =/{s/group = www-data/group = vagrant/}' -e '/^listen = \/run\/php/c\listen = 127.0.0.1:9000;' /etc/php/${REQUESTED_VERSION}/fpm/pool.d/www.conf
@@ -70,8 +74,8 @@ function install_or_remove() {
             printf "done.\n"
             # Update PHP ini files (CLI and FPM)
             printf "\nUpdating the FPM and CLI ini files..."
-            sudo sed -i -e 's/;date.timezone =/date.timezone = America\/Los_Angeles/' -e 's/max_execution_time = 30/max_execution_time = 1800/' -e 's/memory_limit = -1/memory_limit = 2G/' -e 's/zlib.output_compression = Off/zlib.output_compression = On/' /etc/php/${REQUESTED_VERSION}/cli/php.ini
-            sudo sed -i -e 's/;date.timezone =/date.timezone = America\/Los_Angeles/' -e 's/max_execution_time = 30/max_execution_time = 1800/' -e 's/memory_limit = 128M/memory_limit = 2G/' -e 's/zlib.output_compression = Off/zlib.output_compression = On/' /etc/php/${REQUESTED_VERSION}/fpm/php.ini
+            sudo sed -i -e 's/;date.timezone =/date.timezone = America\/Los_Angeles/' -e 's/max_execution_time = 30/max_execution_time = 1800/' -e 's/memory_limit = -1/memory_limit = 2G/' -e 's/zlib.output_compression = Off/zlib.output_compression = On/' -e 's/;sendmail_path =/sendmail_path = \/usr\/local\/bin\/mhsendmail/' /etc/php/${REQUESTED_VERSION}/cli/php.ini
+            sudo sed -i -e 's/;date.timezone =/date.timezone = America\/Los_Angeles/' -e 's/max_execution_time = 30/max_execution_time = 1800/' -e 's/memory_limit = 128M/memory_limit = 2G/' -e 's/zlib.output_compression = Off/zlib.output_compression = On/' -e 's/;sendmail_path =/sendmail_path = \/usr\/local\/bin\/mhsendmail/' /etc/php/${REQUESTED_VERSION}/fpm/php.ini
             sleep 1
             printf "done.\n"
             # Restart FPM
@@ -79,6 +83,7 @@ function install_or_remove() {
             sudo systemctl restart php${REQUESTED_VERSION}-fpm
             sleep 1
             printf "done.\n"
+            sleep 1
         ;;
         remove)
             # Check to see if requested version is installed
