@@ -79,11 +79,11 @@ function install_or_remove() {
             sudo systemctl restart php${REQUESTED_VERSION}-fpm
             sleep 1
             printf "done.\n"
+            sleep 1
             # Remove Apache
             printf "\n\nEnsuring Apache is removed..."
             sudo systemctl stop apache2
             sudo apt-get purge apache2 apache2-utils -y
-            sudo apt-get autoremove -y
             printf "done.\n"
         ;;
         remove)

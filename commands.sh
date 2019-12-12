@@ -643,6 +643,16 @@ function sanitize-vm() {
 }
 export -f sanitize-vm
 
+function remove-apache() {
+  printf "\n\nEnsuring Apache is removed..."
+  sudo systemctl stop apache2
+  sudo apt-get purge apache2 apache2-utils -y
+  sudo apt autoremove -y
+  sleep 1
+  printf "done.\n"
+}
+export -f remove-apache
+
 function apply-patches() {
   MAGENTO_DIRECTORY=/var/www/magento
   VERSION=2.3.3
