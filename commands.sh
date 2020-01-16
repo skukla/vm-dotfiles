@@ -221,7 +221,7 @@ export -f update-composer
 
 function add-modules() {
   www
-  apply-patches
+  #apply-patches
   own
   db-upgrade
   di-compile
