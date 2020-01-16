@@ -91,8 +91,7 @@ function disable-cron() {
   www
   ./bin/magento cron:remove
   crontab -r
-  clear-cron-schedule
-  printf "done.\n" 
+  clear-cron-schedule 
 }
 export -f disable-cron
 
