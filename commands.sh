@@ -91,6 +91,7 @@ function disable-cron() {
   www
   ./bin/magento cron:remove
   crontab -r
+  clear-cron-schedule
   printf "done.\n" 
 }
 export -f disable-cron
@@ -247,7 +248,6 @@ function upgrade() {
   own 
   configure-proxy
   disable-cron
-  clear-cron-schedule
   update-composer
   add-modules
   enable-cron
