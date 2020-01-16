@@ -655,7 +655,7 @@ export -f remove-apache
 
 function apply-patches() {
   MAGENTO_DIRECTORY=/var/www/magento
-  VERSION=2.3.3
+  VERSION=2.3.4
   printf "\nGetting patch list...\n"
   www
   cd ../cloud
@@ -672,7 +672,7 @@ function apply-patches() {
   printf "\nApplying patches...\n"
   sleep 1
   www
-  # php vendor/magentoese/ece-tools/bin/ece-tools patch
+  php vendor/magentoese/ece-tools/bin/ece-tools patch
 }
 export -f apply-patches
 
