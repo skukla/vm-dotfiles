@@ -658,8 +658,8 @@ function apply-patches() {
   printf "\nGetting patch list...\n"
   www
   cd ../cloud
-  git checkout pmet-${VERSION}-demo
   git pull
+  git checkout pmet-${VERSION}-demo
   sleep 1
   printf "done.\n"
   sleep 1
