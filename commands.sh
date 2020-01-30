@@ -256,6 +256,23 @@ function upgrade() {
 export -f upgrade
 
 # PHP-FPM
+function start-fpm74() {
+  printf "\nRestarting PHP-FPM 7.4...\n"
+  sudo systemctl restart php7.4-fpm
+}
+export -f start-fpm74
+
+function stop-fpm74() {
+  printf "\nStopping PHP-FPM 7.4...\n"
+  sudo systemctl stop php7.4-fpm
+}
+export -f stop-fpm74
+
+function status-fpm74() {
+  sudo systemctl status php7.4-fpm
+}
+export -f status-fpm74
+
 function start-fpm73() {
   printf "\nRestarting PHP-FPM 7.3...\n"
   sudo systemctl restart php7.3-fpm
