@@ -1,5 +1,5 @@
 #!/bin/bash
-SUPPORTED_VERSIONS=("7.0" "7.1" "7.2" "7.3")
+SUPPORTED_VERSIONS=("7.0" "7.1" "7.2" "7.3" "7.4")
 ACTION_CHOICES=("1) List currently installed versions" "2) Install a version" "3) Remove a version" "4) Purge all versions")
 
 function in_array() {
