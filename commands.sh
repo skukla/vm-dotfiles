@@ -687,8 +687,8 @@ function apply-patches() {
   sleep 1
   printf "\nApplying patches...\n"
   sleep 1
-  www
   php vendor/magentoese/ece-tools/bin/ece-tools patch
+  www
 }
 export -f apply-patches
 
